@@ -7,12 +7,18 @@
     --visited: #3c096c;   /* Dark Purple */
     --highlight: #ffbd00; /* Electric Yellow/Gold */
     
-    /* Background Gradient: Light Top -> Darker Bottom */
-    --bg-top: #fdf4ff;    
+    /* Background Gradient */
+    /* UPDATED: Top is now darker (#efd9ff) instead of nearly white */
+    --bg-top: #efd9ff;    
     --bg-bottom: #d8b4fe; 
     
     --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
     --serif: "Georgia", serif; 
+}
+
+/* UPDATED: Set the background on HTML to handle over-scrolling */
+html {
+    background-color: var(--bg-top);
 }
 
 body {
@@ -48,8 +54,6 @@ a {
     position: relative; 
     top: 0; 
     
-    /* UPDATED: Slower, smoother animation matching the cards */
-    /* This curve (cubic-bezier) gives it that "snappy" feel */
     transition: top 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
                 background-color 0.2s ease, 
                 box-shadow 0.2s ease, 
