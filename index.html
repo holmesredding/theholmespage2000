@@ -123,6 +123,11 @@
                         blockquote { border-left: 4px solid #ffbd00; padding-left: 15px; color: #555; background: rgba(255, 189, 0, 0.1); padding: 10px; border-radius: 0 8px 8px 0;}
                         code { background: #f0f0f0; padding: 2px 4px; border-radius: 3px; color: #6218fa; }
                         iframe { width: 100%; aspect-ratio: 16/9; border: none; border-radius: 8px; margin: 20px 0; }
+                        
+                        /* Footnote Styles */
+                        .footnote-ref { font-size: 0.8em; vertical-align: super; margin-left: 2px;}
+                        .footnote-item { margin-bottom: 10px; font-size: 0.9em; }
+                        .footnote-back { text-decoration: none; border: none; margin-left: 5px;}
                     </style>
                 </template>
             </zero-md>
@@ -131,21 +136,41 @@
     </main>
 
     <footer>
-        <p>&copy; 2023 Emmett Redding.</p>
+        <p>&copy; 2025 Emmett Redding.</p>
     </footer>
 
     <!-- === JAVASCRIPT LOGIC === -->
     <script>
+        // 1. Load Post Logic
         const params = new URLSearchParams(window.location.search);
         const post = params.get('post');
+        const viewer = document.getElementById('md-viewer');
 
         if (post) {
             document.getElementById('home-view').style.display = 'none';
             document.getElementById('post-view').style.display = 'block';
-            
-            const viewer = document.getElementById('md-viewer');
             viewer.src = post;
         }
+
+        // 2. Footnote Fix Logic (Shadow DOM Support)
+        // We listen for clicks inside the markdown viewer
+        viewer.addEventListener('click', (e) => {
+            // We need to find if a link was clicked inside the Shadow DOM
+            const path = e.composedPath();
+            const link = path.find(el => el.tagName === 'A' && el.getAttribute('href')?.startsWith('#'));
+
+            if (link) {
+                e.preventDefault(); // Stop default browser jump
+                const id = link.getAttribute('href').slice(1); // Get the ID (e.g., "fn1")
+                
+                // Find the element inside the Shadow DOM
+                const target = viewer.shadowRoot.getElementById(id);
+                
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+        });
     </script>
 
 </body>
