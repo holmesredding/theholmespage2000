@@ -7,9 +7,9 @@
     --visited: #3c096c;   /* Dark Purple */
     --highlight: #ffbd00; /* Electric Yellow/Gold */
     
-    /* Background Gradient: Richer Purples */
-    --bg-top: #eaddff;    /* <--- DARKER PURPLE TOP */
-    --bg-bottom: #d0bdf4; /* Slightly darker bottom to match */
+    /* Background Gradient */
+    --bg-top: #d8b4fe;    
+    --bg-bottom: #fdf4ff; 
     
     --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
     --serif: "Georgia", serif; 
@@ -34,31 +34,32 @@ body {
     box-sizing: border-box;
 }
 
-/* --- EXCITING LINK STYLES --- */
+/* --- TEXT LINK STYLES (Paragraphs) --- */
+/* This style is safe for text flows - no bumping! */
 a { 
     color: var(--link); 
     text-decoration: none; 
     font-weight: 600; 
     /* The "Yellow Border" default state */
     border-bottom: 3px solid var(--highlight); 
-    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background-color 0.1s ease, color 0.1s ease;
     padding: 0 2px;
 }
 
-/* The "Exciting" Hover State */
+/* The "Highlighter" Hover State */
+/* Exciting, high contrast, but DOES NOT MOVE */
 a:hover { 
-    background-color: var(--highlight); /* Yellow fills the background */
-    color: var(--ink); /* Text turns dark for contrast */
+    background-color: var(--highlight); 
+    color: var(--ink); 
     border-bottom-color: transparent; 
-    /* Pop-up effect with a purple shadow */
-    transform: translateY(-2px) skewX(-2deg); 
-    box-shadow: 4px 4px 0px var(--visited);
-    border-radius: 4px;
-    display: inline-block;
+    border-radius: 2px;
+    /* We use box-shadow to simulate depth without moving the element */
+    box-shadow: 2px 2px 0px var(--visited);
 }
 
-/* Header */
+/* --- HEADER & NAV --- */
 header { padding: 40px 0; margin-bottom: 20px; }
+
 .site-title { 
     font-size: 1.8rem; 
     font-weight: 900; 
@@ -67,11 +68,11 @@ header { padding: 40px 0; margin-bottom: 20px; }
     letter-spacing: 1px; 
     border-bottom: none; 
 }
+/* The Title gets to pop because it's isolated */
 .site-title:hover { 
     background: none; 
-    box-shadow: none; 
-    transform: none; 
     color: var(--link);
+    box-shadow: none;
 }
 
 nav { margin-top: 15px; }
@@ -81,11 +82,15 @@ nav a {
     opacity: 0.8; 
     font-size: 1.1rem;
     border-bottom: none; 
+    display: inline-block; /* Nav links CAN move safely */
+    transition: transform 0.1s ease;
 }
 nav a:hover { 
     opacity: 1; 
     background-color: var(--highlight);
-    box-shadow: 3px 3px 0px var(--link);
+    /* Nav links get the pop effect */
+    transform: translateY(-2px) skewX(-2deg); 
+    box-shadow: 4px 4px 0px var(--visited);
 }
 
 /* Typography */
@@ -111,13 +116,15 @@ h2 { font-size: 2rem; margin-top: 0;}
 }
 .intro-text p { font-size: 1.1rem; }
 
-/* Works Grid */
+/* --- CARD STYLES (Works) --- */
 .works-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 30px;
     margin-bottom: 60px;
 }
+
+/* Work items are BLOCKS, so they can have the big exciting pop effect */
 .work-item a {
     display: flex;
     flex-direction: column;
@@ -127,9 +134,10 @@ h2 { font-size: 2rem; margin-top: 0;}
     border-radius: 12px;
     border-bottom: none; 
     background: rgba(255,255,255,0.5);
-    transition: all 0.2s ease;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Big Pop Up on Hover */
 .work-item a:hover {
     transform: translateY(-8px);
     background-color: white;
@@ -144,6 +152,7 @@ h2 { font-size: 2rem; margin-top: 0;}
     border-radius: 6px;
     margin-bottom: 12px;
     background-color: #ccc;
+    transition: opacity 0.2s;
 }
 .work-item span {
     font-weight: bold;
@@ -162,16 +171,6 @@ h2 { font-size: 2rem; margin-top: 0;}
     font-weight: bold;
     min-width: 90px;
 }
-
-/* Markdown Viewer Styles */
-.back-link {
-    display: inline-block;
-    margin-bottom: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    border-bottom: none;
-}
-.back-link:before { content: "← "; }
 
 /* Footer */
 footer {
