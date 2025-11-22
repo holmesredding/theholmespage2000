@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emmett Redding</title>
+    
+    <!-- Link to your new CSS file -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Load the Markdown Viewer Script (zero-md) -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/zero-md@3?register"></script>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <!-- Clicking the title takes you back to the "Home" view -->
+            <h1><a href="/" class="site-title">Emmett Redding</a></h1>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/#works">Works</a>
+                <a href="/#writing">Writing</a>
+                <a href="/#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <!-- === HOME PAGE VIEW === -->
+        <div id="home-view">
+            
+            <!-- Intro -->
+            <section id="intro">
+                <div class="intro-grid">
+                    <!-- Make sure 'images' folder is in the same directory as index.html -->
+                    <img src="images/emmettdrawingcircle.webp" alt="Emmett" class="profile-pic">
+                    <div class="intro-text">
+                        <h2>Hi, I'm Emmett. I like to make things.</h2>
+                        <p>I've <strong>directed and animated short films</strong> and I have produced multiple podcasts.</p>
+                        <p>I <strong>made an app</strong> about movies named <a href="https://www.screendiary.app" target="_blank">ScreenDiary</a>.</p>
+                        <p>In my recent role as <strong>Production Editor</strong> and as a freelancer I have edited and produced advertisements, video series and podcasts.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Blog List -->
+            <section id="writing">
+                <h3>Writing & Updates</h3>
+                <ul class="blog-list">
+                    <!-- Links point to 'blog/' or 'works/' folder + filename -->
+                    <li><span class="date">2023-07-28</span> <a href="?post=blog/my-new-website.md">Drumroll Please (New Website!)</a></li>
+                    <li><span class="date">2023-07-20</span> <a href="?post=works/zeman.md">Karel Zeman & Mystimation</a></li>
+                    <li><span class="date">2023-07-19</span> <a href="?post=blog/pathofthejedi.md">Rebuilding Path of the Jedi</a></li>
+                </ul>
+            </section>
+
+            <!-- Works Grid -->
+            <section id="works">
+                <h3>Selected Works</h3>
+                <div class="works-grid">
+                    <div class="work-item">
+                        <a href="?post=works/my-friend-paul.md">
+                            <img src="images/works/my-friend-paul/MyFriendPaul-title.webp" alt="My Friend Paul">
+                            <span>My Friend Paul</span>
+                        </a>
+                    </div>
+                    <div class="work-item">
+                        <a href="?post=works/humanimals.md">
+                            <img src="images/works/humanimals/humanimals-title.webp" alt="Humanimals">
+                            <span>Humanimals</span>
+                        </a>
+                    </div>
+                    <div class="work-item">
+                        <a href="?post=works/on-ornithology.md">
+                            <img src="images/works/on-ornithology/onornithology-title.webp" alt="On Ornithology">
+                            <span>On Ornithology</span>
+                        </a>
+                    </div>
+                     <div class="work-item">
+                        <a href="?post=works/running-late.md">
+                            <img src="images/works/running-late/runninglate-title.webp" alt="Running Late">
+                            <span>Running Late</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact">
+                <h3>Contact</h3>
+                <p>Feel free to get in touch for any queries.</p>
+                <p><a href="mailto:emmett@emmettredding.com">emmett@emmettredding.com</a></p>
+            </section>
+        </div>
+
+        <!-- === MARKDOWN VIEWER === -->
+        <!-- This is hidden by default. It shows up when you click a link. -->
+        <div id="post-view" style="display:none;">
+            <a href="/" class="back-link">Back to Home</a>
+            
+            <!-- zero-md loads the text file here -->
+            <zero-md id="md-viewer">
+                <template>
+                    <!-- Import the main styles so the blog post looks like the rest of the site -->
+                    <link rel="stylesheet" href="style.css">
+                    <style>
+                        /* Extra styles specifically for Markdown content */
+                        :host { display: block; width: 100%; }
+                        img { max-width: 100%; height: auto; border-radius: 8px; margin: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+                        blockquote { border-left: 4px solid #ffbd00; padding-left: 15px; color: #555; background: rgba(255, 189, 0, 0.1); padding: 10px; border-radius: 0 8px 8px 0;}
+                        code { background: #f0f0f0; padding: 2px 4px; border-radius: 3px; color: #6218fa; }
+                        iframe { width: 100%; aspect-ratio: 16/9; border: none; border-radius: 8px; margin: 20px 0; }
+                    </style>
+                </template>
+            </zero-md>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Emmett Redding.</p>
+    </footer>
+
+    <!-- === JAVASCRIPT LOGIC === -->
+    <script>
+        // 1. Read the URL to see if we are looking for a post (e.g. ?post=blog/test.md)
+        const params = new URLSearchParams(window.location.search);
+        const post = params.get('post');
+
+        // 2. If we found a post in the URL...
+        if (post) {
+            // Hide the Home page
+            document.getElementById('home-view').style.display = 'none';
+            // Show the Post viewer
+            document.getElementById('post-view').style.display = 'block';
+            
+            // Tell zero-md which file to load
+            const viewer = document.getElementById('md-viewer');
+            viewer.src = post;
+        }
+    </script>
+
+</body>
+</html>

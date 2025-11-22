@@ -1,0 +1,190 @@
+/* --- NEW MODERN PURPLE THEME --- */
+
+:root {
+    /* Palette: Deep Purples & Electric Yellow */
+    --ink: #240046;       /* Deepest Purple (Text) */
+    --link: #6218fa;      /* Vibrant Violet (Links) */
+    --visited: #3c096c;   /* Dark Purple */
+    --highlight: #ffbd00; /* Electric Yellow/Gold */
+    
+    /* Background Gradient: Richer Purples */
+    --bg-top: #eaddff;    /* <--- DARKER PURPLE TOP */
+    --bg-bottom: #d0bdf4; /* Slightly darker bottom to match */
+    
+    --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --serif: "Georgia", serif; 
+}
+
+body {
+    font-family: var(--sans);
+    background: linear-gradient(to bottom, var(--bg-top), var(--bg-bottom));
+    color: var(--ink);
+    margin: 0;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* --- EXCITING LINK STYLES --- */
+a { 
+    color: var(--link); 
+    text-decoration: none; 
+    font-weight: 600; 
+    /* The "Yellow Border" default state */
+    border-bottom: 3px solid var(--highlight); 
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0 2px;
+}
+
+/* The "Exciting" Hover State */
+a:hover { 
+    background-color: var(--highlight); /* Yellow fills the background */
+    color: var(--ink); /* Text turns dark for contrast */
+    border-bottom-color: transparent; 
+    /* Pop-up effect with a purple shadow */
+    transform: translateY(-2px) skewX(-2deg); 
+    box-shadow: 4px 4px 0px var(--visited);
+    border-radius: 4px;
+    display: inline-block;
+}
+
+/* Header */
+header { padding: 40px 0; margin-bottom: 20px; }
+.site-title { 
+    font-size: 1.8rem; 
+    font-weight: 900; 
+    color: var(--ink); 
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+    border-bottom: none; 
+}
+.site-title:hover { 
+    background: none; 
+    box-shadow: none; 
+    transform: none; 
+    color: var(--link);
+}
+
+nav { margin-top: 15px; }
+nav a { 
+    margin-right: 20px; 
+    color: var(--ink); 
+    opacity: 0.8; 
+    font-size: 1.1rem;
+    border-bottom: none; 
+}
+nav a:hover { 
+    opacity: 1; 
+    background-color: var(--highlight);
+    box-shadow: 3px 3px 0px var(--link);
+}
+
+/* Typography */
+h1, h2, h3 { font-family: var(--serif); color: var(--ink); }
+h2 { font-size: 2rem; margin-top: 0;}
+
+/* Intro Section */
+.intro-grid {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    margin-bottom: 60px;
+}
+.profile-pic {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 8px 8px 0px rgba(98, 24, 250, 0.2);
+    flex-shrink: 0;
+    background-color: #ddd; 
+    border: 4px solid white;
+}
+.intro-text p { font-size: 1.1rem; }
+
+/* Works Grid */
+.works-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+.work-item a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+    border-radius: 12px;
+    border-bottom: none; 
+    background: rgba(255,255,255,0.5);
+    transition: all 0.2s ease;
+}
+
+.work-item a:hover {
+    transform: translateY(-8px);
+    background-color: white;
+    box-shadow: 8px 8px 0px var(--link);
+    color: var(--ink);
+}
+
+.work-item img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    background-color: #ccc;
+}
+.work-item span {
+    font-weight: bold;
+    font-family: var(--serif);
+    font-size: 1.1rem;
+}
+
+/* Blog List */
+.blog-list { list-style: none; padding: 0; margin-bottom: 60px;}
+.blog-list li { margin-bottom: 18px; font-size: 1.1rem; display: flex; align-items: baseline;}
+.date { 
+    font-family: "Courier New", monospace; 
+    color: var(--link);
+    margin-right: 20px; 
+    font-size: 0.85em; 
+    font-weight: bold;
+    min-width: 90px;
+}
+
+/* Markdown Viewer Styles */
+.back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    border-bottom: none;
+}
+.back-link:before { content: "← "; }
+
+/* Footer */
+footer {
+    margin-top: auto;
+    padding: 40px 0;
+    text-align: center;
+    font-size: 0.9em;
+    opacity: 0.6;
+    border-top: 1px solid rgba(36, 0, 70, 0.1);
+}
+
+@media (max-width: 600px) {
+    .intro-grid { flex-direction: column; align-items: center; text-align: center; }
+    .profile-pic { width: 150px; height: 150px; }
+    .works-grid { grid-template-columns: 1fr; }
+}
