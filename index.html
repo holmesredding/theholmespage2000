@@ -15,13 +15,14 @@
 
     <header>
         <div class="container">
-            <!-- Clicking the title takes you back to the "Home" view -->
-            <h1><a href="/" class="site-title">Emmett Redding</a></h1>
+            <!-- UPDATED: Changed href="/" to href="./" -->
+            <!-- This ensures it stays in the current folder (repo) instead of going to domain root -->
+            <h1><a href="./" class="site-title">Emmett Redding</a></h1>
             <nav>
-                <a href="/">Home</a>
-                <a href="/#works">Works</a>
-                <a href="/#writing">Writing</a>
-                <a href="/#contact">Contact</a>
+                <a href="./">Home</a>
+                <a href="./#works">Works</a>
+                <a href="./#writing">Writing</a>
+                <a href="./#contact">Contact</a>
             </nav>
         </div>
     </header>
@@ -34,7 +35,6 @@
             <!-- Intro -->
             <section id="intro">
                 <div class="intro-grid">
-                    <!-- Make sure 'images' folder is in the same directory as index.html -->
                     <img src="images/emmettdrawingcircle.webp" alt="Emmett" class="profile-pic">
                     <div class="intro-text">
                         <h2>Hi, I'm Emmett. I like to make things.</h2>
@@ -95,14 +95,12 @@
         </div>
 
         <!-- === MARKDOWN VIEWER === -->
-        <!-- This is hidden by default. It shows up when you click a link. -->
         <div id="post-view" style="display:none;">
-            <a href="/" class="back-link">Back to Home</a>
+            <!-- UPDATED: Changed href="/" to href="./" -->
+            <a href="./" class="back-link">Back to Home</a>
             
-            <!-- zero-md loads the text file here -->
             <zero-md id="md-viewer">
                 <template>
-                    <!-- Import the main styles so the blog post looks like the rest of the site -->
                     <link rel="stylesheet" href="style.css">
                     <style>
                         /* Extra styles specifically for Markdown content */
@@ -124,18 +122,13 @@
 
     <!-- === JAVASCRIPT LOGIC === -->
     <script>
-        // 1. Read the URL to see if we are looking for a post (e.g. ?post=blog/test.md)
         const params = new URLSearchParams(window.location.search);
         const post = params.get('post');
 
-        // 2. If we found a post in the URL...
         if (post) {
-            // Hide the Home page
             document.getElementById('home-view').style.display = 'none';
-            // Show the Post viewer
             document.getElementById('post-view').style.display = 'block';
             
-            // Tell zero-md which file to load
             const viewer = document.getElementById('md-viewer');
             viewer.src = post;
         }
