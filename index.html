@@ -102,18 +102,21 @@
                     <style>
                         /* Extra styles for Markdown content */
                         :host { display: block; width: 100%; }
-                        /* Ensure text links inside blog posts also have the new 'Highlighter' style */
+                        
+                        /* Ensure text links inside blog posts also have the new 'No-Bump Pop' style */
                         a { 
+                            position: relative;
+                            top: 0;
                             border-bottom: 3px solid var(--highlight); 
-                            transition: background-color 0.1s;
+                            transition: all 0.1s ease;
                         }
                         a:hover {
                             background-color: var(--highlight); 
                             color: var(--ink); 
                             border-bottom-color: transparent; 
-                            box-shadow: 2px 2px 0px var(--visited);
-                            /* Ensure NO transform is applied here to prevent bumping */
-                            transform: none; 
+                            /* Using top for the lift instead of transform to avoid bumps */
+                            top: -3px;
+                            box-shadow: 3px 3px 0px var(--visited);
                         }
 
                         img { max-width: 100%; height: auto; border-radius: 8px; margin: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }

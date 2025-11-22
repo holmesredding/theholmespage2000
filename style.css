@@ -8,8 +8,9 @@
     --highlight: #ffbd00; /* Electric Yellow/Gold */
     
     /* Background Gradient */
-    --bg-top: #d8b4fe;    
-    --bg-bottom: #fdf4ff; 
+    /* UPDATED: Lighter colour at top, darker at bottom */
+    --bg-top: #fdf4ff;    
+    --bg-bottom: #d8b4fe; 
     
     --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
     --serif: "Georgia", serif; 
@@ -35,26 +36,34 @@ body {
 }
 
 /* --- TEXT LINK STYLES (Paragraphs) --- */
-/* This style is safe for text flows - no bumping! */
 a { 
     color: var(--link); 
     text-decoration: none; 
     font-weight: 600; 
+    
     /* The "Yellow Border" default state */
     border-bottom: 3px solid var(--highlight); 
-    transition: background-color 0.1s ease, color 0.1s ease;
     padding: 0 2px;
+    
+    /* Setup for the "No-Bump" Pop Effect */
+    position: relative; 
+    top: 0; /* Start at 0 */
+    transition: top 0.1s ease, background-color 0.1s ease, box-shadow 0.1s ease, color 0.1s ease;
 }
 
-/* The "Highlighter" Hover State */
-/* Exciting, high contrast, but DOES NOT MOVE */
+/* The "Exciting" Pop-Up Hover State */
 a:hover { 
     background-color: var(--highlight); 
     color: var(--ink); 
     border-bottom-color: transparent; 
     border-radius: 2px;
-    /* We use box-shadow to simulate depth without moving the element */
-    box-shadow: 2px 2px 0px var(--visited);
+    
+    /* THE TRICK: Move it up using 'top' instead of 'transform' */
+    /* This creates the pop without affecting the line spacing */
+    top: -3px; 
+    
+    /* Add a hard shadow to mimic the lift */
+    box-shadow: 3px 3px 0px var(--visited);
 }
 
 /* --- HEADER & NAV --- */
@@ -68,11 +77,11 @@ header { padding: 40px 0; margin-bottom: 20px; }
     letter-spacing: 1px; 
     border-bottom: none; 
 }
-/* The Title gets to pop because it's isolated */
 .site-title:hover { 
     background: none; 
     color: var(--link);
     box-shadow: none;
+    top: 0; /* Don't pop the title */
 }
 
 nav { margin-top: 15px; }
@@ -82,15 +91,13 @@ nav a {
     opacity: 0.8; 
     font-size: 1.1rem;
     border-bottom: none; 
-    display: inline-block; /* Nav links CAN move safely */
-    transition: transform 0.1s ease;
+    display: inline-block; /* Nav links are isolated, so they can use inline-block safely */
 }
 nav a:hover { 
     opacity: 1; 
     background-color: var(--highlight);
-    /* Nav links get the pop effect */
-    transform: translateY(-2px) skewX(-2deg); 
     box-shadow: 4px 4px 0px var(--visited);
+    /* Nav links can still use transform/top logic */
 }
 
 /* Typography */
@@ -124,7 +131,6 @@ h2 { font-size: 2rem; margin-top: 0;}
     margin-bottom: 60px;
 }
 
-/* Work items are BLOCKS, so they can have the big exciting pop effect */
 .work-item a {
     display: flex;
     flex-direction: column;
@@ -135,11 +141,14 @@ h2 { font-size: 2rem; margin-top: 0;}
     border-bottom: none; 
     background: rgba(255,255,255,0.5);
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    top: 0;
 }
 
-/* Big Pop Up on Hover */
+/* Big Pop Up on Hover for Cards */
 .work-item a:hover {
-    transform: translateY(-8px);
+    /* We can use transform here because it's a block element */
+    transform: translateY(-8px); 
+    top: 0; /* Reset 'top' so it doesn't conflict */
     background-color: white;
     box-shadow: 8px 8px 0px var(--link);
     color: var(--ink);
