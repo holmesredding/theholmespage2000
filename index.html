@@ -104,8 +104,21 @@
                 <template>
                     <link rel="stylesheet" href="style.css">
                     <style>
-                        :host { display: block; width: 100%; }
-                        
+                        /* Make the markdown sit closer to the header */
+                        :host {
+                            display: block;
+                            width: 100%;
+                            margin-top: 1.5rem; /* tweak this up/down to taste */
+                        }
+
+                        /* Remove the big default top margin on the first heading/element */
+                        article {
+                            margin-top: 0;
+                        }
+                        article > :first-child {
+                            margin-top: 0;
+                        }
+
                         /* Styles inside Markdown */
                         a { 
                             position: relative; top: 0;
@@ -124,30 +137,26 @@
                         code { background: #f0f0f0; padding: 2px 4px; border-radius: 3px; color: #6218fa; }
                         iframe { width: 100%; aspect-ratio: 16/9; border: none; border-radius: 8px; margin: 20px 0; }
                         
-                        /* --- NEW VISIBLE FOOTNOTE BADGES --- */
+                        /* --- VISIBLE FOOTNOTE BADGES --- */
                         sup a {
-                            background-color: var(--highlight); /* Yellow Background */
-                            color: var(--ink);                  /* Dark Purple Text */
-                            font-weight: 800;                   /* Extra Bold */
+                            background-color: var(--highlight);
+                            color: var(--ink);
+                            font-weight: 800;
                             text-decoration: none;
-                            border-bottom: none;                /* Remove the standard underline */
-                            
-                            /* Badge Sizing */
+                            border-bottom: none;
                             padding: 1px 5px;
                             border-radius: 4px;
                             margin-left: 2px;
-                            
-                            /* Pop Effect */
                             box-shadow: 2px 2px 0px var(--visited);
                             display: inline-block;
                             transition: all 0.1s ease;
                         }
 
                         sup a:hover {
-                            transform: translateY(-2px);       /* Lift Up */
-                            box-shadow: 3px 3px 0px var(--link); /* Bigger Shadow */
-                            background-color: white;           /* Flash White */
-                            top: 0;                            /* Override global 'a' top behavior */
+                            transform: translateY(-2px);
+                            box-shadow: 3px 3px 0px var(--link);
+                            background-color: white;
+                            top: 0;
                         }
                     </style>
                 </template>
@@ -156,9 +165,9 @@
 
     </main>
 
-    <footer>
-        <p>&copy; 2025 Emmett Redding - 3:34pm.</p>
-    </footer>
+	<footer>
+		<p><strong>&copy; 2025 Emmett Redding - 10:39pm.</strong></p>
+	</footer>
 
     <script>
         // 1. Load Post Logic
