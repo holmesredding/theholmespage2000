@@ -8,22 +8,24 @@
     --highlight: #ffbd00; /* Electric Yellow/Gold */
     
     /* Background Gradient */
-    /* UPDATED: Top is now darker (#efd9ff) instead of nearly white */
-    --bg-top: #efd9ff;    
+    /* UPDATED: Richer purple at the top */
+    --bg-top: #dcbdf5;    
     --bg-bottom: #d8b4fe; 
     
     --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
     --serif: "Georgia", serif; 
 }
 
-/* UPDATED: Set the background on HTML to handle over-scrolling */
+/* OVERSCROLL FIX: This paints the background behind the body */
 html {
     background-color: var(--bg-top);
+    height: 100%;
 }
 
 body {
     font-family: var(--sans);
     background: linear-gradient(to bottom, var(--bg-top), var(--bg-bottom));
+    background-attachment: fixed; /* Keeps gradient fixed while scrolling */
     color: var(--ink);
     margin: 0;
     line-height: 1.6;
@@ -45,32 +47,21 @@ a {
     color: var(--link); 
     text-decoration: none; 
     font-weight: 600; 
-    
-    /* The "Yellow Border" default state */
     border-bottom: 3px solid var(--highlight); 
     padding: 0 2px;
-    
-    /* Setup for the "No-Bump" Pop Effect */
     position: relative; 
     top: 0; 
-    
     transition: top 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
                 background-color 0.2s ease, 
-                box-shadow 0.2s ease, 
-                color 0.2s ease;
+                box-shadow 0.2s ease;
 }
 
-/* The "Exciting" Pop-Up Hover State */
 a:hover { 
     background-color: var(--highlight); 
     color: var(--ink); 
     border-bottom-color: transparent; 
     border-radius: 2px;
-    
-    /* Lifts up smoothly without moving the lines below it */
     top: -3px; 
-    
-    /* Hard shadow creates the illusion of height */
     box-shadow: 3px 3px 0px var(--visited);
 }
 
@@ -89,7 +80,7 @@ header { padding: 40px 0; margin-bottom: 20px; }
     background: none; 
     color: var(--link);
     box-shadow: none;
-    top: 0; /* Don't pop the title */
+    top: 0; 
 }
 
 nav { margin-top: 15px; }
@@ -105,7 +96,7 @@ nav a:hover {
     opacity: 1; 
     background-color: var(--highlight);
     box-shadow: 4px 4px 0px var(--visited);
-    top: -3px; /* Nav links pop too! */
+    top: -3px; 
 }
 
 /* Typography */
@@ -152,7 +143,6 @@ h2 { font-size: 2rem; margin-top: 0;}
     top: 0;
 }
 
-/* Big Pop Up on Hover for Cards */
 .work-item a:hover {
     transform: translateY(-8px); 
     top: 0; 
