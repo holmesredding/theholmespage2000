@@ -14,15 +14,12 @@
 
 #### **The idea for [ScreenDiary](http://www.screendiary.app) has been bopping about in my head for a really long time, and I finally got around to learning some [Swift](https://developer.apple.com/xcode/swiftui/) to achieve it.\<sup id="ref2"\>\<a href="\#fn2"\>2\</a\>\</sup\> Then as part of the process of making ScreenDiary I naturally had to make a website for it \- and I really just did not want to pay SquareSpace fees again. The time had come. I had to learn *something* web related. So I looked into various Static Site Generators, and [Hugo](https://gohugo.io/) fit my needs. I already knew how to write in Markdown so that made it easier. I played around with different Hugo themes\<sup id="ref3"\>\<a href="\#fn3"\>3\</a\>\</sup\> but again, *I wanted to learn stuff* \- so I learned what CSS I needed to, made that site, and then figured hey, now I know it, why don't I do my personal site?**
 
-\<hr\>  
-\<small\>  
-\<div id="fn1"\>  
-\<b\>1.\</b\> and to even call it dabbling is a major stretch \<a href="\#ref1"\>↩\</a\>  
+\<div id="fn1" class="footnote-item"\>  
+\<b\>1.\</b\> and to even call it dabbling is a \<em\>major\</em\> stretch \<a href="\#ref1" class="footnote-back"\>↩\</a\>  
 \</div\>  
-\<div id="fn2"\>  
-\<b\>2.\</b\> I had heard that SwiftUI was a fairly simple starting point with learning to code \- I figured it must be since you can use an iPad to make Swift things. It probably is an easy starting point but knowing what I know now I'd probably have made ScreenDiary with UIKit instead. \<a href="\#ref2"\>↩\</a\>  
+\<div id="fn2" class="footnote-item"\>  
+\<b\>2.\</b\> I had heard that SwiftUI was a fairly simple starting point with learning to code \- I figured it must be since you can use an iPad to make Swift things. It probably \<em\>is\</em\> an easy starting point but knowing what I know now I'd probably have made ScreenDiary with UIKit instead. \<a href="\#ref2" class="footnote-back"\>↩\</a\>  
 \</div\>  
-\<div id="fn3"\>  
-\<b\>3.\</b\> of which there are heaps and I'm sure many of them are amazing\! \<a href="\#ref3"\>↩\</a\>  
-\</div\>  
-\</small\>
+\<div id="fn3" class="footnote-item"\>  
+\<b\>3.\</b\> of which there are heaps and I'm sure many of them are amazing\! \<a href="\#ref3" class="footnote-back"\>↩\</a\>  
+\</div\>

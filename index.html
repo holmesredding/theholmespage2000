@@ -8,7 +8,13 @@
     <!-- Link to your new CSS file -->
     <link rel="stylesheet" href="style.css">
 
-    <!-- Load the Markdown Viewer Script (zero-md) -->
+    <!-- Config Zero-MD to be permissive with HTML -->
+    <script>
+        window.ZeroMdConfig = {
+            markedUrl: 'https://cdn.jsdelivr.net/npm/marked@12.0.0/lib/marked.esm.js',
+        }
+    </script>
+    <!-- Load the Markdown Viewer Script -->
     <script type="module" src="https://cdn.jsdelivr.net/npm/zero-md@3?register"></script>
 </head>
 <body>
