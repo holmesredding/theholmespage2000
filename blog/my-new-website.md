@@ -8,7 +8,7 @@
 
 #### **I had no idea what I was doing or where I was wanting to go with this, so I fell back on my old trusty animation and film education for the latter half of the course. This was still great, I made a micro film that won some awards, and my research on Czech filmmaker Karel Zeman and his filmmaking style *MYSTIMATION* was published in academic journals.**
 
-#### **But yeah, coding? That was hard. I hadn't actually really coded much at all before - unless you count [ActionScript 2](https://en.wikipedia.org/wiki/ActionScript) when I was making things in *Macromedia Flash MX 2004.* **
+#### **But yeah, coding? That was hard. I hadn't actually really coded much at all before - unless you count [ActionScript 2](https://en.wikipedia.org/wiki/ActionScript) when I was making things in *Macromedia Flash MX 2004*.**
 
 #### **I felt too much pressure to be able to learn how to code at the same time as trying to create at a Masters level. Now that I'm not under that deadline crunch though, I have been able to get back into things and learn at the pace I need to.**
 
