@@ -1,6 +1,6 @@
 # **Karel Zeman & Mystimation**
 
-*July 20, 2023*
+<!-- *July 20, 2023* -->
 
 <iframe width="640" height="360" src="https://www.youtube-nocookie.com/embed/P54spql0iHM?si=xeR01e1mBQLMXuTb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 

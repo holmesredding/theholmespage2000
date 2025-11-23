@@ -1,6 +1,6 @@
 # **Humanimals**
 
-*July 19, 2023*
+<!-- *July 19, 2023* -->
 
 <iframe title="vimeo-player" src="https://player.vimeo.com/video/576332534?h=6f99532e5e" width="640" height="360" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" allowfullscreen></iframe>
 

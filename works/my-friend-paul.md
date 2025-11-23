@@ -1,6 +1,6 @@
 # **My Friend Paul**
 
-*July 19, 2023*
+<!-- *July 19, 2023* -->
 
 <iframe title="vimeo-player" src="https://player.vimeo.com/video/459721634?h=247800e089" width="640" height="360" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" allowfullscreen></iframe>
 
