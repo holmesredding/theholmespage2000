@@ -1,17 +1,17 @@
----
-title: "Running Late"
-date: 2023-07-19T08:51:00+10:00
-draft: false
-hidden: false
-image: "/images/works/running-late/runninglate-title.webp"
----
+# **Running Late**
 
-{{< vimeo id="314680721" >}}
+*July 19, 2023*
 
-#### Running Late is a stop-motion animation which follows two monsters who are running late to see a movie.
+<iframe title="vimeo-player" src="https://player.vimeo.com/video/314680721?h=5fded96f03" width="640" height="360" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" allowfullscreen></iframe>
 
-### Produced in under 12 hours for monthly short film festival [Filmonik](https://filmonik.com.au), I made Running Late to see how fast I could go from idea to creation to shooting. Using a minimal set and props I created the film the day it was presented.
+#### *Running Late* is a stop-motion animation which follows two monsters who are running late to see a movie.
 
-{{< image src="/images/works/running-late/runninglate-screengrabs.webp" class="works-image" alt="On Ornithology - Screengrabs" >}}
+### Produced in under 12 hours for monthly short film festival <a href="https://filmonik.com.au" target="_blank">Filmonik</a>, I made *Running Late* to see how fast I could go from idea to creation to shooting. Using a minimal set and props I created the film the day it was presented.
 
-{{< image src="/images/works/running-late/runninglate-bts.webp" class="works-image" alt="On Ornithology - BTS" >}}
+<div class="works-image">
+  <img src="/theholmespage2000/images/works/running-late/runninglate-screengrabs.webp" alt="Running Late - Screengrabs">
+</div>
+
+<div class="works-image">
+  <img src="/theholmespage2000/images/works/running-late/runninglate-bts.webp" alt="Running Late - BTS">
+</div>

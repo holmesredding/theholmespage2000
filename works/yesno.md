@@ -1,21 +1,20 @@
----
-title: "YES/NO"
-date: 2023-07-19T08:52:01+10:00
-draft: false
-hidden: false
-image: "/images/works/yesno/yesno-title.webp"
-tags: ["", "", ""]
-categories: ["", ""]
----
+# **YES/NO**
 
-{{< vimeo id="112063250" >}}
+*July 19, 2023*
 
-#### YES/NO is an experimental short film about a two-headed monster having an argument with itself, filmed in one continuous shot.
+<iframe title="vimeo-player" src="https://player.vimeo.com/video/112063250?h=2d5d0bc7a0" width="640" height="360" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" allowfullscreen></iframe>
 
-### With YES/NO I wanted to create a film where there were more elements on the screen that I had created than not.
+#### *YES/NO* is an experimental short film about a two-headed monster having an argument with itself, filmed in one continuous shot.
 
-{{< image src="/images/works/yesno/yesno-screengrabs.webp" class="works-image" alt="YES/NO - Screengrabs" >}}
+### With *YES/NO* I wanted to create a film where there were more elements on the screen that I had created than not.
 
-#### My intention for this piece was to create characters that were larger than life, like in animation, but still presented in live action. This led me to design and create my first puppet, the two-headed monster.
+<div class="works-image">
+  <img src="/theholmespage2000/images/works/yesno/yesno-screengrabs.webp" alt="YES/NO - Screengrabs">
+</div>
 
-{{< image src="/images/works/yesno/yesno-bts.webp" class="works-image" alt="YES/NO - BTS" >}}
+#### My intention for this piece was to create characters that were larger than life, like in animation, but still presented in live action.  
+This led me to design and create my first puppet, the two-headed monster.
+
+<div class="works-image">
+  <img src="/theholmespage2000/images/works/yesno/yesno-bts.webp" alt="YES/NO - BTS">
+</div>

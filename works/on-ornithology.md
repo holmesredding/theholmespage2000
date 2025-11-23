@@ -1,20 +1,21 @@
----
-title: "On Ornithology"
-date: 2023-07-19T08:52:00+10:00
-draft: false
-hidden: false
-image: "/images/works/on-ornithology/onornithology-title.webp"
----
+# **On Ornithology**
 
-{{< vimeo id="459832586" >}}
+*July 19, 2023*
 
-#### On Ornithology follows a birdwatcher as he makes the most important discovery of his career. A discovery that will forever change the way he watches birds.
+<iframe title="vimeo-player" src="https://player.vimeo.com/video/459832586?h=c02ce0f9f8" width="640" height="360" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" allowfullscreen></iframe>
 
-### Produced in under 32 hours for Kino Kabaret Sydney (#77)
-### Directed and shot by Emmett Redding and [Max Piantoni](http://maxpiantoni.com).
+#### *On Ornithology* follows a birdwatcher as he makes the most important discovery of his career.  
+A discovery that will forever change the way he watches birds.
 
-{{< image src="/images/works/on-ornithology/onornithology-screengrabs.webp" class="works-image" alt="On Ornithology - Screengrabs" >}}
+### Produced in under 32 hours for Kino Kabaret Sydney (#77)  
+### Directed and shot by Emmett Redding and <a href="http://maxpiantoni.com" target="_blank">Max Piantoni</a>.
+
+<div class="works-image">
+  <img src="/theholmespage2000/images/works/on-ornithology/onornithology-screengrabs.webp" alt="On Ornithology - Screengrabs">
+</div>
 
 #### Max and I worked together on devising the concept and creating the costumes and props before shooting in the same day, and I edited the next day.
 
-{{< image src="/images/works/on-ornithology/onornithology-bts.webp" class="works-image" alt="On Ornithology - BTS" >}}
+<div class="works-image">
+  <img src="/theholmespage2000/images/works/on-ornithology/onornithology-bts.webp" alt="On Ornithology - BTS">
+</div>
