@@ -2,7 +2,7 @@
 
 *July 19, 2023*
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/zbCFbZmfQMI?si=CdGw9_qp2y9b_XAP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="640" height="360" src="https://www.youtube-nocookie.com/embed/zbCFbZmfQMI?si=CdGw9_qp2y9b_XAP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ##### _Patience you must have, my young padawan._
 
@@ -26,19 +26,19 @@ After I had my rough cut of the video I put together a side by side video to com
 
 <div class="image-grid image-grid-4">
   <figure>
-    <img src="/images/works/pathofthejedi/video-comparison-1.webp" alt="Video comparison 1">
+    <img src="/theholmespage2000/images/works/pathofthejedi/video-comparison-1.webp" alt="Video comparison 1">
     <figcaption>Video comparison 1</figcaption>
   </figure>
   <figure>
-    <img src="/images/works/pathofthejedi/video-comparison-2.webp" alt="Video comparison 2">
+    <img src="/theholmespage2000/images/works/pathofthejedi/video-comparison-2.webp" alt="Video comparison 2">
     <figcaption>Video comparison 2</figcaption>
   </figure>
   <figure>
-    <img src="/images/works/pathofthejedi/video-comparison-3.webp" alt="Video comparison 3">
+    <img src="/theholmespage2000/images/works/pathofthejedi/video-comparison-3.webp" alt="Video comparison 3">
     <figcaption>Video comparison 3</figcaption>
   </figure>
   <figure>
-    <img src="/images/works/pathofthejedi/video-comparison-4.webp" alt="Video comparison 4">
+    <img src="/theholmespage2000/images/works/pathofthejedi/video-comparison-4.webp" alt="Video comparison 4">
     <figcaption>Video comparison 4</figcaption>
   </figure>
 </div>
@@ -51,19 +51,19 @@ After I had my rough cut of the video I put together a side by side video to com
 
 <div class="image-grid image-grid-4">
   <figure>
-    <img src="/images/works/pathofthejedi/video-timeline-1.webp" alt="Video timeline 1">
+    <img src="/theholmespage2000/images/works/pathofthejedi/video-timeline-1.webp" alt="Video timeline 1">
     <figcaption>Video timeline 1</figcaption>
   </figure>
   <figure>
-    <img src="/images/works/pathofthejedi/video-timeline-2.webp" alt="Video timeline 2">
+    <img src="/theholmespage2000/images/works/pathofthejedi/video-timeline-2.webp" alt="Video timeline 2">
     <figcaption>Video timeline 2</figcaption>
   </figure>
   <figure>
-    <img src="/images/works/pathofthejedi/video-timeline-3.webp" alt="Video timeline 3">
+    <img src="/theholmespage2000/images/works/pathofthejedi/video-timeline-3.webp" alt="Video timeline 3">
     <figcaption>Video timeline 3</figcaption>
   </figure>
   <figure>
-    <img src="/images/works/pathofthejedi/video-timeline-4.webp" alt="Video timeline 4">
+    <img src="/theholmespage2000/images/works/pathofthejedi/video-timeline-4.webp" alt="Video timeline 4">
     <figcaption>Video timeline 4</figcaption>
   </figure>
 </div>
@@ -78,19 +78,19 @@ I found many more versions online of phone recordings of Path of the Jedi taken 
 
 <div class="image-grid image-grid-4">
   <figure>
-    <img src="/images/works/pathofthejedi/audio-timeline-1.webp" alt="Audio timeline 1">
+    <img src="/theholmespage2000/images/works/pathofthejedi/audio-timeline-1.webp" alt="Audio timeline 1">
     <figcaption>Audio timeline 1</figcaption>
   </figure>
   <figure>
-    <img src="/images/works/pathofthejedi/audio-timeline-2.webp" alt="Audio timeline 2">
+    <img src="/theholmespage2000/images/works/pathofthejedi/audio-timeline-2.webp" alt="Audio timeline 2">
     <figcaption>Audio timeline 2</figcaption>
   </figure>
   <figure>
-    <img src="/images/works/pathofthejedi/audio-timeline-3.webp" alt="Audio timeline 3">
+    <img src="/theholmespage2000/images/works/pathofthejedi/audio-timeline-3.webp" alt="Audio timeline 3">
     <figcaption>Audio timeline 3</figcaption>
   </figure>
   <figure>
-    <img src="/images/works/pathofthejedi/audio-timeline-4.webp" alt="Audio timeline 4">
+    <img src="/theholmespage2000/images/works/pathofthejedi/audio-timeline-4.webp" alt="Audio timeline 4">
     <figcaption>Audio timeline 4</figcaption>
   </figure>
 </div>
