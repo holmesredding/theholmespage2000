@@ -84,7 +84,7 @@
         </div>
 
         <div id="post-view" style="display:none;">
-            <zero-md id="md-viewer" no-shadow>
+            <zero-md id="md-viewer">
                 <template>
                     <link rel="stylesheet" href="style.css">
                     <style>
@@ -108,9 +108,31 @@
                         code { background: #f0f0f0; padding: 2px 4px; border-radius: 3px; color: #6218fa; }
                         iframe { width: 100%; aspect-ratio: 16/9; border: none; border-radius: 8px; margin: 20px 0; }
                         
-                        /* Footnote specific styles */
-                        sup a { border: none; font-size: 0.8em; padding: 0 2px; }
-                        sup a:hover { top: 0; box-shadow: none; background-color: var(--highlight); }
+                        /* --- NEW VISIBLE FOOTNOTE BADGES --- */
+                        sup a {
+                            background-color: var(--highlight); /* Yellow Background */
+                            color: var(--ink);                  /* Dark Purple Text */
+                            font-weight: 800;                   /* Extra Bold */
+                            text-decoration: none;
+                            border-bottom: none;                /* Remove the standard underline */
+                            
+                            /* Badge Sizing */
+                            padding: 1px 5px;
+                            border-radius: 4px;
+                            margin-left: 2px;
+                            
+                            /* Pop Effect */
+                            box-shadow: 2px 2px 0px var(--visited);
+                            display: inline-block;
+                            transition: all 0.1s ease;
+                        }
+
+                        sup a:hover {
+                            transform: translateY(-2px);       /* Lift Up */
+                            box-shadow: 3px 3px 0px var(--link); /* Bigger Shadow */
+                            background-color: white;           /* Flash White */
+                            top: 0;                            /* Override global 'a' top behavior */
+                        }
                     </style>
                 </template>
             </zero-md>
@@ -119,58 +141,41 @@
     </main>
 
     <footer>
-        <p>&copy; 2025 Emmett Redding - 2:11pm.</p>
+        <p>&copy; 2025 Emmett Redding - 3:34pm.</p>
     </footer>
 
     <script>
-		const params = new URLSearchParams(window.location.search);
-		const post = params.get('post');
-		const viewer = document.getElementById('md-viewer');
-	
-		// 1. Load Post Logic
-		if (post) {
-			document.getElementById('home-view').style.display = 'none';
-			document.getElementById('post-view').style.display = 'block';
-			viewer.src = post;
-		}
-	
-		// 2. Footnote Jump Logic (for content inside zero-md's Shadow DOM)
-		viewer.addEventListener('zero-md-rendered', () => {
-			const shadow = viewer.shadowRoot;
-			if (!shadow) return;
-	
-			// Listen for clicks inside the rendered markdown
-			shadow.addEventListener('click', (e) => {
-				const path = e.composedPath();
-				const link = path.find(el =>
-					el.tagName === 'A' &&
-					el.getAttribute &&
-					el.getAttribute('href') &&
-					el.getAttribute('href').startsWith('#')
-				);
-	
-				if (!link) return;
-	
-				e.preventDefault();
-	
-				const id = link.getAttribute('href').substring(1); // "fn1" or "ref1"
-	
-				// ShadowRoot doesn't have getElementById -> use querySelector instead
-				const target = shadow.querySelector('#' + CSS.escape(id));
-	
-				if (target) {
-					target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-	
-					// Temporary highlight
-					const oldBg = target.style.backgroundColor;
-					target.style.backgroundColor = 'rgba(255, 189, 0, 0.3)';
-					setTimeout(() => {
-						target.style.backgroundColor = oldBg || 'transparent';
-					}, 1000);
-				}
-			});
-		});
-	</script>
+        // 1. Load Post Logic
+        const params = new URLSearchParams(window.location.search);
+        const post = params.get('post');
+        const viewer = document.getElementById('md-viewer');
+
+        if (post) {
+            document.getElementById('home-view').style.display = 'none';
+            document.getElementById('post-view').style.display = 'block';
+            viewer.src = post;
+        }
+
+        // 2. Footnote Jump Logic
+        viewer.addEventListener('click', (e) => {
+            const path = e.composedPath();
+            const link = path.find(el => el.tagName === 'A' && el.getAttribute('href')?.startsWith('#'));
+
+            if (link) {
+                e.preventDefault(); 
+                const id = link.getAttribute('href').substring(1); 
+                const target = viewer.shadowRoot.getElementById(id);
+                
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    
+                    // Highlight effect briefly
+                    target.style.backgroundColor = 'rgba(255, 189, 0, 0.3)';
+                    setTimeout(() => target.style.backgroundColor = 'transparent', 1000);
+                }
+            }
+        });
+    </script>
 
 </body>
 </html>
