@@ -1,19 +1,17 @@
-/* --- NEW MODERN PURPLE THEME --- */
-
+/* --- NEW DARKER-LIGHT-MODE PURPLE THEME --- */
 :root {
-    /* Palette: Deep Purples & Electric Yellow */
-    --ink: #240046;       /* Deepest Purple (Text) */
-    --link: #6218fa;      /* Vibrant Violet (Links) */
-    --visited: #3c096c;   /* Dark Purple */
-    --highlight: #ffbd00; /* Electric Yellow/Gold */
-    
-    /* Background Gradient */
-    /* UPDATED: Richer purple at the top */
-    --bg-top: #dcbdf5;    
-    --bg-bottom: #d8b4fe; 
-    
+    /* Text & Core Colors */
+    --ink: #1a1035;          /* Darker + cleaner ink */
+    --link: #9d4bff;         /* Light, electric purple (new highlight colour) */
+    --visited: #6a2ccc;      /* Deeper purple for visited/shadows */
+    --highlight: #d7b7ff;    /* Soft lavender highlight (lighter than link) */
+
+    /* Background Gradient - darker but still "light mode" */
+    --bg-top: #cbb7f0;       /* darker lavender */
+    --bg-bottom: #bfa5f0;    /* deeper soft purple */
+
     --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    --serif: "Georgia", serif; 
+    --serif: "Georgia", serif;
 }
 
 /* OVERSCROLL FIX: This paints the background behind the body */
