@@ -68,7 +68,7 @@ a:hover {
 }
 
 /* --- HEADER & NAV --- */
-header { padding: 40px 0; margin-bottom: 8px; }
+header { padding: 40px 0; margin-bottom: 0px; }
 
 .site-title { 
     font-size: 1.8rem; 
