@@ -141,7 +141,7 @@
 						/* --- VISIBLE FOOTNOTE BADGES --- */
 						sup a {
 							background-color: var(--highlight);
-							color: var(--text-highlight);  /* CHANGED from var(--ink) */
+							color: var(--text-highlight);  /* = #5A1EF0 */
 							font-weight: 800;
 							text-decoration: none;
 							border-bottom: none;
@@ -152,13 +152,14 @@
 							display: inline-block;
 							transition: all 0.1s ease;
 						}
-
-                        sup a:hover {
-                            transform: translateY(-2px);
-                            box-shadow: 3px 3px 0px var(--link);
-                            background-color: white;
-                            top: 0;
-                        }
+						
+						sup a:hover {
+							transform: translateY(-2px);
+							box-shadow: 3px 3px 0px var(--link);
+							background-color: white;
+							color: var(--text-highlight); /* keep 5A1EF0 on hover as well */
+							top: 0;
+						}
                     </style>
                 </template>
             </zero-md>
