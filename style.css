@@ -2,15 +2,16 @@
 
 :root {
     /* Palette: Deep Purples & Electric Yellow */
-    --ink: #240046;       /* Deepest Purple (Text) */
-    --link: #6218fa;      /* Vibrant Violet (Links) */
-    --visited: #3c096c;   /* Dark Purple */
-    --highlight: #ffbd00; /* Electric Yellow/Gold */
-    
+    --ink: #D2D2E6;       /* General text colour */
+    --link: #F5C042;      /* Main link colour */
+    --visited: #3c096c;   /* Dark Purple (visited links) */
+    --highlight: #F5C042; /* Highlight / underline / hover bg */
+	--text-highlight: #5A1EF0;   /* Purple text-selection background */
+	--text-highlight-ink: #FFFFFF; /* Text colour when selected */
+
     /* Background Gradient */
-    /* UPDATED: Richer purple at the top */
-    --bg-top: #dcbdf5;    
-    --bg-bottom: #d8b4fe; 
+    --bg-top: #48336C;    
+    --bg-bottom: #2E2046; 
     
     --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
     --serif: "Georgia", serif; 
@@ -18,7 +19,7 @@
 
 /* OVERSCROLL FIX: This paints the background behind the body */
 html {
-    background-color: var(--bg-top);
+    background-color: var(--bg-top); /* 48336C behind the gradient for overscroll */
     height: 100%;
 }
 
@@ -53,12 +54,13 @@ a {
     top: 0; 
     transition: top 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
                 background-color 0.2s ease, 
-                box-shadow 0.2s ease;
+                box-shadow 0.2s ease,
+                color 0.2s ease;
 }
 
 a:hover { 
     background-color: var(--highlight); 
-    color: var(--ink); 
+    color: #5A1EF0; /* Hover text colour */
     border-bottom-color: transparent; 
     border-radius: 2px;
     top: -3px; 
@@ -74,11 +76,14 @@ header { padding: 40px 0; margin-bottom: 20px; }
     color: var(--ink); 
     text-transform: uppercase; 
     letter-spacing: 1px; 
-    border-bottom: none; 
+    border-bottom: none;
+    display: inline-block;
+/*     padding: 4px 8px; */
 }
+
 .site-title:hover { 
-    background: none; 
-    color: var(--link);
+    background-color: var(--highlight);
+    color: #5A1EF0;
     box-shadow: none;
     top: 0; 
 }
@@ -99,6 +104,12 @@ nav a:hover {
     top: -3px; 
 }
 
+/* --- TEXT SELECTION COLOUR --- */
+::selection {
+    background: var(--text-highlight);
+    color: var(--text-highlight-ink);
+}
+
 /* Typography */
 h1, h2, h3 { font-family: var(--serif); color: var(--ink); }
 h2 { font-size: 2rem; margin-top: 0;}
@@ -115,7 +126,7 @@ h2 { font-size: 2rem; margin-top: 0;}
     height: 180px;
     border-radius: 50%;
     object-fit: cover;
-    box-shadow: 8px 8px 0px rgba(98, 24, 250, 0.2);
+	box-shadow: 8px 8px 0px #5A1EF0;
     flex-shrink: 0;
     background-color: #ddd; 
     border: 4px solid white;
@@ -138,7 +149,7 @@ h2 { font-size: 2rem; margin-top: 0;}
     padding: 15px;
     border-radius: 12px;
     border-bottom: none; 
-    background: rgba(255,255,255,0.5);
+    background: #E9DBFC; /* UPDATED */
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     top: 0;
 }
@@ -147,7 +158,7 @@ h2 { font-size: 2rem; margin-top: 0;}
     transform: translateY(-8px); 
     top: 0; 
     background-color: white;
-    box-shadow: 8px 8px 0px var(--link);
+    box-shadow: 8px 8px 0px #5A1EF0; /* UPDATED */
     color: var(--ink);
 }
 
@@ -160,10 +171,13 @@ h2 { font-size: 2rem; margin-top: 0;}
     background-color: #ccc;
     transition: opacity 0.2s;
 }
+
+/* Card title text */
 .work-item span {
     font-weight: bold;
     font-family: var(--serif);
     font-size: 1.1rem;
+    color: #6218FA; /* UPDATED */
 }
 
 /* Blog List */
