@@ -90,6 +90,12 @@
                             <span>Running Late</span>
                         </a>
                     </div>
+                    <div class="work-item">
+						<a href="?post=pages/pathofthejedi.md">
+							<img src="images/works/pathofthejedi/yourthumb.webp" alt="Rebuilding Path of the Jedi">
+							<span>Rebuilding Path of the Jedi</span>
+						</a>
+					</div>
                 </div>
             </section>
 
@@ -159,6 +165,49 @@
 							background-color: white;
 							color: var(--text-highlight); /* keep 5A1EF0 on hover as well */
 							top: 0;
+						}
+						
+						/* --- STAR WARS “PAGES” LAYOUT --- */
+						.sw-page-shell {
+							padding: 40px 0 80px;
+						}
+			
+						.sw-page-bg {
+							border-radius: 24px;
+							padding: 2px;
+							/* Starfield + glow */
+							background-image:
+								radial-gradient(circle at top, rgba(245, 192, 66, 0.25), transparent 55%),
+								url("/images/works/pathofthejedi/starfield.webp"); /* adjust path/name if needed */
+							background-size: cover;
+							background-position: center;
+						}
+			
+						.sw-page-card {
+							background: rgba(5, 3, 18, 0.9);          /* semi-transparent dark panel */
+							border-radius: 20px;
+							padding: 24px 20px 32px;
+							border: 1px solid rgba(245, 192, 66, 0.4); /* subtle yellow border */
+							box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
+							backdrop-filter: blur(6px);
+						}
+			
+						.sw-page-card h1,
+						.sw-page-card h2,
+						.sw-page-card h3,
+						.sw-page-card h4,
+						.sw-page-card h5 {
+							text-align: left;
+						}
+			
+						.sw-page-card iframe {
+							width: 100%;
+							max-width: 100%;
+							height: auto;
+						}
+			
+						.sw-page-card .image-grid {
+							margin-top: 24px;
 						}
                     </style>
                 </template>
