@@ -175,12 +175,11 @@
 						.sw-page-bg {
 							border-radius: 24px;
 							padding: 2px;
-							/* Starfield + glow */
-							background-image:
-								radial-gradient(circle at top, rgba(245, 192, 66, 0.25), transparent 55%),
-								url("/images/works/pathofthejedi/starfield.webp"); /* adjust path/name if needed */
-							background-size: cover;
-							background-position: center;
+							/* Just a subtle glow over the global starfield */
+							background-image: radial-gradient(circle at top,
+															  rgba(245, 192, 66, 0.25),
+															  transparent 55%);
+							background-color: rgba(0, 0, 0, 0.4);
 						}
 			
 						.sw-page-card {
@@ -226,11 +225,20 @@
         const post = params.get('post');
         const viewer = document.getElementById('md-viewer');
 
-        if (post) {
-            document.getElementById('home-view').style.display = 'none';
-            document.getElementById('post-view').style.display = 'block';
-            viewer.src = post;
-        }
+		if (post) {
+			document.getElementById('home-view').style.display = 'none';
+			document.getElementById('post-view').style.display = 'block';
+			viewer.src = post;
+		
+			// Per-page body styling
+			if (post === 'pages/pathofthejedi.md') {
+				document.body.classList.add('sw-page-mode');
+			} else {
+				document.body.classList.remove('sw-page-mode');
+			}
+		} else {
+			document.body.classList.remove('sw-page-mode');
+		}
 
         // 2. Footnote Jump Logic
         viewer.addEventListener('click', (e) => {

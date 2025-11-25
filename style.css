@@ -213,3 +213,34 @@ footer {
     .profile-pic { width: 150px; height: 150px; }
     .works-grid { grid-template-columns: 1fr; }
 }
+
+/* Star Wars page background – pure CSS starfield */
+body.sw-page-mode {
+    background:
+        /* far, dim stars */
+        radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.35) 50%, transparent 51%),
+        radial-gradient(1px 1px at 80% 30%, rgba(255,255,255,0.30) 50%, transparent 51%),
+        radial-gradient(1px 1px at 20% 80%, rgba(255,255,255,0.30) 50%, transparent 51%),
+        radial-gradient(1px 1px at 70% 75%, rgba(255,255,255,0.35) 50%, transparent 51%),
+        radial-gradient(1px 1px at 40% 40%, rgba(255,255,255,0.30) 50%, transparent 51%),
+
+        /* slightly brighter stars */
+        radial-gradient(1.5px 1.5px at 15% 60%, rgba(255,255,255,0.6) 40%, transparent 41%),
+        radial-gradient(1.5px 1.5px at 55% 20%, rgba(255,255,255,0.7) 40%, transparent 41%),
+        radial-gradient(1.5px 1.5px at 85% 55%, rgba(255,255,255,0.6) 40%, transparent 41%),
+
+        /* subtle nebula-ish glow */
+        radial-gradient(circle at 20% 10%, rgba(245,192,66,0.15), transparent 55%),
+        radial-gradient(circle at 80% 80%, rgba(90,30,240,0.20), transparent 60%),
+
+        /* deep space base */
+        radial-gradient(circle at center, #050316 0%, #02000a 55%, #000007 100%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Optional: slightly wider content on this page */
+body.sw-page-mode .container {
+    max-width: 960px;
+}

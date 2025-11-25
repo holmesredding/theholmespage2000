@@ -134,7 +134,6 @@ This has been a labour of love and a homage to a great work and one that I’ve 
 
 <p id="fn7"><b>7.</b> I would estimate close to 90 per cent of the sound effects are from the direct moment in the film that is being shown at the same time. <a href="#ref7">↩</a></p>
 </small>
-
-    </div>
-  </div>
+</div>
+</div>
 </div>
