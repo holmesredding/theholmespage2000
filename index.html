@@ -216,49 +216,75 @@
     </main>
 
 	<footer>
-		<p><strong>&copy; 2025 Emmett Redding - 10:45pm.</strong></p>
+		<p><strong>&copy; 2025 Emmett Redding - 3:45pm.</strong></p>
 	</footer>
 
     <script>
         // 1. Load Post Logic
-        const params = new URLSearchParams(window.location.search);
-        const post = params.get('post');
-        const viewer = document.getElementById('md-viewer');
-
-		if (post) {
-			document.getElementById('home-view').style.display = 'none';
-			document.getElementById('post-view').style.display = 'block';
-			viewer.src = post;
-		
-			// Per-page body styling
-			if (post === 'pages/pathofthejedi.md') {
-				document.body.classList.add('sw-page-mode');
-			} else {
-				document.body.classList.remove('sw-page-mode');
-			}
+	const params = new URLSearchParams(window.location.search);
+	const post = params.get('post');
+	const viewer = document.getElementById('md-viewer');
+	
+	if (post) {
+		document.getElementById('home-view').style.display = 'none';
+		document.getElementById('post-view').style.display = 'block';
+		viewer.src = post;
+	
+		// Per-page body styling
+		if (post === 'pages/pathofthejedi.md') {
+			document.body.classList.add('sw-page-mode');
 		} else {
 			document.body.classList.remove('sw-page-mode');
 		}
-
-        // 2. Footnote Jump Logic
-        viewer.addEventListener('click', (e) => {
-            const path = e.composedPath();
-            const link = path.find(el => el.tagName === 'A' && el.getAttribute('href')?.startsWith('#'));
-
-            if (link) {
-                e.preventDefault(); 
-                const id = link.getAttribute('href').substring(1); 
-                const target = viewer.shadowRoot.getElementById(id);
-                
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    
-                    // Highlight effect briefly
-                    target.style.backgroundColor = 'rgba(255, 189, 0, 0.3)';
-                    setTimeout(() => target.style.backgroundColor = 'transparent', 1000);
-                }
-            }
-        });
+	} else {
+		document.body.classList.remove('sw-page-mode');
+	}
+	
+	// --- Dynamic Page Title ---
+	function setDynamicTitle() {
+		if (!post) {
+			document.title = "Emmett Redding";
+			return;
+		}
+	
+		const shadow = viewer.shadowRoot;
+		if (!shadow) return;
+	
+		const article = shadow.querySelector("article");
+		if (!article) return;
+	
+		const h1 = article.querySelector("h1");
+	
+		if (h1 && h1.textContent.trim()) {
+			document.title = h1.textContent.trim() + " — Emmett Redding";
+		} else {
+			const name = post.split("/").pop().replace(".md", "");
+			document.title = name + " — Emmett Redding";
+		}
+	}
+	
+	// Trigger when markdown finishes rendering
+	viewer.addEventListener("zero-md-rendered", setDynamicTitle);
+	
+	
+	// 2. Footnote Jump Logic (unchanged)
+	viewer.addEventListener('click', (e) => {
+		const path = e.composedPath();
+		const link = path.find(el => el.tagName === 'A' && el.getAttribute('href')?.startsWith('#'));
+	
+		if (link) {
+			e.preventDefault();
+			const id = link.getAttribute('href').substring(1);
+			const target = viewer.shadowRoot.getElementById(id);
+			
+			if (target) {
+				target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+	
+				target.style.backgroundColor = 'rgba(255, 189, 0, 0.3)';
+				setTimeout(() => target.style.backgroundColor = 'transparent', 1000);
+			}
+		}
+	});
     </script>
 
 </body>
