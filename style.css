@@ -272,3 +272,78 @@ body.sw-page-mode {
 body.sw-page-mode .container {
     max-width: 960px;
 }
+
+/* Inline highlighted text (e.g. <mark>) */
+mark {
+    background-color: var(--highlight); /* #F5C042 */
+    color: #5A1EF0;                     /* same purple as your hover text */
+    padding: 0 3px;
+    border-radius: 2px;
+}
+
+/* Demo “visited-style” link class used in css-test post */
+a.visited {
+    color: var(--visited);               /* dark purple */
+    border-bottom-color: var(--visited);
+    background-color: transparent;
+    box-shadow: none;
+}
+
+/* Demo “hover-style” link that always looks hovered */
+a.hover-demo {
+    background-color: var(--highlight);
+    color: var(--text-highlight);
+    border-bottom-color: transparent;
+    top: -3px;
+    box-shadow: 3px 3px 0px var(--visited);
+}
+
+/* Spoiler text demo */
+.spoiler {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    padding: 0 4px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.spoiler:hover {
+    background-color: rgba(0, 0, 0, 0.85);
+    color: var(--ink);
+}
+
+/* Generic image grid used in css-test post */
+.image-grid {
+    display: grid;
+    gap: 20px;
+    margin: 20px 0 30px;
+}
+
+.image-grid-4 {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+.image-grid figure {
+    margin: 0;
+    text-align: center;
+}
+
+.image-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+    display: block;
+}
+
+.image-grid figcaption {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    opacity: 0.85;
+}
+
+/* Small text used in css-test post */
+small {
+    font-size: 0.85em;
+    opacity: 0.8;
+}
