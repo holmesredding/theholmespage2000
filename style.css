@@ -347,3 +347,109 @@ small {
     font-size: 0.85em;
     opacity: 0.8;
 }
+
+/* --- IMAGE GRID LIGHTBOX --- */
+
+.lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(5, 3, 18, 0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease-out;
+    z-index: 9999;
+}
+
+.lightbox-overlay.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.lightbox-content {
+    max-width: 960px;
+    width: 90%;
+    max-height: 90vh;
+    background: rgba(24, 16, 70, 0.96);
+    border-radius: 16px;
+    border: 1px solid rgba(245, 192, 66, 0.5);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+    padding: 16px 16px 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.lightbox-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.lightbox-image {
+    max-width: 100%;
+    max-height: 70vh;
+    border-radius: 10px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+    display: block;
+}
+
+.lightbox-caption {
+    font-size: 0.95rem;
+    opacity: 0.9;
+    margin: 0;
+}
+
+/* Close button */
+.lightbox-close {
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    color: var(--ink);
+    font-size: 1.8rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0;
+}
+
+/* Arrows */
+.lightbox-arrow {
+    background: rgba(5, 3, 18, 0.7);
+    border: 1px solid rgba(245, 192, 66, 0.6);
+    border-radius: 999px;
+    width: 40px;
+    height: 40px;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.lightbox-arrow:hover,
+.lightbox-close:hover {
+    background-color: rgba(245, 192, 66, 0.15);
+}
+
+/* Make grid images obviously interactive */
+.image-grid img {
+    cursor: zoom-in;
+}
+
+@media (max-width: 600px) {
+    .lightbox-content {
+        width: 96%;
+        padding: 12px 10px 16px;
+    }
+    .lightbox-arrow {
+        width: 32px;
+        height: 32px;
+    }
+}

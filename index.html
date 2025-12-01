@@ -251,15 +251,12 @@
 				return;
 			}
 	
-			// zero-md renders into its shadow DOM
 			const shadow = viewer.shadowRoot;
 			if (!shadow) return;
 	
-			// zero-md wraps content in .markdown-body
 			const mdBody = shadow.querySelector('.markdown-body') || shadow;
 			if (!mdBody) return;
 	
-			// Prefer the first H1 in the markdown
 			const h1 = mdBody.querySelector('h1');
 	
 			if (h1 && h1.textContent.trim()) {
@@ -267,14 +264,12 @@
 				return;
 			}
 	
-			// Fallback: any heading
 			const heading = mdBody.querySelector('h2, h3, h4, h5, h6');
 			if (heading && heading.textContent.trim()) {
 				document.title = heading.textContent.trim() + ' — Emmett Redding';
 				return;
 			}
 	
-			// Final fallback: derive from filename
 			const name = post
 				.split('/')
 				.pop()
@@ -283,17 +278,150 @@
 			document.title = name + ' — Emmett Redding';
 		}
 	
-		// Hook into zero-md’s rendered event
+		// --- 3. Lightbox State & Helpers ---
+	
+		const lightboxState = {
+			overlay: null,
+			imageEl: null,
+			captionEl: null,
+			prevBtn: null,
+			nextBtn: null,
+			currentIndex: 0,
+			currentItems: []
+		};
+	
+		function createLightboxIfNeeded() {
+			if (lightboxState.overlay) return;
+	
+			const overlay = document.createElement('div');
+			overlay.className = 'lightbox-overlay';
+	
+			overlay.innerHTML = `
+				<div class="lightbox-content" role="dialog" aria-modal="true">
+					<button class="lightbox-close" aria-label="Close">&times;</button>
+					<div class="lightbox-inner">
+						<button class="lightbox-arrow lightbox-prev" aria-label="Previous">&#10094;</button>
+						<img class="lightbox-image" alt="">
+						<button class="lightbox-arrow lightbox-next" aria-label="Next">&#10095;</button>
+					</div>
+					<p class="lightbox-caption"></p>
+				</div>
+			`;
+	
+			document.body.appendChild(overlay);
+	
+			const img = overlay.querySelector('.lightbox-image');
+			const caption = overlay.querySelector('.lightbox-caption');
+			const prevBtn = overlay.querySelector('.lightbox-prev');
+			const nextBtn = overlay.querySelector('.lightbox-next');
+			const closeBtn = overlay.querySelector('.lightbox-close');
+	
+			lightboxState.overlay = overlay;
+			lightboxState.imageEl = img;
+			lightboxState.captionEl = caption;
+			lightboxState.prevBtn = prevBtn;
+			lightboxState.nextBtn = nextBtn;
+	
+			function showCurrent() {
+				const item = lightboxState.currentItems[lightboxState.currentIndex];
+				if (!item) return;
+				img.src = item.src;
+				img.alt = item.alt || '';
+				caption.textContent = item.caption || '';
+			}
+	
+			function showRelative(delta) {
+				const len = lightboxState.currentItems.length;
+				if (!len) return;
+				lightboxState.currentIndex = (lightboxState.currentIndex + delta + len) % len;
+				showCurrent();
+			}
+	
+			function hide() {
+				overlay.classList.remove('is-visible');
+				document.removeEventListener('keydown', handleKeydown);
+			}
+	
+			function handleKeydown(e) {
+				if (e.key === 'Escape') hide();
+				if (e.key === 'ArrowRight') showRelative(1);
+				if (e.key === 'ArrowLeft') showRelative(-1);
+			}
+	
+			overlay.addEventListener('click', (e) => {
+				// click on the dark backdrop closes
+				if (e.target === overlay) {
+					hide();
+				}
+			});
+	
+			closeBtn.addEventListener('click', hide);
+			prevBtn.addEventListener('click', () => showRelative(-1));
+			nextBtn.addEventListener('click', () => showRelative(1));
+	
+			lightboxState.show = function (items, startIndex) {
+				lightboxState.currentItems = items || [];
+				lightboxState.currentIndex = startIndex || 0;
+				showCurrent();
+				overlay.classList.add('is-visible');
+				document.addEventListener('keydown', handleKeydown);
+			};
+		}
+	
+		function setupImageGridLightbox() {
+			const shadow = viewer.shadowRoot;
+			if (!shadow) return;
+	
+			createLightboxIfNeeded();
+	
+			const gridImages = shadow.querySelectorAll('.image-grid img');
+	
+			gridImages.forEach((img) => {
+				// avoid stacking multiple identical listeners if zero-md re-renders
+				img.onclick = null;
+	
+				img.style.cursor = 'zoom-in';
+	
+				img.addEventListener('click', () => {
+					const figure = img.closest('figure');
+					const grid = figure ? figure.closest('.image-grid') : img.closest('.image-grid');
+					if (!grid) return;
+	
+					const imgs = grid.querySelectorAll('img');
+					const items = [];
+	
+					imgs.forEach((gridImg) => {
+						const fig = gridImg.closest('figure');
+						const captionEl = fig ? fig.querySelector('figcaption') : null;
+	
+						items.push({
+							src: gridImg.currentSrc || gridImg.src,
+							alt: gridImg.alt || '',
+							caption: captionEl ? captionEl.textContent.trim() : ''
+						});
+					});
+	
+					const index = Array.from(imgs).indexOf(img);
+					lightboxState.show(items, Math.max(index, 0));
+				});
+			});
+		}
+	
+		// --- 4. Hook into zero-md’s rendered event ---
 		viewer.addEventListener('zero-md-rendered', () => {
 			setDynamicTitle();
+			setupImageGridLightbox();
 		});
 	
 		// Safety: also try after a short delay in case the event fired early
 		if (post) {
-			setTimeout(setDynamicTitle, 800);
+			setTimeout(() => {
+				setDynamicTitle();
+				setupImageGridLightbox();
+			}, 800);
 		}
 	
-		// --- 3. Footnote Jump Logic (unchanged) ---
+		// --- 5. Footnote Jump Logic (unchanged) ---
 		viewer.addEventListener('click', (e) => {
 			const path = e.composedPath();
 			const link = path.find(
