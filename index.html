@@ -140,8 +140,54 @@
 							box-shadow: 3px 3px 0px var(--visited);
 						}
                         img { max-width: 100%; height: auto; border-radius: 8px; margin: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-                        blockquote { border-left: 4px solid #ffbd00; padding-left: 15px; color: #555; background: rgba(255, 189, 0, 0.1); padding: 10px; border-radius: 0 8px 8px 0;}
-                        code { background: #f0f0f0; padding: 2px 4px; border-radius: 3px; color: #6218fa; }
+                        
+                        blockquote {
+							border-left: 4px solid var(--highlight);
+							padding: 10px 14px;
+							margin: 18px 0;
+						
+							color: var(--ink);
+							background: rgba(5, 3, 18, 0.85);
+							border-radius: 0 10px 10px 0;
+							box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+						}
+						
+						blockquote p:last-child {
+							margin-bottom: 0;
+						}                        
+                        
+                        /* Block code (``` fenced) */
+						pre {
+							background: rgba(5, 3, 18, 0.95);
+							border-radius: 10px;
+							padding: 14px 16px;
+							margin: 20px 0;
+							border: 1px solid rgba(245, 192, 66, 0.35);
+							box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+							overflow-x: auto;
+						
+							font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Courier New", monospace;
+							font-size: 0.9rem;
+						}
+						
+						/* Remove duplicate background/padding inside blocks */
+						pre code {
+							background: transparent;
+							padding: 0;
+							border-radius: 0;
+							color: var(--ink);
+						}
+						
+						/* Inline code: small pill */
+						code {
+							background: rgba(5, 3, 18, 0.85);
+							padding: 2px 5px;
+							border-radius: 4px;
+							color: #F5C042;
+							font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Courier New", monospace;
+							font-size: 0.9em;
+						}
+
                         iframe { width: 100%; aspect-ratio: 16/9; border: none; border-radius: 8px; margin: 20px 0; }
                         
 						/* --- VISIBLE FOOTNOTE BADGES --- */
@@ -159,6 +205,13 @@
 							transition: all 0.1s ease;
 						}
 						
+						mark {
+							background-color: var(--highlight);
+							color: #5A1EF0;
+							padding: 0 3px;
+							border-radius: 2px;
+						}
+
 						sup a:hover {
 							transform: translateY(-2px);
 							box-shadow: 3px 3px 0px var(--link);
@@ -216,7 +269,7 @@
     </main>
 
 	<footer>
-		<p><strong>&copy; 2025 Emmett Redding - 1:14pm.</strong></p>
+		<p><strong>&copy; 2025 Emmett Redding - 1:24pm.</strong></p>
 	</footer>
 
 	<script>

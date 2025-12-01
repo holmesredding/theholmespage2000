@@ -57,7 +57,7 @@ Ordered:
 
 Images get rounded corners and a soft shadow automatically:
 
-![Example screenshot](/images/works/zeman-video-essay/zemantitleimage.webp)
+![Example screenshot](/theholmespage2000/images/works/zeman-video-essay/zemantitleimage.webp)
 
 ---
 
@@ -105,9 +105,11 @@ Clean divider shown above.
 
 Footnotes show up as your yellow badge elements:
 
-A small fact goes here.[^1]
+A small fact goes here.<sup id="ref-css-1"><a href="#fn-css-1">1</a></sup>
 
-[^1]: This is a footnote. Your CSS renders it like a little highlight badge.
+<small>
+<p id="fn-css-1"><strong>1.</strong> This is a footnote. Your CSS renders it like a little highlight badge. <a href="#ref-css-1">↩</a></p>
+</small>
 
 ---
 
@@ -133,19 +135,19 @@ A small fact goes here.[^1]
 
 <div class="image-grid image-grid-4">
   <figure>
-    <img src="/images/works/on-ornithology/onornithology-title.webp">
+    <img src="/theholmespage2000/images/works/on-ornithology/onornithology-title.webp">
     <figcaption>Grid item 1</figcaption>
   </figure>
   <figure>
-    <img src="/images/works/yesno/yesno-title.webp">
+    <img src="/theholmespage2000/images/works/yesno/yesno-title.webp">
     <figcaption>Grid item 2</figcaption>
   </figure>
   <figure>
-    <img src="/images/works/humanimals/humanimals-title.webp">
+    <img src="/theholmespage2000/images/works/humanimals/humanimals-title.webp">
     <figcaption>Grid item 3</figcaption>
   </figure>
   <figure>
-    <img src="/images/works/running-late/runninglate-title.webp">
+    <img src="/theholmespage2000/images/works/running-late/runninglate-title.webp">
     <figcaption>Grid item 4</figcaption>
   </figure>
 </div>
