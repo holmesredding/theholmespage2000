@@ -187,15 +187,16 @@ h2 { font-size: 2rem; margin-top: 0;}
 }
 
 /* Blog List */
-.blog-list { list-style: none; padding: 0; margin-bottom: 60px;}
-.blog-list li { margin-bottom: 18px; font-size: 1.1rem; display: flex; align-items: baseline;}
-.date { 
-    font-family: "Courier New", monospace; 
-    color: var(--link);
-    margin-right: 20px; 
-    font-size: 0.85em; 
-    font-weight: bold;
-    min-width: 90px;
+.blog-list li {
+    display: grid;
+    grid-template-columns: 150px 1fr; /* adjust width to taste */
+    align-items: start;
+    column-gap: 12px;
+}
+
+.blog-list .date {
+    white-space: nowrap;   /* keeps the date on one line */
+    color: var(--ink);     /* optional */
 }
 
 /* Footer */
