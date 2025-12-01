@@ -41,8 +41,8 @@ Ordered:
 ## Links
 
 - [A normal link](#)
-- [A visited-style link](#){:class="visited"}
-- [A hover-style link](#){:class="hover"}
+- <a href="#" class="visited">A visited-style link</a>
+- <a href="#" class="hover-demo">A hover-style link</a>
 
 ---
 
