@@ -49,7 +49,7 @@ Ordered:
 ## Blockquotes
 
 > This is a blockquote.  
-> The CSS gives it a coloured edge and a subtle background highlight.
+> The CSS gives it a coloured edge and background highlight.
 
 ---
 

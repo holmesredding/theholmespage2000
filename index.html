@@ -162,19 +162,22 @@
 							border-left: 4px solid var(--highlight);
 							padding: 10px 10px;
 						
-							/* centre the block within the text column */
 							max-width: 640px;
 							margin: 24px auto;
 						
 							color: var(--ink);
 							background: rgba(5, 3, 18, 0.85);
-							border-radius: 10px; /* full panel, not just the right side */
+							border-radius: 10px;
 							box-shadow: 0 8px 20px rgba(0,0,0,0.5);
 						}
 						
-						blockquote p:last-child {
+						blockquote > :first-child {
+							margin-top: 0;
+						}
+						
+						blockquote > :last-child {
 							margin-bottom: 0;
-						}                      
+						}                    
                         
                         /* Block code (``` fenced) */
 						pre {
@@ -289,7 +292,7 @@
     </main>
 
 	<footer>
-		<p><strong>&copy; 2025 Emmett Redding - 3:13pm.</strong></p>
+		<p><strong>&copy; 2025 Emmett Redding - 3:17pm.</strong></p>
 	</footer>
 
 	<script>
