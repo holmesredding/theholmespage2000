@@ -1,6 +1,6 @@
 # **Podcasts**
 
-## Grouch Cushions
+<h2 id="grouch-cushions">Grouch Cushions</h2>
 
 ##### _Currently on hiatus_
 
@@ -12,7 +12,7 @@
 
 ---
 
-## Hollygood
+<h2 id="hollygood">Hollygood</h2>
 
 ##### _Currently on hiatus_
 
