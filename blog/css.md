@@ -2,8 +2,8 @@
 
 ### *A reference post for testing how everything looks on this website.*
 
-I’ve been refining the look of this site—gradients, purple accents, link hovers, card shadows, the starfield, all of it.  
-This post is a quick showcase of the elements my Markdown renderer supports. It’s useful for testing, debugging, and making sure future CSS changes don’t break anything.
+I’ve been updating the look of the site. Gradients, the purple accents, link hovers, card shadows, the starfield, all of it.
+This page is a quick run-through of the Markdown elements that are supported. It helps with testing, fixing things, and making sure future updates don’t break anything.
 
 ---
 
@@ -15,7 +15,7 @@ This post is a quick showcase of the elements my Markdown renderer supports. It�
 ##### H5 Heading  
 
 Here’s some regular text with **bold**, *italic*, and <mark>highlighted text</mark>.  
-Links get your usual purple/yellow hover treatment.
+Links use the usual purple and yellow hover styling.
 
 ---
 
@@ -49,7 +49,7 @@ Ordered:
 ## Blockquotes
 
 > This is a blockquote.  
-> Your CSS gives it a coloured edge and a subtle background highlight.
+> The CSS gives it a coloured edge and a subtle background highlight.
 
 ---
 
@@ -97,13 +97,13 @@ This is a preformatted block.
 
 ---
 
-Clean divider shown above.
+Divider shown above.
 
 ---
 
 ## Footnotes
 
-Footnotes show up as your yellow badge elements:
+Footnotes appear as yellow badge-style markers:
 
 A small fact goes here.<sup id="ref-css-1"><a href="#fn-css-1">1</a></sup>
 
@@ -160,7 +160,7 @@ A small fact goes here.<sup id="ref-css-1"><a href="#fn-css-1">1</a></sup>
   <div class="sw-page-bg">
     <div class="sw-page-card">
       <h3>Starfield Test Section</h3>
-      <p>This is how content appears on special themed pages like Path of the Jedi.</p>
+      <p>This shows how content appears on themed pages like Path of the Jedi.</p>
     </div>
   </div>
 </div>
@@ -169,6 +169,4 @@ A small fact goes here.<sup id="ref-css-1"><a href="#fn-css-1">1</a></sup>
 
 ## Closing
 
-This post exists mainly for CSS testing—when refining visuals, it helps to have a single page showing every Markdown element your site supports.
-
-If you want a version showcasing dark mode toggles, callout boxes, or code syntax highlighting, just ask.
+This page exists mainly for CSS testing. It’s handy to have one place that shows every Markdown element the site supports.
