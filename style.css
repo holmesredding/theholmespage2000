@@ -478,6 +478,7 @@ small {
 .pod-icon {
     width: 20px;
     height: 20px;
+    border-radius: 4px;   /* rounds corners */
+    margin-right: 8px;    /* space before link */
     vertical-align: middle;
-    margin-right: 6px;
 }
