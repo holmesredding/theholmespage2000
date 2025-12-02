@@ -188,7 +188,18 @@ h2 { font-size: 2rem; margin-top: 0;}
 
 /* Blog List */
 .blog-list { list-style: none; padding: 0; margin-bottom: 60px;}
-.blog-list li { margin-bottom: 18px; font-size: 1.1rem; display: flex; align-items: baseline;}
+.blog-list li {
+    margin-bottom: 18px;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: baseline;   /* <- this is why the icon sits low */
+}
+
+/* Override just for the podcasts section */
+#podcasts .blog-list li {
+    align-items: center;     /* vertically center icon + text */
+}
+
 .date { 
     font-family: "Courier New", monospace; 
     color: var(--link);
