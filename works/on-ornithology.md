@@ -11,11 +11,11 @@ A discovery that will forever change the way he watches birds.
 ### Directed and shot by Emmett Redding and <a href="http://maxpiantoni.com" target="_blank">Max Piantoni</a>.
 
 <div class="works-image">
-  <img src="/theholmespage2000/images/works/on-ornithology/onornithology-screengrabs.webp" alt="On Ornithology - Screengrabs">
+  <img src="/images/works/on-ornithology/onornithology-screengrabs.webp" alt="On Ornithology - Screengrabs">
 </div>
 
 #### Max and I worked together on devising the concept and creating the costumes and props before shooting in the same day, and I edited the next day.
 
 <div class="works-image">
-  <img src="/theholmespage2000/images/works/on-ornithology/onornithology-bts.webp" alt="On Ornithology - BTS">
+  <img src="/images/works/on-ornithology/onornithology-bts.webp" alt="On Ornithology - BTS">
 </div>

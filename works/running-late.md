@@ -9,9 +9,9 @@
 ### Produced in under 12 hours for monthly short film festival <a href="https://filmonik.com.au" target="_blank">Filmonik</a>, I made *Running Late* to see how fast I could go from idea to creation to shooting. Using a minimal set and props I created the film the day it was presented.
 
 <div class="works-image">
-  <img src="/theholmespage2000/images/works/running-late/runninglate-screengrabs.webp" alt="Running Late - Screengrabs">
+  <img src="/images/works/running-late/runninglate-screengrabs.webp" alt="Running Late - Screengrabs">
 </div>
 
 <div class="works-image">
-  <img src="/theholmespage2000/images/works/running-late/runninglate-bts.webp" alt="Running Late - BTS">
+  <img src="/images/works/running-late/runninglate-bts.webp" alt="Running Late - BTS">
 </div>

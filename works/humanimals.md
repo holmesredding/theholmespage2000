@@ -25,11 +25,11 @@ I was interested in asking audiences to think about how they interact with anima
 ---
 
 <div class="works-image">
-  <img src="/theholmespage2000/images/works/humanimals/humanimalsposters-3.webp" alt="Humanimals - Posters">
+  <img src="/images/works/humanimals/humanimalsposters-3.webp" alt="Humanimals - Posters">
 </div>
 
 <div class="works-image">
-  <img src="/theholmespage2000/images/works/humanimals/humanimals-screengrabs.webp" alt="Humanimals - Screengrabs">
+  <img src="/images/works/humanimals/humanimals-screengrabs.webp" alt="Humanimals - Screengrabs">
 </div>
 
 ---

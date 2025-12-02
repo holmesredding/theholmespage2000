@@ -13,15 +13,15 @@ Through a recollection of a summer in suburban Australia, **My Friend Paul** is 
 ##### *My Friend Paul* was produced by Emmett Redding in 2020 while studying an MA in Animation, Games & Interactivity at RMIT University.
 
 <div class="works-image">
-  <img src="/theholmespage2000/images/works/my-friend-paul/myfriendpaul-laurels-navy.webp" alt="My Friend Paul - Laurels">
+  <img src="/images/works/my-friend-paul/myfriendpaul-laurels-navy.webp" alt="My Friend Paul - Laurels">
 </div>
 
 <div class="works-image">
-  <img src="/theholmespage2000/images/works/my-friend-paul/myfriendpaul-screengrabs.webp" alt="My Friend Paul - Screengrabs">
+  <img src="/images/works/my-friend-paul/myfriendpaul-screengrabs.webp" alt="My Friend Paul - Screengrabs">
 </div>
 
 #### *My Friend Paul* is a reflection on fierce friendships that are all-consuming, yet wash away over time. It explores the nature of nostalgia and the fluidity of memory through the recollection of a summer in suburban Australia.
 
 <div class="works-image">
-  <img src="/theholmespage2000/images/works/my-friend-paul/MyFriendPaul-FilmPoster.webp" alt="My Friend Paul - Poster">
+  <img src="/images/works/my-friend-paul/MyFriendPaul-FilmPoster.webp" alt="My Friend Paul - Poster">
 </div>
