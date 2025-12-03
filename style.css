@@ -225,6 +225,15 @@ footer {
     .works-grid { grid-template-columns: 1fr; }
 }
 
+@media (max-width: 600px) {
+    .intro-text p {
+        text-align: left;
+        max-width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
 /* Star Wars page background – heavy bright-star field */
 body.sw-page-mode {
     background:
