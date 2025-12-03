@@ -597,8 +597,8 @@ footer .snow-toggle {
 }
 
 .pod-title .pod-icon {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     border-radius: 4px;
     flex-shrink: 0;
     margin: 0; /* no extra margin inside heading */
