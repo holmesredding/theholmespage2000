@@ -10,18 +10,19 @@
 </head>
 <body>
 
-    <header>
-        <div class="container">
-            <h1><a href="./" class="site-title">Emmett Redding</a></h1>
-            <nav>
-                <a href="./">Home</a>
-                <a href="./#works">Works</a>
-                <a href="./#writing">Writing</a>
-<!--                 <a href="?post=pages/podcasts.md">Podcasts</a> -->
-                <a href="./#contact">Contact</a>
-            </nav>
-        </div>
-    </header>
+	<header>
+		<div class="container">
+			<h1><a href="./" class="site-title">Emmett Redding</a></h1>
+			<nav>
+				<a href="./">Home</a>
+				<a href="./#works">Works</a>
+				<a href="./#writing">Writing</a>
+				<!-- <a href="?post=pages/podcasts.md">Podcasts</a> -->
+				<a href="./#contact">Contact</a>
+	
+			</nav>
+		</div>
+	</header>
 
     <main class="container">
         
@@ -309,7 +310,12 @@
     </main>
 
 	<footer>
-		<p><strong>&copy; 2025 Emmett Redding</strong></p>
+		<p>
+			<strong>&copy; 2025 Emmett Redding</strong>
+			<button id="snow-toggle" class="snow-toggle" type="button" aria-label="Toggle festive snow">
+				🎅
+			</button>
+		</p>
 	</footer>
 
 	<script>
@@ -535,6 +541,114 @@
 				}
 			}
 		});
+		
+		// --- 6. Simple Santa Snow Toggle ---
+
+		let snowEnabled = false;
+		let snowInterval = null;
+
+		function ensureSnowContainer() {
+			let container = document.getElementById('snow-container');
+			if (!container) {
+				container = document.createElement('div');
+				container.id = 'snow-container';
+				document.body.appendChild(container);
+			}
+			return container;
+		}
+
+		function createSnowflake() {
+			const container = ensureSnowContainer();
+		
+			const flake = document.createElement('span');
+			flake.className = 'snowflake';
+		
+			// Very high chance of being a flat circle
+			const isCircle = Math.random() < 0.95; // 95% circles, 5% snowflakes
+		
+			// Random horizontal position
+			flake.style.left = Math.random() * 100 + 'vw';
+		
+			// Random duration for fall
+			const duration = 5 + Math.random() * 6; // 5–11s
+			flake.style.animationDuration = duration + 's';
+		
+			if (isCircle) {
+				// Simple dot
+				flake.textContent = '•';
+				const size = 0.18 + Math.random() * 0.6; // 0.18–0.78rem
+				flake.style.fontSize = size + 'rem';
+		
+				// Circles: wide opacity range for subtle depth
+				const opacity = 0.12 + Math.random() * 0.7; // 0.12–0.82
+				flake.style.opacity = opacity.toFixed(2);
+			} else {
+				// Rare snowflake glyphs
+				flake.textContent = Math.random() < 0.4 ? '✻' : '❄';
+				const size = 0.7 + Math.random() * 0.8; // 0.7–1.5rem
+				flake.style.fontSize = size + 'rem';
+		
+				// Flakes more visible
+				const opacity = 0.45 + Math.random() * 0.5; // 0.45–0.95
+				flake.style.opacity = opacity.toFixed(2);
+			}
+		
+			// Optional depth blur
+			if (Math.random() < 0.35) {
+				const blur = (Math.random() * 1.5).toFixed(1);
+				flake.style.filter = `blur(${blur}px)`;
+			}
+		
+			// Pick a wind pattern (all linear – no easing stalls)
+			const variant = Math.random();
+			if (variant < 0.33) {
+				flake.style.animationName = 'snowfall-left';
+			} else if (variant < 0.66) {
+				flake.style.animationName = 'snowfall-right';
+			} else {
+				flake.style.animationName = 'snowfall';
+			}
+		
+			container.appendChild(flake);
+		
+			// Clean up after animation
+			setTimeout(() => {
+				if (flake.parentNode === container) {
+					container.removeChild(flake);
+				}
+			}, duration * 1000 + 500);
+		}
+		
+		function startSnow() {
+			if (snowInterval) return;
+			ensureSnowContainer();
+			// Heavier snowfall
+			snowInterval = setInterval(createSnowflake, 30); // was 300 / 120
+		}
+
+		function stopSnow() {
+			if (!snowInterval) return;
+			clearInterval(snowInterval);
+			snowInterval = null;
+			const container = document.getElementById('snow-container');
+			if (container) {
+				container.innerHTML = '';
+			}
+		}
+
+		const snowToggle = document.getElementById('snow-toggle');
+		if (snowToggle) {
+			snowToggle.addEventListener('click', () => {
+				snowEnabled = !snowEnabled;
+				if (snowEnabled) {
+					startSnow();
+					snowToggle.classList.add('is-on');
+				} else {
+					stopSnow();
+					snowToggle.classList.remove('is-on');
+				}
+			});
+		}
 	</script>
 
 </body>

@@ -493,3 +493,113 @@ small {
     margin-right: 8px;    /* space before link */
     vertical-align: middle;
 }
+
+/* --- FESTIVE SNOW TOGGLE --- */
+
+.snow-toggle {
+    margin-left: 8px;
+    font-size: 1.4rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 2px 4px;
+    line-height: 1;
+    position: relative;
+    top: 0;
+    transition:
+        top 0.15s ease,
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        background-color 0.15s ease;
+    border-radius: 6px;
+}
+
+.snow-toggle:hover {
+    top: -2px;
+    background-color: var(--highlight);
+    box-shadow: 3px 3px 0px var(--visited);
+}
+
+.snow-toggle.is-on {
+    top: -2px;
+    background-color: var(--highlight);
+    box-shadow: 3px 3px 0px var(--visited);
+}
+
+footer .snow-toggle {
+    margin-left: 6px;
+    vertical-align: middle;
+}
+
+/* Snow container overlay stays the same */
+#snow-container {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 999; /* below lightbox but above content */
+}
+
+/* Individual snowflakes */
+.snowflake {
+    position: absolute;
+    top: -60px;            /* start well above the top edge */
+    color: #ffffff;
+    opacity: 0.9;
+    user-select: none;
+    animation-name: snowfall;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    will-change: transform, opacity;
+}
+
+/* Straight down */
+@keyframes snowfall {
+    0% {
+        transform: translate3d(0, 0, 0);          /* no extra jump */
+    }
+    100% {
+        transform: translate3d(0, 120vh, 0);      /* fall past bottom */
+    }
+}
+
+/* Wind to the left */
+@keyframes snowfall-left {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    50% {
+        transform: translate3d(-20px, 60vh, 0);
+    }
+    100% {
+        transform: translate3d(-40px, 120vh, 0);
+    }
+}
+
+/* Wind to the right */
+@keyframes snowfall-right {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    50% {
+        transform: translate3d(20px, 60vh, 0);
+    }
+    100% {
+        transform: translate3d(40px, 120vh, 0);
+    }
+}
+
+/* Podcast headings inside markdown */
+.pod-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pod-title .pod-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin: 0; /* no extra margin inside heading */
+}
