@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>Colour Wheel — Primaries → Secondaries → Tertiaries</title>
+  <style>
+    :root{
+      --bg:#0b1220;
+      --border:rgba(255,255,255,.14);
+      --text:#f4f7ff;
+      --muted:rgba(244,247,255,.72);
+      --shadow:0 16px 50px rgba(0,0,0,.45);
+      --wheel-size:min(78vmin, 680px);
+      --locked-opacity:.16;
+    }
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background:
+        radial-gradient(900px 700px at 20% 10%, rgba(124,58,237,.20), transparent 55%),
+        radial-gradient(900px 700px at 80% 0%, rgba(59,130,246,.14), transparent 55%),
+        radial-gradient(800px 650px at 50% 100%, rgba(34,197,94,.10), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      overflow:hidden;
+    }
+
+    header{
+      position:fixed;
+      top:0; left:0; right:0;
+      padding:12px;
+      z-index:20;
+      display:flex;
+      justify-content:center;
+      pointer-events:none;
+    }
+    .bar{
+      width:min(980px, calc(100% - 16px));
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:10px;
+      border-radius:18px;
+      background:rgba(255,255,255,.07);
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(10px);
+      pointer-events:auto;
+    }
+    .leftGroup, .rightGroup{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      flex-wrap:wrap;
+      min-width:0;
+    }
+    .title{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+      min-width: 230px;
+    }
+    .title strong{
+      font-size:13px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      font-weight:950;
+      white-space:nowrap;
+    }
+    .title span{
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.25;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      max-width: 520px;
+    }
+
+    button{
+      appearance:none;
+      border:none;
+      background:none;
+      color:inherit;
+      font:inherit;
+      cursor:pointer;
+      user-select:none;
+    }
+    .btn{
+      padding:9px 12px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.08);
+      font-size:12px;
+      font-weight:950;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      transition: background .15s ease, opacity .15s ease, transform .05s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{ background:rgba(255,255,255,.12); }
+    .btn:active{ transform: scale(.99); }
+    .btn[disabled]{ opacity:.45; cursor:not-allowed; }
+
+    .btn.primary{
+      background: rgba(124,58,237,.28);
+      border-color: rgba(124,58,237,.55);
+    }
+
+    .chip{
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.06);
+      font-size:11px;
+      font-weight:950;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:var(--muted);
+      white-space:nowrap;
+    }
+
+    main{
+      height:100%;
+      display:grid;
+      place-items:center;
+      padding-top: 78px;
+      padding-bottom: 14px;
+    }
+
+    .wheelWrap{
+      width:var(--wheel-size);
+      height:var(--wheel-size);
+      display:grid;
+      place-items:center;
+    }
+    svg{
+      width:100%;
+      height:100%;
+      overflow:visible;
+      filter: drop-shadow(0 24px 55px rgba(0,0,0,.55));
+    }
+    .slice{
+      transform-origin:200px 200px;
+      transition: transform .14s ease, opacity .2s ease;
+    }
+    .slice.clickable{ cursor:pointer; }
+    .slice.clickable:hover{ transform: scale(1.02); }
+
+    .label{
+      font-weight:950;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      pointer-events:none;
+    }
+
+    .toast{
+      position:fixed;
+      left:50%;
+      bottom:16px;
+      transform: translateX(-50%);
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background: rgba(10,15,25,.85);
+      backdrop-filter: blur(10px);
+      box-shadow:var(--shadow);
+      font-size:13px;
+      font-weight:950;
+      color: var(--text);
+      opacity:0;
+      pointer-events:none;
+      transition: opacity .16s ease, transform .16s ease;
+      white-space:nowrap;
+      max-width: calc(100% - 30px);
+      overflow:hidden;
+      text-overflow: ellipsis;
+      z-index:30;
+    }
+    .toast.show{ opacity:1; transform: translateX(-50%) translateY(-2px); }
+
+    @media (max-width: 720px){
+      .title{ min-width: 0; }
+      .title span{ max-width: 260px; }
+      header{ padding:10px; }
+      main{ padding-top: 92px; }
+    }
+
+    @media print{
+      body{ background:#fff; color:#000; overflow:visible; }
+      header{ display:none; }
+      main{ padding-top:0; padding-bottom:0; }
+      svg{ filter:none; }
+      .toast{ display:none; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="bar">
+      <div class="leftGroup">
+        <div class="title">
+          <strong>Colour Wheel</strong>
+          <span id="statusText">Step 1: click the primaries (RED, YELLOW, BLUE).</span>
+        </div>
+        <div class="chip" id="stepChip">Step 1: Primaries</div>
+      </div>
+
+      <div class="rightGroup">
+        <button class="btn primary" id="btnReveal" type="button">Reveal next</button>
+        <button class="btn" id="btnUndo" type="button" disabled>Undo</button>
+        <button class="btn" id="btnReset" type="button">Reset</button>
+        <button class="btn" id="btnShortcuts" type="button">Shortcuts</button>
+        <button class="btn" id="btnPrint" type="button">Print</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wheelWrap">
+      <svg id="wheelSvg" viewBox="0 0 400 400" aria-label="Colour wheel">
+        <g id="slices"></g>
+        <circle cx="200" cy="200" r="30" fill="#1e293b" stroke="#334155" stroke-width="2"></circle>
+      </svg>
+    </div>
+  </main>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ---- DATA ----
+    const COLORS = {
+      // Primaries
+      red:    { hex:'#FF3B30', label:'RED',    angle:0,   type:'primary' },
+      yellow: { hex:'#FFCC00', label:'YELLOW', angle:120, type:'primary' },
+      blue:   { hex:'#007AFF', label:'BLUE',   angle:240, type:'primary' },
+
+      // Secondaries
+      orange: { hex:'#FF9500', label:'ORANGE', angle:60,  type:'secondary', parents:['red','yellow'] },
+      green:  { hex:'#4CD964', label:'GREEN',  angle:180, type:'secondary', parents:['yellow','blue'] },
+      purple: { hex:'#5856D6', label:'PURPLE', angle:300, type:'secondary', parents:['blue','red'] },
+
+      // Tertiaries
+      'red-orange':    { hex:'#FF6B1A', label:'RED-ORANGE',    angle:30,  type:'tertiary', parents:['red','orange'] },
+      'yellow-orange': { hex:'#FFB300', label:'YELLOW-ORANGE', angle:90,  type:'tertiary', parents:['yellow','orange'] },
+      'yellow-green':  { hex:'#A4E045', label:'YELLOW-GREEN',  angle:150, type:'tertiary', parents:['yellow','green'] },
+      'blue-green':    { hex:'#00C7BE', label:'BLUE-GREEN',    angle:210, type:'tertiary', parents:['blue','green'] },
+      'blue-purple':   { hex:'#3735BB', label:'BLUE-PURPLE',   angle:270, type:'tertiary', parents:['blue','purple'] },
+      'red-purple':    { hex:'#AF52DE', label:'RED-PURPLE',    angle:330, type:'tertiary', parents:['red','purple'] },
+    };
+
+    const ORDER = Object.keys(COLORS).sort((a,b) => COLORS[a].angle - COLORS[b].angle);
+
+    const GROUPS = {
+      primary:   ['red','yellow','blue'],
+      secondary: ['orange','green','purple'],
+      tertiary:  ['red-orange','yellow-orange','yellow-green','blue-green','blue-purple','red-purple'],
+    };
+
+    // ---- STATE ----
+    let stage = 'primary'; // primary | secondary | tertiary | complete (internal)
+    let active = emptyActive();
+    let history = [];
+
+    // ---- DOM ----
+    const slicesEl = document.getElementById('slices');
+    const toastEl = document.getElementById('toast');
+
+    const statusText = document.getElementById('statusText');
+    const stepChip = document.getElementById('stepChip');
+
+    const btnReveal = document.getElementById('btnReveal');
+    const btnUndo = document.getElementById('btnUndo');
+    const btnReset = document.getElementById('btnReset');
+    const btnShortcuts = document.getElementById('btnShortcuts');
+    const btnPrint = document.getElementById('btnPrint');
+
+    // ---- HELPERS ----
+    function emptyActive(){
+      const o = {};
+      for(const k of Object.keys(COLORS)) o[k] = false;
+      return o;
+    }
+    function cloneActive(){ return JSON.parse(JSON.stringify(active)); }
+    function pushHistory(){
+      history.push(cloneActive());
+      if(history.length > 60) history = history.slice(history.length - 60);
+      btnUndo.disabled = history.length === 0;
+    }
+
+    let toastTimer = null;
+    function toast(msg){
+      toastEl.textContent = msg;
+      toastEl.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toastEl.classList.remove('show'), 1600);
+    }
+
+    function allOn(keys){ return keys.every(k => active[k]); }
+
+    function canMix(key){
+      const c = COLORS[key];
+      if(c.type === 'primary') return true;
+      const [a,b] = c.parents;
+      return active[a] && active[b];
+    }
+
+    function recipe(key){
+      const p = COLORS[key].parents;
+      if(!p) return '';
+      return `${p[0].toUpperCase()} + ${p[1].toUpperCase()}`;
+    }
+
+    function updateStage(){
+      if(!allOn(GROUPS.primary)){ stage = 'primary'; return; }
+      if(!allOn(GROUPS.secondary)){ stage = 'secondary'; return; }
+      if(!allOn(GROUPS.tertiary)){ stage = 'tertiary'; return; }
+      stage = 'complete';
+    }
+
+    function stepLabel(){
+      if(stage === 'primary') return 'Step 1: Primaries';
+      if(stage === 'secondary') return 'Step 2: Secondaries';
+      if(stage === 'tertiary') return 'Step 3: Tertiaries';
+      return 'Complete';
+    }
+
+    function statusLine(){
+      if(stage === 'primary') return 'Step 1: click the primaries (RED, YELLOW, BLUE).';
+      if(stage === 'secondary') return 'Step 2: mix secondaries (ORANGE, GREEN, PURPLE).';
+      if(stage === 'tertiary') return 'Step 3: mix tertiaries (primary + neighbouring secondary).';
+      return 'All colours unlocked.';
+    }
+
+    // ---- SVG MATH ----
+    const DEG2RAD = Math.PI / 180;
+    function slicePath(angle, cx=200, cy=200, r=180){
+      const a1 = (angle - 15 - 90) * DEG2RAD;
+      const a2 = (angle + 15 - 90) * DEG2RAD;
+      const x1 = cx + r * Math.cos(a1), y1 = cy + r * Math.sin(a1);
+      const x2 = cx + r * Math.cos(a2), y2 = cy + r * Math.sin(a2);
+      return `M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 0 1 ${x2} ${y2} Z`;
+    }
+    function labelPos(angle, radius, cx=200, cy=200){
+      const rad = (angle - 90) * DEG2RAD;
+      return { x: cx + radius * Math.cos(rad), y: cy + radius * Math.sin(rad) };
+    }
+
+    function labelFontSize(label){
+      const n = label.length;
+      if(n >= 12) return 7;   // YELLOW-GREEN
+      if(n >= 10) return 8;
+      return 10;
+    }
+
+    // ---- RENDER ----
+    function renderTopBar(){
+      stepChip.textContent = stepLabel();
+      statusText.textContent = statusLine();
+      btnUndo.disabled = history.length === 0;
+      btnReveal.disabled = (stage === 'complete'); // optional: disable reveal when done
+    }
+
+    function renderWheel(forPrintFullWheel = false){
+      slicesEl.innerHTML = '';
+
+      for(const key of ORDER){
+        const c = COLORS[key];
+        const isActive = active[key];
+
+        const showAsActive = forPrintFullWheel ? true : isActive;
+
+        // Strict progression: only current stage is clickable
+        const inCurrentStage =
+          stage !== 'complete' && (
+            (stage === 'primary'   && GROUPS.primary.includes(key)) ||
+            (stage === 'secondary' && GROUPS.secondary.includes(key)) ||
+            (stage === 'tertiary'  && GROUPS.tertiary.includes(key))
+          );
+
+        const clickable = !forPrintFullWheel && stage !== 'complete' && inCurrentStage && !isActive && canMix(key);
+
+        let opacity = 1;
+        if(!showAsActive) opacity = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--locked-opacity'));
+
+        // If not in current stage, fade it extra to focus attention
+        if(!forPrintFullWheel && !showAsActive && stage !== 'complete' && !inCurrentStage){
+          opacity = 0.08;
+        }
+
+        const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        g.setAttribute('class', `slice ${clickable ? 'clickable' : ''}`);
+        g.style.transformOrigin = '200px 200px';
+
+        g.addEventListener('click', () => {
+          if(forPrintFullWheel) return;
+          if(stage === 'complete') return;
+
+          if(!inCurrentStage){
+            toast('Not yet: finish the current step first.');
+            return;
+          }
+
+          if(isActive) return;
+
+          if(!canMix(key)){
+            if(COLORS[key].type !== 'primary'){
+              toast(`Locked: needs ${recipe(key)}.`);
+            }
+            return;
+          }
+
+          pushHistory();
+          active[key] = true;
+          updateStage();
+          render();
+        });
+
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('d', slicePath(c.angle));
+        path.setAttribute('fill', showAsActive ? c.hex : '#334155');
+        path.setAttribute('fill-opacity', opacity);
+        path.setAttribute('stroke', '#0f172a');
+        path.setAttribute('stroke-width', '2');
+        g.appendChild(path);
+
+        if(showAsActive){
+          const p = labelPos(c.angle, 150);
+          const rotate = (c.angle > 90 && c.angle < 270) ? (c.angle + 180) : c.angle;
+
+          const labelG = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+          labelG.setAttribute('transform', `translate(${p.x},${p.y}) rotate(${rotate})`);
+
+          const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          text.setAttribute('class', 'label');
+          text.setAttribute('text-anchor', 'middle');
+          text.setAttribute('dominant-baseline', 'middle');
+          text.setAttribute('fill', '#fff');
+
+          const fs = labelFontSize(c.label);
+          text.setAttribute('font-size', String(fs));
+          text.style.textShadow = forPrintFullWheel ? 'none' : '0 1px 3px rgba(0,0,0,0.9)';
+          text.textContent = c.label;
+
+          labelG.appendChild(text);
+          g.appendChild(labelG);
+        }
+
+        slicesEl.appendChild(g);
+      }
+    }
+
+    function render(){
+      renderTopBar();
+      renderWheel(false);
+    }
+
+    // ---- ACTIONS ----
+    function reset(){
+      history = [];
+      active = emptyActive();
+      stage = 'primary';
+      render();
+      toast('Reset.');
+    }
+
+    // “Reveal next” = teacher helper, still one-mode app
+    function revealNext(){
+      if(stage === 'complete') return toast('All unlocked.');
+
+      const keys = GROUPS[stage];
+      const next = keys.find(k => !active[k] && canMix(k));
+
+      if(!next){
+        if(stage === 'secondary') return toast('Finish primaries first (RED, YELLOW, BLUE).');
+        if(stage === 'tertiary') return toast('Finish secondaries first (ORANGE, GREEN, PURPLE).');
+        return toast('Nothing to reveal.');
+      }
+
+      pushHistory();
+      active[next] = true;
+      updateStage();
+      render();
+      toast(COLORS[next].type === 'primary' ? `Revealed: ${COLORS[next].label}` : `Revealed: ${COLORS[next].label} (${recipe(next)})`);
+    }
+
+    function undo(){
+      if(history.length === 0) return;
+      active = history.pop();
+      updateStage();
+      render();
+    }
+
+    // Print always prints the full wheel
+    function printFullWheel(){
+      const prev = cloneActive();
+      const prevStage = stage;
+      const prevHistory = history.slice();
+
+      renderWheel(true);
+
+      requestAnimationFrame(() => {
+        window.print();
+        active = prev;
+        stage = prevStage;
+        history = prevHistory;
+        render();
+      });
+    }
+
+    function showShortcuts(){
+      toast('Shortcuts: N=reveal next, U=undo, R=reset, P=print, ?=show this.');
+    }
+
+    // ---- WIRING ----
+    btnReset.addEventListener('click', reset);
+    btnReveal.addEventListener('click', revealNext);
+    btnUndo.addEventListener('click', undo);
+    btnPrint.addEventListener('click', printFullWheel);
+    btnShortcuts.addEventListener('click', showShortcuts);
+
+    window.addEventListener('keydown', (e) => {
+      const k = e.key.toLowerCase();
+      if(k === 'n') revealNext();
+      if(k === 'u') undo();
+      if(k === 'r') reset();
+      if(k === 'p') printFullWheel();
+      if(k === '?') showShortcuts();
+      if(k === 'escape') toastEl.classList.remove('show');
+    });
+
+    // ---- INIT (no Start button; initial state is Step 1) ----
+    updateStage();  // sets stage = primary
+    render();
+  </script>
+</body>
+</html>
