@@ -478,11 +478,14 @@
       const g = elSVG('g');
       g.setAttribute('id', 'warmCoolOverlay');
 
-      const r = 192;        // slightly outside the slices (slice radius ~180)
-      const strokeW = 18;   // ring thickness
+      const r = 192;
+      const strokeW = 18;
 
-      const warmStroke = forPrint ? 'rgba(0,0,0,0.20)' : 'rgba(255,159,10,0.35)';
-      const coolStroke = forPrint ? 'rgba(0,0,0,0.20)' : 'rgba(64,156,255,0.35)';
+      // PRINT: make them visually distinct WITHOUT relying on colour.
+      // Warm = solid (darker) ring segment
+      // Cool = dashed (lighter) ring segment
+      const warmStroke = forPrint ? 'rgba(0,0,0,0.45)' : 'rgba(255,159,10,0.35)';
+      const coolStroke = forPrint ? 'rgba(0,0,0,0.25)' : 'rgba(64,156,255,0.35)';
 
       function arcPath(startDeg, endDeg){
         const a1 = (startDeg - 90) * DEG2RAD;
@@ -495,6 +498,7 @@
 
       const warm = elSVG('path');
       warm.setAttribute('d', arcPath(-60, 120));
+      warm.setAttribute('fill:','none');
       warm.setAttribute('fill', 'none');
       warm.setAttribute('stroke', warmStroke);
       warm.setAttribute('stroke-width', String(strokeW));
@@ -507,8 +511,12 @@
       cool.setAttribute('stroke', coolStroke);
       cool.setAttribute('stroke-width', String(strokeW));
       cool.setAttribute('stroke-linecap', 'butt');
+      if(forPrint){
+        cool.setAttribute('stroke-dasharray', '9 7');
+      }
       g.appendChild(cool);
 
+      // Labels (print-safe) + small cue text
       const tFill = forPrint ? '#000' : 'rgba(255,255,255,0.70)';
 
       const warmT = elSVG('text');
@@ -533,7 +541,19 @@
       coolT.textContent = 'COOL';
       g.appendChild(coolT);
 
-      // Above the slices so it never "disappears"
+      if(forPrint){
+        const hint = elSVG('text');
+        hint.setAttribute('x', '200');
+        hint.setAttribute('y', '206');
+        hint.setAttribute('text-anchor', 'middle');
+        hint.setAttribute('font-size', '9');
+        hint.setAttribute('font-weight', '900');
+        hint.setAttribute('letter-spacing', '.12em');
+        hint.setAttribute('fill', '#000');
+        hint.textContent = 'SOLID = WARM   DASHED = COOL';
+        g.appendChild(hint);
+      }
+
       slicesEl.appendChild(g);
     }
 
@@ -546,7 +566,6 @@
       const overlay = elSVG('g');
       overlay.setAttribute('id', 'complementsOverlay');
 
-      // Hub like the reference image
       const hub = elSVG('circle');
       hub.setAttribute('cx', '200');
       hub.setAttribute('cy', '200');
@@ -559,7 +578,7 @@
       const lineStroke = forPrint ? '#000' : 'rgba(0,0,0,0.85)';
       const lineWidth  = forPrint ? 2.6 : 2.4;
 
-      const rEnd = 110; // inside hub
+      const rEnd = 110;
       const axes = [0, 60, 120, 180, 240, 300];
 
       for(const ang of axes){
@@ -579,7 +598,6 @@
         overlay.appendChild(ln);
       }
 
-      // Printed markers: dots on the rim for each complement endpoint
       const markerStroke = forPrint ? '#000' : 'rgba(255,255,255,0.85)';
       const markerFill   = forPrint ? '#fff' : 'rgba(10,15,25,0.65)';
       const markerWidth  = forPrint ? 2.2 : 2;
@@ -653,18 +671,15 @@
 
         let opacity = 1;
 
-        // Locked/hidden logic while making
         if(!showAsActive) opacity = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--locked-opacity'));
         if(!forPrintFullWheel && !showAsActive && isMakingStage && !inCurrentStage){
           opacity = 0.08;
         }
 
-        // After unlock, show full wheel
         if(!forPrintFullWheel && (stage === 'complements' || stage === 'complete')){
           opacity = 1;
         }
 
-        // Tap-to-highlight complement pair
         if(!forPrintFullWheel && (stage === 'complements' || stage === 'complete') && hi){
           if(key === hi || key === hi2){
             opacity = 1;
@@ -742,10 +757,7 @@
         slicesEl.appendChild(g);
       }
 
-      // Warm/cool ring on top (so it stays visible)
       drawWarmCoolOverlay(forPrintFullWheel);
-
-      // Complement overlay (print always includes it)
       drawComplementArrowsOverlay(forPrintFullWheel);
     }
 
@@ -817,6 +829,7 @@
       const prev = snapshot();
       const prevHistory = history.slice();
 
+      // Ensure warm/cool prints if user has it on (as requested)
       renderWheel(true);
 
       requestAnimationFrame(() => {
