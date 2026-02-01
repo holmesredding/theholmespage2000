@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
-  <title>Colour Wheel — Primaries → Secondaries → Tertiaries</title>
+  <title>Colour Wheel — Primaries → Secondaries → Tertiaries → Complementaries</title>
   <style>
     :root{
       --bg:#0b1220;
@@ -110,6 +110,10 @@
       background: rgba(124,58,237,.28);
       border-color: rgba(124,58,237,.55);
     }
+    .btn.toggled{
+      background: rgba(255,255,255,.14);
+      border-color: rgba(255,255,255,.28);
+    }
 
     .chip{
       padding:8px 10px;
@@ -212,6 +216,7 @@
       </div>
 
       <div class="rightGroup">
+        <button class="btn" id="btnWarmCool" type="button" title="Toggle warm vs cool overlay">Warm/Cool</button>
         <button class="btn primary" id="btnReveal" type="button">Next</button>
         <button class="btn" id="btnUndo" type="button" disabled>Undo</button>
         <button class="btn" id="btnReset" type="button">Reset</button>
@@ -224,6 +229,7 @@
   <main>
     <div class="wheelWrap">
       <svg id="wheelSvg" viewBox="0 0 400 400" aria-label="Colour wheel">
+        <defs id="defs"></defs>
         <g id="slices"></g>
         <circle cx="200" cy="200" r="30" fill="#1e293b" stroke="#334155" stroke-width="2"></circle>
       </svg>
@@ -262,18 +268,35 @@
       tertiary:  ['red-orange','yellow-orange','yellow-green','blue-green','blue-purple','red-purple'],
     };
 
+    // Complement pairs (12-step wheel): opposite across the circle (180°)
+    const COMPLEMENTS = [
+      ['red','green'],
+      ['yellow','purple'],
+      ['blue','orange'],
+      ['red-orange','blue-green'],
+      ['yellow-orange','blue-purple'],
+      ['yellow-green','red-purple'],
+    ];
+
     // ---- STATE ----
-    let stage = 'primary'; // primary | secondary | tertiary | complete (internal)
+    // stage: primary | secondary | tertiary | complements | complete
+    let stage = 'primary';
     let active = emptyActive();
+    let showComplements = false;       // Step 4 overlay
+    let showWarmCool = false;          // toggle overlay
+    let highlightKey = null;           // tap-to-highlight complement pair
+    let highlightTimer = null;
     let history = [];
 
     // ---- DOM ----
+    const defsEl = document.getElementById('defs');
     const slicesEl = document.getElementById('slices');
     const toastEl = document.getElementById('toast');
 
     const statusText = document.getElementById('statusText');
     const stepChip = document.getElementById('stepChip');
 
+    const btnWarmCool = document.getElementById('btnWarmCool');
     const btnReveal = document.getElementById('btnReveal');
     const btnUndo = document.getElementById('btnUndo');
     const btnReset = document.getElementById('btnReset');
@@ -287,8 +310,25 @@
       return o;
     }
     function cloneActive(){ return JSON.parse(JSON.stringify(active)); }
+
+    function snapshot(){
+      return {
+        active: cloneActive(),
+        stage,
+        showComplements,
+        showWarmCool,
+        highlightKey
+      };
+    }
+    function restore(snap){
+      active = snap.active;
+      stage = snap.stage;
+      showComplements = snap.showComplements;
+      showWarmCool = snap.showWarmCool;
+      highlightKey = snap.highlightKey;
+    }
     function pushHistory(){
-      history.push(cloneActive());
+      history.push(snapshot());
       if(history.length > 60) history = history.slice(history.length - 60);
       btnUndo.disabled = history.length === 0;
     }
@@ -316,17 +356,52 @@
       return `${p[0].toUpperCase()} + ${p[1].toUpperCase()}`;
     }
 
+    function findComplement(key){
+      for(const [a,b] of COMPLEMENTS){
+        if(a === key) return b;
+        if(b === key) return a;
+      }
+      return null;
+    }
+
+    function setHighlight(key){
+      highlightKey = key;
+      clearTimeout(highlightTimer);
+      highlightTimer = setTimeout(() => {
+        highlightKey = null;
+        render();
+      }, 1400);
+    }
+
     function updateStage(){
-      if(!allOn(GROUPS.primary)){ stage = 'primary'; return; }
-      if(!allOn(GROUPS.secondary)){ stage = 'secondary'; return; }
-      if(!allOn(GROUPS.tertiary)){ stage = 'tertiary'; return; }
-      stage = 'complete';
+      if(!allOn(GROUPS.primary)){
+        stage = 'primary';
+        showComplements = false;
+        return;
+      }
+      if(!allOn(GROUPS.secondary)){
+        stage = 'secondary';
+        showComplements = false;
+        return;
+      }
+      if(!allOn(GROUPS.tertiary)){
+        stage = 'tertiary';
+        showComplements = false;
+        return;
+      }
+
+      if(!showComplements){
+        stage = 'complements';
+      }else{
+        stage = 'complete';
+      }
     }
 
     function stepLabel(){
       if(stage === 'primary') return 'Step 1: Primaries';
       if(stage === 'secondary') return 'Step 2: Secondaries';
       if(stage === 'tertiary') return 'Step 3: Tertiaries';
+      if(stage === 'complements') return 'Step 4: Complementaries';
       return 'Complete';
     }
 
@@ -334,11 +409,13 @@
       if(stage === 'primary') return 'Step 1: click the primaries (RED, YELLOW, BLUE).';
       if(stage === 'secondary') return 'Step 2: mix secondaries (ORANGE, GREEN, PURPLE).';
       if(stage === 'tertiary') return 'Step 3: mix tertiaries (primary + neighbouring secondary).';
-      return 'All colours unlocked.';
+      if(stage === 'complements') return 'Step 4: tap a colour to highlight its complement. Press Next to show complement arrows.';
+      return 'Complement overlay on. Tap a colour to highlight its complement. Print includes the markers.';
     }
 
     // ---- SVG MATH ----
     const DEG2RAD = Math.PI / 180;
+
     function slicePath(angle, cx=200, cy=200, r=180){
       const a1 = (angle - 15 - 90) * DEG2RAD;
       const a2 = (angle + 15 - 90) * DEG2RAD;
@@ -346,16 +423,192 @@
       const x2 = cx + r * Math.cos(a2), y2 = cy + r * Math.sin(a2);
       return `M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 0 1 ${x2} ${y2} Z`;
     }
-    function labelPos(angle, radius, cx=200, cy=200){
+
+    function pos(angle, radius, cx=200, cy=200){
       const rad = (angle - 90) * DEG2RAD;
       return { x: cx + radius * Math.cos(rad), y: cy + radius * Math.sin(rad) };
     }
 
     function labelFontSize(label){
       const n = label.length;
-      if(n >= 12) return 7;   // YELLOW-GREEN
+      if(n >= 12) return 7;
       if(n >= 10) return 8;
       return 10;
+    }
+
+    function elSVG(tag){
+      return document.createElementNS('http://www.w3.org/2000/svg', tag);
+    }
+
+    function ensureDefs(forPrint){
+      defsEl.innerHTML = '';
+
+      const mkEnd = elSVG('marker');
+      mkEnd.setAttribute('id', 'arrowEnd');
+      mkEnd.setAttribute('markerWidth', '8');
+      mkEnd.setAttribute('markerHeight', '8');
+      mkEnd.setAttribute('refX', '6');
+      mkEnd.setAttribute('refY', '4');
+      mkEnd.setAttribute('orient', 'auto');
+      const endPath = elSVG('path');
+      endPath.setAttribute('d', 'M0,0 L8,4 L0,8 Z');
+      endPath.setAttribute('fill', forPrint ? '#000' : 'rgba(0,0,0,0.85)');
+      mkEnd.appendChild(endPath);
+
+      const mkStart = elSVG('marker');
+      mkStart.setAttribute('id', 'arrowStart');
+      mkStart.setAttribute('markerWidth', '8');
+      mkStart.setAttribute('markerHeight', '8');
+      mkStart.setAttribute('refX', '2');
+      mkStart.setAttribute('refY', '4');
+      mkStart.setAttribute('orient', 'auto');
+      const startPath = elSVG('path');
+      startPath.setAttribute('d', 'M8,0 L0,4 L8,8 Z');
+      startPath.setAttribute('fill', forPrint ? '#000' : 'rgba(0,0,0,0.85)');
+      mkStart.appendChild(startPath);
+
+      defsEl.appendChild(mkStart);
+      defsEl.appendChild(mkEnd);
+    }
+
+    // ---- OVERLAYS ----
+    function drawWarmCoolOverlay(forPrint){
+      if(!showWarmCool) return;
+
+      const g = elSVG('g');
+      g.setAttribute('id', 'warmCoolOverlay');
+
+      const r = 192;        // slightly outside the slices (slice radius ~180)
+      const strokeW = 18;   // ring thickness
+
+      const warmStroke = forPrint ? 'rgba(0,0,0,0.20)' : 'rgba(255,159,10,0.35)';
+      const coolStroke = forPrint ? 'rgba(0,0,0,0.20)' : 'rgba(64,156,255,0.35)';
+
+      function arcPath(startDeg, endDeg){
+        const a1 = (startDeg - 90) * DEG2RAD;
+        const a2 = (endDeg - 90) * DEG2RAD;
+        const x1 = 200 + r * Math.cos(a1), y1 = 200 + r * Math.sin(a1);
+        const x2 = 200 + r * Math.cos(a2), y2 = 200 + r * Math.sin(a2);
+        const largeArc = Math.abs(endDeg - startDeg) > 180 ? 1 : 0;
+        return `M ${x1} ${y1} A ${r} ${r} 0 ${largeArc} 1 ${x2} ${y2}`;
+      }
+
+      const warm = elSVG('path');
+      warm.setAttribute('d', arcPath(-60, 120));
+      warm.setAttribute('fill', 'none');
+      warm.setAttribute('stroke', warmStroke);
+      warm.setAttribute('stroke-width', String(strokeW));
+      warm.setAttribute('stroke-linecap', 'butt');
+      g.appendChild(warm);
+
+      const cool = elSVG('path');
+      cool.setAttribute('d', arcPath(120, 300));
+      cool.setAttribute('fill', 'none');
+      cool.setAttribute('stroke', coolStroke);
+      cool.setAttribute('stroke-width', String(strokeW));
+      cool.setAttribute('stroke-linecap', 'butt');
+      g.appendChild(cool);
+
+      const tFill = forPrint ? '#000' : 'rgba(255,255,255,0.70)';
+
+      const warmT = elSVG('text');
+      warmT.setAttribute('x', '200');
+      warmT.setAttribute('y', '18');
+      warmT.setAttribute('text-anchor', 'middle');
+      warmT.setAttribute('font-size', '10');
+      warmT.setAttribute('font-weight', '950');
+      warmT.setAttribute('letter-spacing', '.16em');
+      warmT.setAttribute('fill', tFill);
+      warmT.textContent = 'WARM';
+      g.appendChild(warmT);
+
+      const coolT = elSVG('text');
+      coolT.setAttribute('x', '200');
+      coolT.setAttribute('y', '392');
+      coolT.setAttribute('text-anchor', 'middle');
+      coolT.setAttribute('font-size', '10');
+      coolT.setAttribute('font-weight', '950');
+      coolT.setAttribute('letter-spacing', '.16em');
+      coolT.setAttribute('fill', tFill);
+      coolT.textContent = 'COOL';
+      g.appendChild(coolT);
+
+      // Above the slices so it never "disappears"
+      slicesEl.appendChild(g);
+    }
+
+    function drawComplementArrowsOverlay(forPrint){
+      const shouldShow = showComplements || stage === 'complete' || forPrint;
+      if(!shouldShow) return;
+
+      ensureDefs(forPrint);
+
+      const overlay = elSVG('g');
+      overlay.setAttribute('id', 'complementsOverlay');
+
+      // Hub like the reference image
+      const hub = elSVG('circle');
+      hub.setAttribute('cx', '200');
+      hub.setAttribute('cy', '200');
+      hub.setAttribute('r', '118');
+      hub.setAttribute('fill', forPrint ? '#fff' : 'rgba(255,255,255,0.92)');
+      hub.setAttribute('stroke', forPrint ? '#000' : 'rgba(255,255,255,0.18)');
+      hub.setAttribute('stroke-width', forPrint ? '1.5' : '1');
+      overlay.appendChild(hub);
+
+      const lineStroke = forPrint ? '#000' : 'rgba(0,0,0,0.85)';
+      const lineWidth  = forPrint ? 2.6 : 2.4;
+
+      const rEnd = 110; // inside hub
+      const axes = [0, 60, 120, 180, 240, 300];
+
+      for(const ang of axes){
+        const A = pos(ang, rEnd);
+        const B = pos(ang + 180, rEnd);
+
+        const ln = elSVG('line');
+        ln.setAttribute('x1', A.x);
+        ln.setAttribute('y1', A.y);
+        ln.setAttribute('x2', B.x);
+        ln.setAttribute('y2', B.y);
+        ln.setAttribute('stroke', lineStroke);
+        ln.setAttribute('stroke-width', String(lineWidth));
+        ln.setAttribute('stroke-linecap', 'round');
+        ln.setAttribute('marker-start', 'url(#arrowStart)');
+        ln.setAttribute('marker-end', 'url(#arrowEnd)');
+        overlay.appendChild(ln);
+      }
+
+      // Printed markers: dots on the rim for each complement endpoint
+      const markerStroke = forPrint ? '#000' : 'rgba(255,255,255,0.85)';
+      const markerFill   = forPrint ? '#fff' : 'rgba(10,15,25,0.65)';
+      const markerWidth  = forPrint ? 2.2 : 2;
+
+      const rDot = 176;
+      for(const [a,b] of COMPLEMENTS){
+        const Ad = pos(COLORS[a].angle, rDot);
+        const Bd = pos(COLORS[b].angle, rDot);
+
+        const dot1 = elSVG('circle');
+        dot1.setAttribute('cx', Ad.x);
+        dot1.setAttribute('cy', Ad.y);
+        dot1.setAttribute('r', '6.2');
+        dot1.setAttribute('fill', markerFill);
+        dot1.setAttribute('stroke', markerStroke);
+        dot1.setAttribute('stroke-width', String(markerWidth));
+        overlay.appendChild(dot1);
+
+        const dot2 = elSVG('circle');
+        dot2.setAttribute('cx', Bd.x);
+        dot2.setAttribute('cy', Bd.y);
+        dot2.setAttribute('r', '6.2');
+        dot2.setAttribute('fill', markerFill);
+        dot2.setAttribute('stroke', markerStroke);
+        dot2.setAttribute('stroke-width', String(markerWidth));
+        overlay.appendChild(dot2);
+      }
+
+      slicesEl.appendChild(overlay);
     }
 
     // ---- RENDER ----
@@ -363,11 +616,20 @@
       stepChip.textContent = stepLabel();
       statusText.textContent = statusLine();
       btnUndo.disabled = history.length === 0;
-      btnReveal.disabled = (stage === 'complete'); // optional: disable reveal when done
+
+      btnReveal.disabled = (stage === 'complete');
+      btnReveal.textContent = (stage === 'complements') ? 'Show' : 'Next';
+
+      btnWarmCool.classList.toggle('toggled', showWarmCool);
     }
 
     function renderWheel(forPrintFullWheel = false){
       slicesEl.innerHTML = '';
+
+      const isMakingStage = (stage === 'primary' || stage === 'secondary' || stage === 'tertiary');
+
+      const hi = highlightKey;
+      const hi2 = hi ? findComplement(hi) : null;
 
       for(const key of ORDER){
         const c = COLORS[key];
@@ -375,37 +637,63 @@
 
         const showAsActive = forPrintFullWheel ? true : isActive;
 
-        // Strict progression: only current stage is clickable
         const inCurrentStage =
-          stage !== 'complete' && (
+          !forPrintFullWheel && (
             (stage === 'primary'   && GROUPS.primary.includes(key)) ||
             (stage === 'secondary' && GROUPS.secondary.includes(key)) ||
             (stage === 'tertiary'  && GROUPS.tertiary.includes(key))
           );
 
-        const clickable = !forPrintFullWheel && stage !== 'complete' && inCurrentStage && !isActive && canMix(key);
+        const clickable =
+          !forPrintFullWheel &&
+          isMakingStage &&
+          inCurrentStage &&
+          !isActive &&
+          canMix(key);
 
         let opacity = 1;
-        if(!showAsActive) opacity = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--locked-opacity'));
 
-        // If not in current stage, fade it extra to focus attention
-        if(!forPrintFullWheel && !showAsActive && stage !== 'complete' && !inCurrentStage){
+        // Locked/hidden logic while making
+        if(!showAsActive) opacity = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--locked-opacity'));
+        if(!forPrintFullWheel && !showAsActive && isMakingStage && !inCurrentStage){
           opacity = 0.08;
         }
 
-        const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        // After unlock, show full wheel
+        if(!forPrintFullWheel && (stage === 'complements' || stage === 'complete')){
+          opacity = 1;
+        }
+
+        // Tap-to-highlight complement pair
+        if(!forPrintFullWheel && (stage === 'complements' || stage === 'complete') && hi){
+          if(key === hi || key === hi2){
+            opacity = 1;
+          }else{
+            opacity = 0.18;
+          }
+        }
+
+        const g = elSVG('g');
         g.setAttribute('class', `slice ${clickable ? 'clickable' : ''}`);
         g.style.transformOrigin = '200px 200px';
 
         g.addEventListener('click', () => {
           if(forPrintFullWheel) return;
-          if(stage === 'complete') return;
+
+          if(stage === 'complements' || stage === 'complete'){
+            const comp = findComplement(key);
+            if(comp){
+              setHighlight(key);
+              toast(`${COLORS[key].label} ↔ ${COLORS[comp].label}`);
+              render();
+            }
+            return;
+          }
 
           if(!inCurrentStage){
             toast('Not yet: finish the current step first.');
             return;
           }
-
           if(isActive) return;
 
           if(!canMix(key)){
@@ -421,7 +709,7 @@
           render();
         });
 
-        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        const path = elSVG('path');
         path.setAttribute('d', slicePath(c.angle));
         path.setAttribute('fill', showAsActive ? c.hex : '#334155');
         path.setAttribute('fill-opacity', opacity);
@@ -430,13 +718,13 @@
         g.appendChild(path);
 
         if(showAsActive){
-          const p = labelPos(c.angle, 150);
+          const p = pos(c.angle, 150);
           const rotate = (c.angle > 90 && c.angle < 270) ? (c.angle + 180) : c.angle;
 
-          const labelG = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+          const labelG = elSVG('g');
           labelG.setAttribute('transform', `translate(${p.x},${p.y}) rotate(${rotate})`);
 
-          const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          const text = elSVG('text');
           text.setAttribute('class', 'label');
           text.setAttribute('text-anchor', 'middle');
           text.setAttribute('dominant-baseline', 'middle');
@@ -453,6 +741,12 @@
 
         slicesEl.appendChild(g);
       }
+
+      // Warm/cool ring on top (so it stays visible)
+      drawWarmCoolOverlay(forPrintFullWheel);
+
+      // Complement overlay (print always includes it)
+      drawComplementArrowsOverlay(forPrintFullWheel);
     }
 
     function render(){
@@ -465,13 +759,24 @@
       history = [];
       active = emptyActive();
       stage = 'primary';
+      showComplements = false;
+      showWarmCool = false;
+      highlightKey = null;
       render();
       toast('Reset.');
     }
 
-    // “Reveal next” = teacher helper, still one-mode app
     function revealNext(){
-      if(stage === 'complete') return toast('All unlocked.');
+      if(stage === 'complete') return toast('Done.');
+
+      if(stage === 'complements'){
+        pushHistory();
+        showComplements = true;
+        updateStage();
+        render();
+        toast('Complement arrows on.');
+        return;
+      }
 
       const keys = GROUPS[stage];
       const next = keys.find(k => !active[k] && canMix(k));
@@ -486,35 +791,44 @@
       active[next] = true;
       updateStage();
       render();
-      toast(COLORS[next].type === 'primary' ? `Revealed: ${COLORS[next].label}` : `Revealed: ${COLORS[next].label} (${recipe(next)})`);
+
+      toast(COLORS[next].type === 'primary'
+        ? `Revealed: ${COLORS[next].label}`
+        : `Revealed: ${COLORS[next].label} (${recipe(next)})`
+      );
     }
 
     function undo(){
       if(history.length === 0) return;
-      active = history.pop();
+      const snap = history.pop();
+      restore(snap);
       updateStage();
       render();
     }
 
-    // Print always prints the full wheel
+    function toggleWarmCool(){
+      pushHistory();
+      showWarmCool = !showWarmCool;
+      render();
+      toast(showWarmCool ? 'Warm/Cool overlay on.' : 'Warm/Cool overlay off.');
+    }
+
     function printFullWheel(){
-      const prev = cloneActive();
-      const prevStage = stage;
+      const prev = snapshot();
       const prevHistory = history.slice();
 
       renderWheel(true);
 
       requestAnimationFrame(() => {
         window.print();
-        active = prev;
-        stage = prevStage;
+        restore(prev);
         history = prevHistory;
         render();
       });
     }
 
     function showShortcuts(){
-      toast('Shortcuts: N=next, U=undo, R=reset, P=print, ?=show this.');
+      toast('Shortcuts: N=next, U=undo, R=reset, P=print, W=warm/cool, ?=show this.');
     }
 
     // ---- WIRING ----
@@ -523,6 +837,7 @@
     btnUndo.addEventListener('click', undo);
     btnPrint.addEventListener('click', printFullWheel);
     btnShortcuts.addEventListener('click', showShortcuts);
+    btnWarmCool.addEventListener('click', toggleWarmCool);
 
     window.addEventListener('keydown', (e) => {
       const k = e.key.toLowerCase();
@@ -530,12 +845,13 @@
       if(k === 'u') undo();
       if(k === 'r') reset();
       if(k === 'p') printFullWheel();
+      if(k === 'w') toggleWarmCool();
       if(k === '?') showShortcuts();
       if(k === 'escape') toastEl.classList.remove('show');
     });
 
-    // ---- INIT (no Start button; initial state is Step 1) ----
-    updateStage();  // sets stage = primary
+    // ---- INIT ----
+    updateStage();
     render();
   </script>
 </body>
