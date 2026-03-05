@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Considered Palate</title>
+  <link rel="stylesheet" href="food-style.css">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <script type="module" src="https://cdn.jsdelivr.net/npm/zero-md@3?register"></script>
+</head>
+<body>
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <hr class="masthead-rule-top">
+    <h1><a href="/food/">The Considered Palate</a></h1>
+    <p class="masthead-tagline">In pursuit of the finest.</p>
+    <p class="masthead-meta">Est. 2026 &nbsp;&middot;&nbsp; Melbourne, Australia</p>
+    <hr class="masthead-rule-bottom">
+  </header>
+
+  <!-- NAV -->
+  <nav class="site-nav">
+    <a href="/food/">Home</a>
+    <span class="nav-separator">&bull;</span>
+    <a href="/food/?post=posts/method.md">Our Method</a>
+    <span class="nav-separator">&bull;</span>
+    <a href="/food/?post=posts/editorial-standards.md">Editorial Standards</a>
+  </nav>
+
+  <!-- HOME VIEW -->
+  <div id="home-view">
+
+    <!-- FEATURED ARTICLE -->
+    <div class="container" id="featured-container"></div>
+
+    <!-- CONTROLS -->
+    <div class="container">
+      <div class="controls">
+        <input type="text" id="search-input" class="search-input" placeholder="Search reviews...">
+        <div class="controls-row">
+          <div class="sort-controls">
+            <span class="controls-label">Sort by</span>
+            <button class="sort-btn active" data-sort="date">Date <span class="sort-arrow">&darr;</span></button>
+            <button class="sort-btn" data-sort="satisfaction">Satisfaction <span class="sort-arrow">&darr;</span></button>
+          </div>
+          <div class="tag-filters" id="tag-filters"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ARTICLE LIST -->
+    <div class="container">
+      <h2 class="section-heading" id="list-heading">Recent Reviews</h2>
+      <ul class="article-list" id="article-list"></ul>
+      <p class="no-results" id="no-results" style="display: none;">No reviews match your search.</p>
+    </div>
+
+  </div>
+
+  <!-- POST VIEW -->
+  <div id="post-view" style="display: none;">
+    <div class="container">
+      <div class="post-content">
+        <zero-md id="post-content">
+          <template data-replace>
+            <style>
+              :host {
+                display: block;
+                font-family: 'Lora', Georgia, 'Times New Roman', serif;
+                color: #1A1A1A;
+                line-height: 1.8;
+              }
+              h1 {
+                font-family: 'Playfair Display', Georgia, serif;
+                font-size: 2.4rem;
+                font-weight: 700;
+                color: #1A1A1A;
+                line-height: 1.15;
+                text-align: center;
+                margin: 2rem 0 0.5rem;
+              }
+              h2 {
+                font-family: 'Playfair Display', Georgia, serif;
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: #1A1A1A;
+                margin: 2.5rem 0 0.8rem;
+                padding-bottom: 0.4rem;
+                border-bottom: 1px solid #C4B5A0;
+              }
+              h3 {
+                font-family: 'Playfair Display', Georgia, serif;
+                font-size: 1.15rem;
+                font-weight: 700;
+                color: #1A1A1A;
+                margin: 2rem 0 0.5rem;
+              }
+              p {
+                margin-bottom: 1.2rem;
+                font-size: 1rem;
+              }
+              a {
+                color: #722F37;
+                text-decoration: underline;
+                text-decoration-color: #C4B5A0;
+                text-underline-offset: 3px;
+                transition: text-decoration-color 0.2s ease;
+              }
+              a:hover {
+                text-decoration-color: #722F37;
+              }
+              blockquote {
+                font-family: 'Playfair Display', Georgia, serif;
+                font-style: italic;
+                font-size: 1.15rem;
+                color: #333333;
+                border-left: 3px solid #1A1A1A;
+                padding: 0.8rem 0 0.8rem 1.5rem;
+                margin: 2rem 0;
+              }
+              blockquote p {
+                margin-bottom: 0;
+              }
+              img {
+                max-width: 100%;
+                height: auto;
+                filter: saturate(0.85);
+                margin: 1.5rem 0;
+              }
+              hr {
+                border: none;
+                border-top: 1px solid #C4B5A0;
+                margin: 2.5rem auto;
+                width: 40%;
+              }
+              em {
+                font-style: italic;
+              }
+              strong {
+                font-weight: 600;
+                color: #1A1A1A;
+              }
+              ul, ol {
+                margin: 1rem 0 1.2rem 1.5rem;
+              }
+              li {
+                margin-bottom: 0.4rem;
+              }
+
+              /* ---- VERDICT BOX ---- */
+              .verdict {
+                border-top: 3px double #2C2C2C;
+                border-bottom: 3px double #2C2C2C;
+                padding: 1.5rem 0;
+                margin: 2.5rem 0;
+              }
+              .verdict-heading {
+                font-family: 'Playfair Display', Georgia, serif;
+                font-size: 0.75rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.14em;
+                color: #1A1A1A;
+                margin-bottom: 1.2rem !important;
+              }
+              .scale {
+                display: flex;
+                align-items: center;
+                gap: 0.8rem;
+                margin-bottom: 0.7rem;
+              }
+              .scale:last-child {
+                margin-bottom: 0;
+              }
+              .scale-label {
+                font-family: 'Lora', serif;
+                font-size: 0.65rem;
+                text-transform: uppercase;
+                letter-spacing: 0.12em;
+                color: #6B6560;
+                min-width: 120px;
+                flex-shrink: 0;
+              }
+              .scale-track {
+                flex: 1;
+                height: 6px;
+                background: #C4B5A0;
+                position: relative;
+                overflow: hidden;
+              }
+              .scale-fill {
+                display: block;
+                height: 100%;
+                background: #1A1A1A;
+                transition: width 0.4s ease;
+              }
+              .scale-note {
+                font-family: 'Cormorant Garamond', Georgia, serif;
+                font-size: 0.85rem;
+                font-style: italic;
+                color: #6B6560;
+                min-width: 100px;
+                text-align: right;
+                flex-shrink: 0;
+              }
+            </style>
+          </template>
+        </zero-md>
+      </div>
+      <a href="/food/" class="back-link" style="
+        display: inline-block;
+        font-family: 'Lora', serif;
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: #6B6560;
+        text-decoration: none;
+        padding: 1.5rem 0 3rem;
+        transition: color 0.2s ease;
+      ">&larr; Back to all writing</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p class="footer-name">The Considered Palate</p>
+    <p class="footer-text">Melbourne &nbsp;&middot;&nbsp; 2026</p>
+  </footer>
+
+  <script>
+    (function () {
+      // ---- REVIEW DATA ----
+      // To add a new review: add an entry here. That's it.
+      const reviews = [
+        {
+          title: 'Hi-Chew Grape',
+          file: 'posts/hi-chew-grape.md',
+          date: '2026-03-05',
+          dateDisplay: '5 March 2026',
+          excerpt: 'Really great. Got that artificial flavour I love but it\'s not overwhelming.',
+          satisfaction: 92,
+          tags: ['japanese', 'chew']
+        },
+        {
+          title: 'Bourbon Fettuccine Gummy Grape',
+          file: 'posts/bourbon-fettuccine-grape.md',
+          date: '2026-03-05',
+          dateDisplay: '5 March 2026',
+          excerpt: 'Yum. Classic yummy grape flavour. The "fettuccine" of it all is really pretty arbitrary.',
+          satisfaction: 88,
+          tags: ['japanese', 'gummy']
+        },
+        {
+          title: 'Mikakuto Sakeru 40cm Long Grape Gummy',
+          file: 'posts/mikakuto-sakeru-grape.md',
+          date: '2026-03-05',
+          dateDisplay: '5 March 2026',
+          excerpt: 'Yes, I\'ve seen the ads. The ads are better than the gummy.',
+          satisfaction: 28,
+          tags: ['japanese', 'gummy', 'novelty']
+        },
+        {
+          title: 'Peelerz Gummy Grape',
+          file: 'posts/peelerz-grape.md',
+          date: '2026-03-05',
+          dateDisplay: '5 March 2026',
+          excerpt: 'Interesting idea. Not particularly satisfying, not a great grape flavour.',
+          satisfaction: 30,
+          tags: ['japanese', 'gummy', 'novelty']
+        },
+        {
+          title: 'Fujiya Peco Gummy Grape',
+          file: 'posts/fujiya-peco-grape.md',
+          date: '2026-03-05',
+          dateDisplay: '5 March 2026',
+          excerpt: 'The packaging said this was still in date, but it tasted rancid.',
+          satisfaction: 5,
+          tags: ['japanese', 'gummy']
+        }
+      ];
+
+      // ---- STATE ----
+      let currentSort = 'date';
+      let sortAsc = false; // false = descending (newest/highest first)
+      let activeTag = null;
+      let searchQuery = '';
+
+      // ---- RENDER ----
+      function getAllTags() {
+        const tags = new Set();
+        reviews.forEach(r => r.tags.forEach(t => tags.add(t)));
+        return [...tags].sort();
+      }
+
+      function getFilteredSorted() {
+        let filtered = reviews;
+
+        if (searchQuery) {
+          const q = searchQuery.toLowerCase();
+          filtered = filtered.filter(r =>
+            r.title.toLowerCase().includes(q) ||
+            r.excerpt.toLowerCase().includes(q) ||
+            r.tags.some(t => t.toLowerCase().includes(q))
+          );
+        }
+
+        if (activeTag) {
+          filtered = filtered.filter(r => r.tags.includes(activeTag));
+        }
+
+        if (currentSort === 'satisfaction') {
+          filtered = [...filtered].sort((a, b) =>
+            sortAsc ? a.satisfaction - b.satisfaction : b.satisfaction - a.satisfaction
+          );
+        } else {
+          filtered = [...filtered].sort((a, b) =>
+            sortAsc ? a.date.localeCompare(b.date) : b.date.localeCompare(a.date)
+          );
+        }
+
+        return filtered;
+      }
+
+      function renderFeatured() {
+        const latest = [...reviews].sort((a, b) => b.date.localeCompare(a.date))[0];
+        if (!latest) return;
+        document.getElementById('featured-container').innerHTML = `
+          <article class="featured-article">
+            <p class="featured-label">Latest</p>
+            <h2><a href="?post=${latest.file}">${latest.title}</a></h2>
+            <p class="featured-meta">${latest.dateDisplay} &middot; Review</p>
+            <p class="featured-excerpt">${latest.excerpt}</p>
+          </article>
+        `;
+      }
+
+      function renderTags() {
+        const tags = getAllTags();
+        const container = document.getElementById('tag-filters');
+        container.innerHTML = tags.map(t =>
+          `<button class="tag-btn${activeTag === t ? ' active' : ''}" data-tag="${t}">${t}</button>`
+        ).join('');
+      }
+
+      function renderList() {
+        const items = getFilteredSorted();
+        const list = document.getElementById('article-list');
+        const heading = document.getElementById('list-heading');
+        const noResults = document.getElementById('no-results');
+
+        const arrow = sortAsc ? '\u2191' : '\u2193';
+        if (currentSort === 'satisfaction') {
+          heading.textContent = 'Reviews by Satisfaction ' + arrow;
+        } else {
+          heading.textContent = 'Reviews by Date ' + arrow;
+        }
+
+        if (items.length === 0) {
+          list.innerHTML = '';
+          noResults.style.display = 'block';
+          return;
+        }
+
+        noResults.style.display = 'none';
+        list.innerHTML = items.map(r => `
+          <li class="article-item">
+            <p class="article-category">Review</p>
+            <h3><a href="?post=${r.file}">${r.title}</a></h3>
+            <p class="article-date">${r.dateDisplay}</p>
+            <p class="article-excerpt">${r.excerpt}</p>
+            <p class="article-satisfaction">
+              Satisfaction
+              <span class="satisfaction-bar"><span class="satisfaction-fill" style="width: ${r.satisfaction}%"></span></span>
+            </p>
+            <div class="article-tags">
+              ${r.tags.map(t => `<span class="article-tag">${t}</span>`).join('')}
+            </div>
+          </li>
+        `).join('');
+      }
+
+      function render() {
+        renderFeatured();
+        renderTags();
+        renderList();
+      }
+
+      // ---- EVENTS ----
+      function initHome() {
+        // Sort buttons
+        document.querySelectorAll('.sort-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            if (currentSort === btn.dataset.sort) {
+              sortAsc = !sortAsc;
+            } else {
+              currentSort = btn.dataset.sort;
+              sortAsc = false;
+            }
+            document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            // Update all arrows
+            document.querySelectorAll('.sort-btn').forEach(b => {
+              const arrow = b.querySelector('.sort-arrow');
+              if (b === btn) {
+                arrow.innerHTML = sortAsc ? '&uarr;' : '&darr;';
+              } else {
+                arrow.innerHTML = '&darr;';
+              }
+            });
+            renderList();
+          });
+        });
+
+        // Tag filter (delegated)
+        document.getElementById('tag-filters').addEventListener('click', (e) => {
+          const btn = e.target.closest('.tag-btn');
+          if (!btn) return;
+          activeTag = activeTag === btn.dataset.tag ? null : btn.dataset.tag;
+          renderTags();
+          renderList();
+        });
+
+        // Search
+        document.getElementById('search-input').addEventListener('input', (e) => {
+          searchQuery = e.target.value;
+          renderList();
+        });
+
+        render();
+      }
+
+      // ---- POST VIEW ----
+      function initPost(post) {
+        document.getElementById('home-view').style.display = 'none';
+        document.getElementById('post-view').style.display = 'block';
+
+        const container = document.querySelector('.post-content');
+        const oldEl = document.getElementById('post-content');
+        const template = oldEl.querySelector('template');
+
+        const newEl = document.createElement('zero-md');
+        newEl.setAttribute('src', post);
+        newEl.id = 'post-content';
+        if (template) {
+          newEl.appendChild(template.cloneNode(true));
+        }
+
+        container.replaceChild(newEl, oldEl);
+
+        newEl.addEventListener('zero-md-rendered', () => {
+          const shadow = newEl.shadowRoot;
+          if (shadow) {
+            const h1 = shadow.querySelector('h1');
+            if (h1) {
+              document.title = h1.textContent + ' \u2014 The Considered Palate';
+            }
+          }
+        });
+      }
+
+      // ---- INIT ----
+      const params = new URLSearchParams(window.location.search);
+      const post = params.get('post');
+
+      if (post) {
+        initPost(post);
+      } else {
+        initHome();
+      }
+    })();
+  </script>
+
+</body>
+</html>
