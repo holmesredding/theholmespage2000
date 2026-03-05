@@ -23,13 +23,50 @@
   <nav class="site-nav">
     <a href="/food/">Home</a>
     <span class="nav-separator">&bull;</span>
+    <a href="/food/?reviews">Reviews</a>
+    <span class="nav-separator">&bull;</span>
     <a href="/food/?post=posts/method.md">Our Method</a>
     <span class="nav-separator">&bull;</span>
     <a href="/food/?post=posts/editorial-standards.md">Editorial Standards</a>
   </nav>
 
-  <!-- HOME VIEW -->
-  <div id="home-view">
+  <!-- LANDING VIEW -->
+  <div id="landing-view">
+    <div class="container">
+
+      <div class="landing-intro">
+        <p class="landing-lead">Melbourne has no shortage of opinions about food. What it lacks is discipline.</p>
+        <p>The Considered Palate applies a consistent, rigorous methodology to every product we review. Each is tasted a minimum of three times. Each is purchased at full retail price. Each is assessed on its own terms, without favour, sponsorship, or haste.</p>
+        <p>We do not accept gifted products or promotional inventory. We do not attend launch events. We do not assign numerical scores. What we offer instead is close attention, honest language, and the conviction that the things we eat deserve better criticism than they typically receive.</p>
+      </div>
+
+      <div class="landing-method">
+        <h2 class="section-heading">The Three-Pass System</h2>
+        <div class="method-steps">
+          <div class="method-step">
+            <h3>I. The Encounter</h3>
+            <p>First impressions only. Texture, aroma, and immediate flavour profile are noted without judgement. Nothing is decided here.</p>
+          </div>
+          <div class="method-step">
+            <h3>II. The Interrogation</h3>
+            <p>Conducted at least twenty-four hours later. Whether the first impression holds, or whether it was flattery, is the only question worth answering.</p>
+          </div>
+          <div class="method-step">
+            <h3>III. The Verdict</h3>
+            <p>The critical tasting. Notes are taken in real time. The assessment is formed and does not change.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="landing-cta">
+        <a href="?reviews" class="cta-button">Read the Reviews</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- REVIEWS VIEW -->
+  <div id="reviews-view" style="display: none;">
 
     <!-- FEATURED ARTICLE -->
     <div class="container" id="featured-container"></div>
@@ -208,7 +245,7 @@
           </template>
         </zero-md>
       </div>
-      <a href="/food/" class="back-link" style="
+      <a href="/food/?reviews" class="back-link" style="
         display: inline-block;
         font-family: 'Lora', serif;
         font-size: 0.72rem;
@@ -387,7 +424,7 @@
       }
 
       // ---- EVENTS ----
-      function initHome() {
+      function initReviews() {
         // Sort buttons
         document.querySelectorAll('.sort-btn').forEach(btn => {
           btn.addEventListener('click', () => {
@@ -462,11 +499,15 @@
       // ---- INIT ----
       const params = new URLSearchParams(window.location.search);
       const post = params.get('post');
+      const isReviews = params.has('reviews');
 
       if (post) {
+        document.getElementById('landing-view').style.display = 'none';
         initPost(post);
-      } else {
-        initHome();
+      } else if (isReviews) {
+        document.getElementById('landing-view').style.display = 'none';
+        document.getElementById('reviews-view').style.display = 'block';
+        initReviews();
       }
     })();
   </script>
