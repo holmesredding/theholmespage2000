@@ -4,6 +4,8 @@
 
 ---
 
+![Bourbon Fettuccine Gummy Grape](images/bourbon.jpeg)
+
 Yum. Classic yummy grape flavour. Strong, immediate, no ambiguity. You know what you're eating and it's good.
 
 Sugar coated so they don't stick together, which is a smart practical detail that also adds a nice crunch before the chew starts. The "fettuccine" of it all is really pretty arbitrary. It's basically just thin worms. But naming aside, they're really yummy and very satisfying.

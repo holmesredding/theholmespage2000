@@ -4,6 +4,8 @@
 
 ---
 
+![Fujiya Peco Gummy Grape](images/peko.jpg)
+
 The packaging said this was still in date, but it tasted rancid. Really like eating bin juice that's been set in gelatine. Like eating BO, really bizarre to be honest.
 
 Also had an awful texture. Some sort of very light weird powder residue on the gummies? Not a pleasant sugar coating, something else entirely. Cosmetic almost. No idea what it was or what it was meant to be doing. It wasn't helping.

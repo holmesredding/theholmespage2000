@@ -4,6 +4,8 @@
 
 ---
 
+![Peelerz Gummy Grape](images/peelerz.jpeg)
+
 Interesting idea. Can be eaten multiple ways. Has a tougher "peelable" outside layer and a softer inside, so the concept is that you peel the layers apart before eating.
 
 Peeling isn't particularly intuitive though. It doesn't *look* peelable, and to peel it you just kind of have to tear this tough layer. There's no seam, no obvious starting point. You just rip at it. Not particularly satisfying as an interaction.

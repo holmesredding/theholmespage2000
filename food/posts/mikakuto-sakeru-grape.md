@@ -4,6 +4,8 @@
 
 ---
 
+![Mikakuto Sakeru 40cm Long Grape Gummy](images/mikakutolonggrape.jpeg)
+
 Yes, I've seen the ads. For years now I've seen those ads, they're great ads! The ads are better than the gummy!
 
 Very strange taste! I liked it but overall pretty unsatisfying to me. Strange aftertaste while eating. It just sits there in your mouth after each piece and you're not sure if you're enjoying it or not.
