@@ -14,6 +14,8 @@
   --rule-color: #C4B5A0;
   --rule-dark: #8A7D6B;
   --shadow-color: #722F37;
+  --selection-purple: #6C3A8A;
+  --selection-text: #FFFFFF;
 }
 
 * {
@@ -33,6 +35,16 @@ body {
   font-family: 'Lora', Georgia, 'Times New Roman', serif;
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--selection-purple);
+  color: var(--selection-text);
+}
+
+::-moz-selection {
+  background: var(--selection-purple);
+  color: var(--selection-text);
 }
 
 /* ---- MASTHEAD ---- */

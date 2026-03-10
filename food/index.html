@@ -108,6 +108,14 @@
                 color: #1A1A1A;
                 line-height: 1.8;
               }
+              ::selection {
+                background: #6C3A8A;
+                color: #FFFFFF;
+              }
+              ::-moz-selection {
+                background: #6C3A8A;
+                color: #FFFFFF;
+              }
               h1 {
                 font-family: 'Playfair Display', Georgia, serif;
                 font-size: 2.4rem;
@@ -271,59 +279,9 @@
   <script>
     (function () {
       // ---- REVIEW DATA ----
-      // To add a new review: add an entry here. That's it.
-      const reviews = [
-        {
-          title: 'Hi-Chew Grape',
-          file: 'posts/hi-chew-grape.md',
-          date: '2026-03-05',
-          dateDisplay: '5 March 2026',
-          excerpt: 'Really great. Got that artificial flavour I love but it\'s not overwhelming.',
-          satisfaction: 92,
-          tags: ['japanese', 'chew'],
-          image: 'posts/images/hichew.jpg'
-        },
-        {
-          title: 'Bourbon Fettuccine Gummy Grape',
-          file: 'posts/bourbon-fettuccine-grape.md',
-          date: '2026-03-05',
-          dateDisplay: '5 March 2026',
-          excerpt: 'Yum. Classic yummy grape flavour. The "fettuccine" of it all is really pretty arbitrary.',
-          satisfaction: 88,
-          tags: ['japanese', 'gummy'],
-          image: 'posts/images/bourbon.jpeg'
-        },
-        {
-          title: 'Mikakuto Sakeru 40cm Long Grape Gummy',
-          file: 'posts/mikakuto-sakeru-grape.md',
-          date: '2026-03-05',
-          dateDisplay: '5 March 2026',
-          excerpt: 'Yes, I\'ve seen the ads. The ads are better than the gummy.',
-          satisfaction: 28,
-          tags: ['japanese', 'gummy', 'novelty'],
-          image: 'posts/images/mikakutolonggrape.jpeg'
-        },
-        {
-          title: 'Peelerz Gummy Grape',
-          file: 'posts/peelerz-grape.md',
-          date: '2026-03-05',
-          dateDisplay: '5 March 2026',
-          excerpt: 'Interesting idea. Not particularly satisfying, not a great grape flavour.',
-          satisfaction: 30,
-          tags: ['japanese', 'gummy', 'novelty'],
-          image: 'posts/images/peelerz.jpeg'
-        },
-        {
-          title: 'Fujiya Peco Gummy Grape',
-          file: 'posts/fujiya-peco-grape.md',
-          date: '2026-03-05',
-          dateDisplay: '5 March 2026',
-          excerpt: 'The packaging said this was still in date, but it tasted rancid.',
-          satisfaction: 5,
-          tags: ['japanese', 'gummy'],
-          image: 'posts/images/peko.jpg'
-        }
-      ];
+      // Source of truth lives in `food/posts/*.md`.
+      // Regenerate `reviews.json` with `python3 food/scripts/generate_reviews_manifest.py`.
+      let reviews = [];
 
       // ---- STATE ----
       let currentSort = 'date';
@@ -436,7 +394,30 @@
       }
 
       // ---- EVENTS ----
-      function initReviews() {
+      async function loadReviews() {
+        if (reviews.length > 0) {
+          return reviews;
+        }
+
+        const response = await fetch('reviews.json', { cache: 'no-store' });
+        if (!response.ok) {
+          throw new Error(`Failed to load reviews.json (${response.status})`);
+        }
+
+        reviews = await response.json();
+        return reviews;
+      }
+
+      async function initReviews() {
+        try {
+          await loadReviews();
+        } catch (error) {
+          console.error(error);
+          document.getElementById('no-results').textContent = 'Unable to load reviews.';
+          document.getElementById('no-results').style.display = 'block';
+          return;
+        }
+
         // Sort buttons
         document.querySelectorAll('.sort-btn').forEach(btn => {
           btn.addEventListener('click', () => {

@@ -1,3 +1,8 @@
+<!--
+date: 2026-03-05
+tags: japanese, gummy, novelty
+-->
+
 # Mikakuto Sakeru 40cm Long Grape Gummy
 
 *March 2026 — Review*

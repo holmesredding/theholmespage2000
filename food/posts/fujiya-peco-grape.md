@@ -1,3 +1,8 @@
+<!--
+date: 2026-03-05
+tags: japanese, gummy
+-->
+
 # Fujiya Peco Gummy Grape
 
 *March 2026 — Review*

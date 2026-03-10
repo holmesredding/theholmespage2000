@@ -1,3 +1,8 @@
+<!--
+date: 2026-03-05
+tags: japanese, chew
+-->
+
 # Hi-Chew Grape
 
 *March 2026 — Review*

@@ -1,0 +1,82 @@
+[
+  {
+    "title": "Aeroplane Jelly Purple Grape",
+    "file": "posts/aeroplane-jelly-grape.md",
+    "date": "2026-03-10",
+    "dateDisplay": "10 March 2026",
+    "excerpt": "Looks good, smells good, tastes good. Classic. We are well and truly abstracted away from any real grape at this point, this is its own thing now, a flavour that exists in its own right, and it's a good one.",
+    "satisfaction": 78,
+    "tags": [
+      "jelly",
+      "australian"
+    ],
+    "image": "posts/images/grapejelly.jpg"
+  },
+  {
+    "title": "Peelerz Gummy Grape",
+    "file": "posts/peelerz-grape.md",
+    "date": "2026-03-05",
+    "dateDisplay": "5 March 2026",
+    "excerpt": "Interesting idea. Can be eaten multiple ways. Has a tougher \"peelable\" outside layer and a softer inside, so the concept is that you peel the layers apart before eating.",
+    "satisfaction": 30,
+    "tags": [
+      "japanese",
+      "gummy",
+      "novelty"
+    ],
+    "image": "posts/images/peelerz.jpeg"
+  },
+  {
+    "title": "Mikakuto Sakeru 40cm Long Grape Gummy",
+    "file": "posts/mikakuto-sakeru-grape.md",
+    "date": "2026-03-05",
+    "dateDisplay": "5 March 2026",
+    "excerpt": "Yes, I've seen the ads. For years now I've seen those ads, they're great ads! The ads are better than the gummy!",
+    "satisfaction": 28,
+    "tags": [
+      "japanese",
+      "gummy",
+      "novelty"
+    ],
+    "image": "posts/images/mikakutolonggrape.jpeg"
+  },
+  {
+    "title": "Hi-Chew Grape",
+    "file": "posts/hi-chew-grape.md",
+    "date": "2026-03-05",
+    "dateDisplay": "5 March 2026",
+    "excerpt": "Really great. Got that artificial flavour I love but it's not overwhelming. Comes out more while chewing, which makes it more rewarding than a lolly that hits you with everything upfront and then has nowhere to go. Very satisfying. Want to go back for more and more and more.",
+    "satisfaction": 92,
+    "tags": [
+      "japanese",
+      "chew"
+    ],
+    "image": "posts/images/hichew.jpg"
+  },
+  {
+    "title": "Fujiya Peco Gummy Grape",
+    "file": "posts/fujiya-peco-grape.md",
+    "date": "2026-03-05",
+    "dateDisplay": "5 March 2026",
+    "excerpt": "The packaging said this was still in date, but it tasted rancid. Really like eating bin juice that's been set in gelatine. Like eating BO, really bizarre to be honest.",
+    "satisfaction": 5,
+    "tags": [
+      "japanese",
+      "gummy"
+    ],
+    "image": "posts/images/peko.jpg"
+  },
+  {
+    "title": "Bourbon Fettuccine Gummy Grape",
+    "file": "posts/bourbon-fettuccine-grape.md",
+    "date": "2026-03-05",
+    "dateDisplay": "5 March 2026",
+    "excerpt": "Yum. Classic yummy grape flavour. Strong, immediate, no ambiguity. You know what you're eating and it's good.",
+    "satisfaction": 75,
+    "tags": [
+      "japanese",
+      "gummy"
+    ],
+    "image": "posts/images/bourbon.jpeg"
+  }
+]
