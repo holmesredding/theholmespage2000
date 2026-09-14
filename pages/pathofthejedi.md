@@ -1,10 +1,6 @@
-<div class="sw-page-shell">
-  <div class="sw-page-bg">
-    <div class="sw-page-card">
+# Rebuilding Path of the Jedi
 
-# **Rebuilding Path of the Jedi**
-
-<!-- *July 19, 2023* -->
+<p class="jedi-intro">A shot-by-shot reconstruction of the Star Wars montage film, and the story of how I rebuilt it.</p>
 
 <div class="video-switcher" data-title="Path of the Jedi">
   <div class="video-controls" role="group" aria-label="Video provider" hidden>
@@ -15,8 +11,6 @@
 </div>
 
 Watch on [Vimeo](https://vimeo.com/313947832/a1a40b6526) or [YouTube](https://www.youtube.com/watch?v=zbCFbZmfQMI).
-
-##### _Patience you must have, my young padawan._
 
 I recently traveled to Walt Disney World in Florida for my honeymoon. Being a huge Disney Parks fan this trip was meticulously planned out, there would be no surprises for us. One attraction at Disney’s Hollywood Studios park that I was quietly very excited to see was the montage film Star Wars: Path of the Jedi<sup id="ref1"><a href="#fn1">1</a></sup>. This ten-plus minute attraction takes scenes and dialogue from the Star Wars saga and stitches them together to make a nicely edited recap film.
 
@@ -142,6 +136,3 @@ This has been a labour of love and a homage to a great work and one that I’ve 
 
 <p id="fn7"><b>7.</b> I would estimate close to 90 per cent of the sound effects are from the direct moment in the film that is being shown at the same time. <a href="#ref7">↩</a></p>
 </small>
-</div>
-</div>
-</div>

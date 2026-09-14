@@ -548,46 +548,32 @@ footer .snow-toggle {
 .article-body th, .article-body td { padding: 8px 12px; border-bottom: 1px solid var(--rule); text-align: left; }
 .article-body hr { border: 0; border-top: 1px solid var(--rule); margin: 32px 0; }
 
-/* --- STAR WARS “PAGES” LAYOUT --- */
-.article-body .sw-page-shell {
-	padding: 40px 0 80px;
+/* Jedi article: open starfield, wide media and a comfortable reading column. */
+.sw-page-mode .article-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 700px) minmax(0, 1fr);
+    padding: 16px 0 32px;
 }
-
-.article-body .sw-page-bg {
-	border-radius: 24px;
-	padding: 2px;
-	/* Just a subtle glow over the global starfield */
-	background-image: radial-gradient(circle at top,
-									  rgba(245, 192, 66, 0.25),
-									  transparent 55%);
-	background-color: var(--jedi-backdrop, transparent);
+.sw-page-mode .article-body > * { grid-column: 2; min-width: 0; }
+.sw-page-mode .article-body > :is(h1, .jedi-kicker, .jedi-intro, .video-switcher, .image-grid) { grid-column: 1 / -1; }
+.sw-page-mode .article-body .jedi-kicker {
+    color: var(--link); font-size: 0.8rem; letter-spacing: 0.1em;
+    text-transform: uppercase; margin: 0 0 16px;
 }
-
-.article-body .sw-page-card {
-	background: var(--jedi-card, var(--surface));          /* more transparent to show starfield */
-	border-radius: 20px;
-	padding: 24px 20px 32px;
-	border: 1px solid var(--rule);
-	box-shadow: none;
-	backdrop-filter: blur(6px);
+.sw-page-mode .article-body h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 500;
+    line-height: 1.12; max-width: 18ch; margin: 0 0 20px;
 }
-
-.article-body .sw-page-card h1,
-.article-body .sw-page-card h2,
-.article-body .sw-page-card h3,
-.article-body .sw-page-card h4,
-.article-body .sw-page-card h5 {
-	text-align: left;
+.sw-page-mode .article-body .jedi-intro {
+    color: var(--muted); font-size: 1.1rem; max-width: 58ch; margin-bottom: 36px;
 }
-
-.article-body .sw-page-card iframe {
-	width: 100%;
-	max-width: 100%;
-	height: auto;
-}
-
-.article-body .sw-page-card .image-grid {
-	margin-top: 24px;
+.sw-page-mode .video-switcher { margin-bottom: 12px; }
+.sw-page-mode .article-body .image-grid { margin: 24px 0 12px; }
+.sw-page-mode .article-body .image-grid img { margin: 0; }
+.sw-page-mode .article-body > small { display: block; border-top: 1px solid var(--rule); padding-top: 24px; }
+@media (max-width: 600px) {
+    .sw-page-mode .article-body { display: block; padding-top: 8px; }
+    .sw-page-mode .image-grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 }
 
 .site-name { margin: 0; line-height: 1.3; }
@@ -605,4 +591,88 @@ footer .snow-toggle {
 @media (max-width: 600px) {
     .lightbox-inner { min-width: 0; }
     .lightbox-image { min-width: 0; max-width: calc(100% - 80px); object-fit: contain; }
+}
+
+/* A classic deep-space field for the Jedi article only. */
+html[data-starfield-locked="true"] {
+    --page: #010205;
+    --ink: #e0e4ed;
+    --muted: #aeb8ca;
+    --surface: #0c111b;
+    --rule: #293344;
+}
+html[data-starfield-locked="true"] body.sw-page-mode {
+    background: #010205;
+    isolation: isolate;
+}
+body.sw-page-mode::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+        linear-gradient(90deg, transparent, rgba(1, 2, 5, 0.55) 30%, rgba(1, 2, 5, 0.55) 70%, transparent),
+        url('/assets/jedi-stars.svg'),
+        radial-gradient(ellipse at 90% 12%, rgba(38, 66, 111, 0.18), transparent 55%);
+    background-size: 100% 100%, 1600px 1000px, 100% 100%;
+    background-repeat: no-repeat, repeat, no-repeat;
+    background-position: center, center top, center;
+}
+
+/* Slow, reversible drift avoids a visible jump when the animation repeats. */
+body.sw-page-mode::before {
+    animation: jedi-star-drift 160s ease-in-out infinite alternate;
+}
+@keyframes jedi-star-drift {
+    from { background-position: center, center top, center; }
+    to { background-position: center, calc(50% + 70px) -35px, center; }
+}
+/* A small cruiser passes along the upper edge, then leaves a long quiet interval. */
+body.sw-page-mode::after {
+    content: "";
+    position: fixed;
+    top: 5vh;
+    left: -40px;
+    width: 28px;
+    height: 12px;
+    background: url('/assets/jedi-distant-ship.svg') center / contain no-repeat;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0;
+    animation: jedi-distant-flyby 110s linear infinite;
+}
+@keyframes jedi-distant-flyby {
+    0%, 12% { transform: translate3d(0, 0, 0); opacity: 0; }
+    14% { opacity: 0.45; }
+    28% { opacity: 0.45; }
+    30%, 100% { transform: translate3d(calc(100vw + 80px), 4vh, 0); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+    body.sw-page-mode::before { animation: none; }
+    body.sw-page-mode::after { display: none; animation: none; }
+}
+
+/* Sparse, asynchronous glints rather than a whole field of blinking stars. */
+.jedi-glints {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+}
+.jedi-glints span {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    background: #eef5ff;
+    opacity: 0.12;
+    animation: jedi-star-glint var(--glint-duration) ease-in-out var(--glint-delay) infinite;
+}
+@keyframes jedi-star-glint {
+    0%, 40%, 100% { opacity: 0.15; box-shadow: 0 0 0 transparent; }
+    70% { opacity: 0.65; box-shadow: 0 0 4px 1px rgba(190, 218, 255, 0.35); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .jedi-glints span { animation: none; }
 }

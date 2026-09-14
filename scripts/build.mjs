@@ -61,7 +61,7 @@ function metadata(html) {
 function mainPage(content, values) {
   return links(template('templates/layout.html', {
     title: escape(values.title), description: escape(values.description), content,
-    stars: values.stars ? 'true' : 'false', bodyClass: values.stars ? 'sw-page-mode' : '',
+    stars: 'true', locked: values.stars ? 'true' : 'false', bodyClass: values.stars ? 'sw-page-mode' : '',
     type: values.url === '/' ? 'website' : 'article', url: values.url,
     image: values.image || '/images/emmettdrawingcircle.webp',
     robots: values.hidden ? '<meta name="robots" content="noindex">' : ''

@@ -9,5 +9,5 @@
                 if (savedStars !== null) stars = savedStars === 'true';
             } catch {}
             root.dataset.theme = theme;
-            root.dataset.starfield = String(stars);
+            root.dataset.starfield = String(root.dataset.starfieldLocked === 'true' || stars);
         })();

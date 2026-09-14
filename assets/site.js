@@ -1,5 +1,6 @@
 (() => {
         const root = document.documentElement;
+        const starfieldLocked = root.dataset.starfieldLocked === 'true';
         const themeToggle = document.getElementById('theme-toggle');
         const starfieldToggle = document.getElementById('starfield-toggle');
         function saveAppearance() {
@@ -18,11 +19,13 @@
             themeToggle.setAttribute('aria-label', themeToggle.title);
         }
         starfieldToggle.addEventListener('click', () => {
+            if (starfieldLocked) return;
             root.dataset.starfield = String(root.dataset.starfield !== 'true');
             saveAppearance();
             syncAppearanceControls();
         });
         themeToggle.addEventListener('click', () => {
+            if (starfieldLocked) return;
             const dark = root.dataset.theme === 'dark' || root.dataset.starfield === 'true';
             root.dataset.theme = dark ? 'light' : 'dark';
             root.dataset.starfield = 'false';
@@ -301,7 +304,23 @@
 			});
 		}
 
+// A few decorative stars glint independently, away from the reading column.
+if (starfieldLocked) {
+    const glints = document.createElement('div');
+    glints.className = 'jedi-glints';
+    glints.setAttribute('aria-hidden', 'true');
+    [[6, 18, 17, -10], [93, 32, 21, -5], [12, 73, 19, -12],
+     [87, 84, 24, -3], [72, 7, 26, -14], [4, 48, 22, -17]].forEach(([x, y, duration, delay]) => {
+        const star = document.createElement('span');
+        star.style.cssText = `left:${x}%;top:${y}%;--glint-duration:${duration}s;--glint-delay:${delay}s`;
+        glints.append(star);
+    });
+    document.body.append(glints);
+}
+
 setupVideoSwitchers();
 setupImageGridLightbox();
-document.querySelectorAll('footer button').forEach(button => button.hidden = false);
+document.querySelectorAll('footer button').forEach(button => {
+    button.hidden = starfieldLocked && button.classList.contains('appearance-toggle');
+});
 })();
