@@ -117,8 +117,6 @@ This has been a labour of love and a homage to a great work and one that I’ve 
 
 ##### Note: As the video includes copyrighted material I am unable to control any monetisation. I would hope no ads appear however YouTube has informed me that ads may appear on it. If ads do appear all revenue will be paid to the copyright owner.
 
-##### [For a mirror of the video on Vimeo click here.](https://vimeo.com/313947832/a1a40b6526)
-
 <hr>
 
 <small>

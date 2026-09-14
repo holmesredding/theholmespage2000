@@ -41,3 +41,5 @@ Might have to try again to check if this is really how it's meant to taste. I'm 
 <span class="scale-note">Unexplained</span>
 </div>
 </div>
+
+*August 2026: [Read the follow-up review](/food/posts/fujiya-peco-grape-update/).*

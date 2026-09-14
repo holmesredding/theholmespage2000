@@ -1,5 +1,73 @@
 [
   {
+    "title": "Fujiya Peco Gummy Grape \u2014 An Update",
+    "file": "posts/fujiya-peco-grape-update.md",
+    "date": "2026-08-28",
+    "dateDisplay": "28 August 2026",
+    "excerpt": "Still absolutely disgusting. I don't think I went far enough in the first review, which is saying something given that I compared it to bin juice and BO. Reading it back now, it feels generous.",
+    "satisfaction": 1,
+    "tags": [
+      "japanese",
+      "gummy",
+      "update"
+    ],
+    "image": "posts/images/peko.jpg"
+  },
+  {
+    "title": "OKF Sparkling Grape Can",
+    "file": "posts/okf-sparkling-grape.md",
+    "date": "2026-07-16",
+    "dateDisplay": "16 July 2026",
+    "excerpt": "Pretty nice and refreshing. Really fun clear plastic \"can\". You can see the drink through it! I know you can see through a bottle as well, but this is shaped like a can, and apparently that's enough to get me interested.",
+    "satisfaction": 68,
+    "tags": [
+      "korean",
+      "soft drink",
+      "novelty"
+    ],
+    "image": "posts/images/okf-sparkling-grape.webp"
+  },
+  {
+    "title": "Senjaku Happy Nikukyu Paw Print Gummy Grape",
+    "file": "posts/senjaku-happy-nikukyu-grape.md",
+    "date": "2026-06-23",
+    "dateDisplay": "23 June 2026",
+    "excerpt": "Pretty nice! Good bite, good chew, nice flavour. Little paw prints. Quite a lot going for them!",
+    "satisfaction": 81,
+    "tags": [
+      "japanese",
+      "gummy",
+      "novelty"
+    ],
+    "image": "posts/images/senjaku-happy-nikukyu-grape.jpg"
+  },
+  {
+    "title": "Popcan Grape",
+    "file": "posts/popcan-grape.md",
+    "date": "2026-05-09",
+    "dateDisplay": "9 May 2026",
+    "excerpt": "Nicely shaped lollipop. That's the first thing to say for it, and probably the strongest thing to say for it. A pleasing little object. Someone has thought about the shape and it's worked.",
+    "satisfaction": 52,
+    "tags": [
+      "japanese",
+      "lollipop"
+    ],
+    "image": "posts/images/popcan-grape.jpg"
+  },
+  {
+    "title": "Sangaria Grape Soft Drink",
+    "file": "posts/sangaria-grape-soft-drink.md",
+    "date": "2026-04-18",
+    "dateDisplay": "18 April 2026",
+    "excerpt": "Quite nice. Not as deep purple as other grape drinks I've had, which isn't necessarily a bad thing. Maybe they're going for accuracy. Actual grapes do exist, even if this publication doesn't spend much time with them.",
+    "satisfaction": 76,
+    "tags": [
+      "japanese",
+      "soft drink"
+    ],
+    "image": "posts/images/sangaria-grape.jpg"
+  },
+  {
     "title": "Aeroplane Jelly Purple Grape",
     "file": "posts/aeroplane-jelly-grape.md",
     "date": "2026-03-10",

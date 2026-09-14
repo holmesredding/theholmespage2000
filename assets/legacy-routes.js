@@ -15,11 +15,16 @@ const routes = {
   "food/posts/aeroplane-jelly-grape.md": "/food/posts/aeroplane-jelly-grape/",
   "food/posts/bourbon-fettuccine-grape.md": "/food/posts/bourbon-fettuccine-grape/",
   "food/posts/editorial-standards.md": "/food/posts/editorial-standards/",
+  "food/posts/fujiya-peco-grape-update.md": "/food/posts/fujiya-peco-grape-update/",
   "food/posts/fujiya-peco-grape.md": "/food/posts/fujiya-peco-grape/",
   "food/posts/hi-chew-grape.md": "/food/posts/hi-chew-grape/",
   "food/posts/method.md": "/food/posts/method/",
   "food/posts/mikakuto-sakeru-grape.md": "/food/posts/mikakuto-sakeru-grape/",
-  "food/posts/peelerz-grape.md": "/food/posts/peelerz-grape/"
+  "food/posts/okf-sparkling-grape.md": "/food/posts/okf-sparkling-grape/",
+  "food/posts/peelerz-grape.md": "/food/posts/peelerz-grape/",
+  "food/posts/popcan-grape.md": "/food/posts/popcan-grape/",
+  "food/posts/sangaria-grape-soft-drink.md": "/food/posts/sangaria-grape-soft-drink/",
+  "food/posts/senjaku-happy-nikukyu-grape.md": "/food/posts/senjaku-happy-nikukyu-grape/"
 };
 const params = new URLSearchParams(location.search);
 const post = params.get('post');

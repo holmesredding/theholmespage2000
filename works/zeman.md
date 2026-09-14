@@ -13,7 +13,7 @@
 Watch the video essay on [Vimeo](https://vimeo.com/476994664) or [YouTube](https://www.youtube.com/watch?v=P54spql0iHM).
 
 
-I have written some academic research about the Czech filmmaker Karel Zeman. I initially wrote my Masters exegesis on him, his body of work, the animation techniques he pioneered and his influence on film directors globally today. I adapted that exegesis into a [journal article](https://journal.animationstudies.org/article/id/149/) that was published by The Society for Animation Studies, and a [blog article](https://blog.animationstudies.org/the-fabulous-adventures-of-mystimation/) published on Animation Studies 2.0. I have also produced a video essay based on this research.
+I have written some academic research about the Czech filmmaker Karel Zeman. I initially wrote my Masters exegesis on him, his body of work, the animation techniques he pioneered and his influence on film directors globally today. I adapted that exegesis into a [journal article](https://doi.org/10.64864/0f0c9337-77f0-4172-853f-0bf51bca322b) that was published by The Society for Animation Studies, and a [blog article](https://blog.animationstudies.org/the-fabulous-adventures-of-mystimation/) published on Animation Studies 2.0. I have also produced a video essay based on this research.
 
 ---
 
@@ -26,7 +26,7 @@ A video essay adaptation of my Masters of Animation exegesis *From Zeman to Gill
 ## From Zeman to Gilliam: The Evolution of Mystimation
 
 **The Society for Animation Studies** has published my journal article<br>
-[**From Zeman to Gilliam: The Evolution of Mystimation.**](https://journal.animationstudies.org/article/id/149/)
+[**From Zeman to Gilliam: The Evolution of Mystimation.**](https://doi.org/10.64864/0f0c9337-77f0-4172-853f-0bf51bca322b)
 
 ---
 
