@@ -84,10 +84,10 @@ p { margin: 0 0 1em; }
 .intro-grid { display: flex; gap: 32px; align-items: flex-start; margin-bottom: 48px; }
 .profile-pic { width: 112px; height: 112px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
 .intro-text { min-width: 0; }
-.intro-text h1 { font-size: 1.5rem; font-weight: 500; max-width: 24ch; }
+.intro-text h1 { font-size: 1.65rem; font-weight: 500; margin: 0 0 12px; }
 .intro-text strong { font-weight: inherit; }
 #home-view > section:not(#intro) { margin-bottom: 40px; }
-#home-view > section:not(#intro) > h3 { padding-top: 20px; border-top: 1px solid var(--rule); margin-bottom: 20px; }
+#home-view > section:not(#intro) > h2 { padding-top: 20px; border-top: 1px solid var(--rule); margin-bottom: 20px; }
 .works-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 24px; }
 .work-item a { display: block; text-decoration: none; }
 .work-item img { display: block; width: 100%; aspect-ratio: 16/9; object-fit: cover; margin-bottom: 8px; background: var(--surface); }
@@ -675,4 +675,22 @@ body.sw-page-mode::after {
 }
 @media (prefers-reduced-motion: reduce) {
     .jedi-glints span { animation: none; }
+}
+
+/* The homepage introduces the work first; the longer biography lives below it. */
+#home-view .intro-grid { align-items: center; margin-bottom: 36px; }
+#home-view .intro-text p:last-child { margin-bottom: 0; }
+#home-view > section > h2 { font-size: 1.1rem; font-weight: 600; }
+.writing-list { list-style: none; padding: 0; margin: 0; }
+.writing-list li { margin-bottom: 20px; }
+.list-note { display: block; color: var(--muted); font-size: 0.9rem; margin-top: 4px; font-weight: 400; }
+#home-view #podcasts .blog-list li { display: block; margin-bottom: 20px; }
+#home-view #podcasts .list-note { margin-left: 28px; }
+#about p { max-width: 68ch; }
+@media (max-width: 600px) {
+    #home-view .intro-grid { flex-direction: row; align-items: flex-start; gap: 18px; }
+    #home-view .profile-pic { width: 64px; height: 64px; }
+}
+@media (max-width: 380px) {
+    #home-view .intro-grid { flex-direction: column; }
 }
