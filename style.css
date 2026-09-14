@@ -613,20 +613,22 @@ body.sw-page-mode::before {
     pointer-events: none;
     background-image:
         linear-gradient(90deg, transparent, rgba(1, 2, 5, 0.55) 30%, rgba(1, 2, 5, 0.55) 70%, transparent),
-        url('/assets/jedi-stars.svg'),
+        url('/assets/jedi-stars-near.svg'),
+        url('/assets/jedi-stars-middle.svg'),
+        url('/assets/jedi-stars-far.svg'),
         radial-gradient(ellipse at 90% 12%, rgba(38, 66, 111, 0.18), transparent 55%);
-    background-size: 100% 100%, 1600px 1000px, 100% 100%;
-    background-repeat: no-repeat, repeat, no-repeat;
-    background-position: center, center top, center;
+    background-size: 100% 100%, 1600px 1000px, 1600px 1000px, 1600px 1000px, 100% 100%;
+    background-repeat: no-repeat, repeat, repeat, repeat, no-repeat;
+    background-position: center, center top, center top, center top, center;
 }
 
-/* Slow, reversible drift avoids a visible jump when the animation repeats. */
+/* Each depth travels a whole number of tiles, keeping the shared loop seamless. */
 body.sw-page-mode::before {
-    animation: jedi-star-drift 160s ease-in-out infinite alternate;
+    animation: jedi-star-drift 7200s linear infinite;
 }
 @keyframes jedi-star-drift {
-    from { background-position: center, center top, center; }
-    to { background-position: center, calc(50% + 70px) -35px, center; }
+    from { background-position: center, center top, center top, center top, center; }
+    to { background-position: center, calc(50% + 4800px) top, calc(50% + 3200px) top, calc(50% + 1600px) top, center; }
 }
 /* A small cruiser passes along the upper edge, then leaves a long quiet interval. */
 body.sw-page-mode::after {
@@ -670,8 +672,9 @@ body.sw-page-mode::after {
     animation: jedi-star-glint var(--glint-duration) ease-in-out var(--glint-delay) infinite;
 }
 @keyframes jedi-star-glint {
-    0%, 40%, 100% { opacity: 0.15; box-shadow: 0 0 0 transparent; }
-    70% { opacity: 0.65; box-shadow: 0 0 4px 1px rgba(190, 218, 255, 0.35); }
+    0%, 35%, 100% { opacity: 0.015; box-shadow: 0 0 0 transparent; }
+    60% { opacity: 0.78; box-shadow: 0 0 5px 1px rgba(190, 218, 255, 0.42); }
+    85% { opacity: 0.015; box-shadow: 0 0 0 transparent; }
 }
 @media (prefers-reduced-motion: reduce) {
     .jedi-glints span { animation: none; }
@@ -694,3 +697,6 @@ body.sw-page-mode::after {
 @media (max-width: 380px) {
     #home-view .intro-grid { flex-direction: column; }
 }
+
+/* Keep transparent video-player surrounds dark, including in dark colour schemes. */
+.video-switcher iframe { background-color: #000; color-scheme: normal; }
