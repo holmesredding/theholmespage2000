@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" data-starfield="{{stars}}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <meta name="description" content="{{description}}">
+    <meta property="og:title" content="{{title}}">
+    <meta property="og:description" content="{{description}}">
+    <meta property="og:type" content="{{type}}">
+    <meta property="og:url" content="https://emmettredding.com{{url}}">
+    <meta property="og:image" content="https://emmettredding.com{{image}}">
+    <link rel="canonical" href="https://emmettredding.com{{url}}">
+    {{robots}}
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <script src="/assets/legacy-routes.js"></script>
+    <script src="/assets/appearance.js"></script>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/assets/site.js" defer></script>
+</head>
+<body class="{{bodyClass}}">
+    <a class="skip-link" href="#main">Skip to content</a>
+	<header>
+		<div class="container">
+			<p class="site-name"><a href="/" class="site-title">Emmett Redding</a></p>
+			<nav>
+				<a href="/">Home</a>
+				<a href="/#works">Works</a>
+				<a href="/#writing">Writing</a>
+				<a href="/food/">Food reviews</a>
+
+				<a href="/#contact">Contact</a>
+
+			</nav>
+		</div>
+	</header>
+
+    <main id="main" class="container">
+{{content}}
+    </main>
+	<footer>
+		<p>
+			<strong>&copy; 2025 Emmett Redding</strong>
+			<button hidden id="snow-toggle" class="snow-toggle" type="button" aria-label="Toggle festive snow" aria-pressed="false" title="Toggle festive snow">
+				🎅
+			</button>
+            <button hidden id="starfield-toggle" class="appearance-toggle" type="button" aria-label="Starfield mode" aria-pressed="false" title="Starfield mode">🌌</button>
+            <button hidden id="theme-toggle" class="appearance-toggle" type="button" aria-label="Dark mode" aria-pressed="false" title="Dark mode">🌙</button>
+		</p>
+	</footer>
+</body>
+</html>

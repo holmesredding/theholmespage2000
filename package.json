@@ -1,0 +1,11 @@
+{
+  "name": "emmett-redding-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "python3 food/scripts/generate_reviews_manifest.py && node scripts/build.mjs",
+    "check": "node scripts/check.mjs"
+  },
+  "engines": { "node": ">=20" },
+  "devDependencies": { "marked": "17.0.5" }
+}

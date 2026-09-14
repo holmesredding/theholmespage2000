@@ -1,0 +1,30 @@
+  <!-- REVIEWS VIEW -->
+  <div id="reviews-view">
+
+    <!-- FEATURED ARTICLE -->
+    <div class="container" id="featured-container">{{featured}}</div>
+
+    <!-- CONTROLS -->
+    <div class="container">
+      <div class="controls" hidden>
+        <input type="text" id="search-input" class="search-input" placeholder="Search reviews..." aria-label="Search reviews">
+        <div class="controls-row">
+          <div class="sort-controls">
+            <span class="controls-label">Sort by</span>
+            <button class="sort-btn active" data-sort="date">Date <span class="sort-arrow">&darr;</span></button>
+            <button class="sort-btn" data-sort="satisfaction">Satisfaction <span class="sort-arrow">&darr;</span></button>
+          </div>
+          <div class="tag-filters" id="tag-filters"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ARTICLE LIST -->
+    <div class="container">
+      <h2 class="section-heading" id="list-heading">Recent Reviews</h2>
+      <ul class="article-list" id="article-list">{{reviews}}</ul>
+      <p class="no-results" id="no-results" style="display: none;">No reviews match your search.</p>
+    </div>
+
+  </div>
+

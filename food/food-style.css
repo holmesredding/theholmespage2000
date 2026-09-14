@@ -65,7 +65,7 @@ body {
   border-top: 3px double var(--charcoal);
 }
 
-.masthead h1 {
+.masthead :is(h1, .masthead-name) {
   font-family: 'Playfair Display', Georgia, serif;
   font-weight: 900;
   font-size: 3.4rem;
@@ -75,7 +75,7 @@ body {
   -webkit-font-smoothing: auto;
 }
 
-.masthead h1 a {
+.masthead :is(h1, .masthead-name) a {
   color: inherit;
   text-decoration: none;
   border-bottom: none;
@@ -85,7 +85,7 @@ body {
               color 0.2s ease;
 }
 
-.masthead h1 a:hover {
+.masthead :is(h1, .masthead-name) a:hover {
   color: var(--burgundy);
 }
 
@@ -415,7 +415,7 @@ body {
   margin-bottom: 2.5rem;
 }
 
-/* ---- MARKDOWN CONTENT (inside zero-md) ---- */
+/* ---- ARTICLE CONTENT ---- */
 
 .post-content {
   padding-bottom: 3rem;
@@ -746,7 +746,7 @@ body {
     font-size: 16px;
   }
 
-  .masthead h1 {
+  .masthead :is(h1, .masthead-name) {
     font-size: 2.2rem;
   }
 
@@ -781,3 +781,6 @@ body {
     box-shadow: 4px 4px 0px var(--burgundy);
   }
 }
+
+.footer-home-link { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.footer-home-link:hover { color: var(--burgundy); }

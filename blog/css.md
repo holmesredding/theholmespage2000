@@ -11,10 +11,10 @@ This page is a quick run-through of the Markdown elements that are supported. It
 
 ### Headings
 
-#### H4 Heading  
-##### H5 Heading  
+#### H4 Heading<br>
+##### H5 Heading<br>
 
-Here’s some regular text with **bold**, *italic*, and <mark>highlighted text</mark>.  
+Here’s some regular text with **bold**, *italic*, and <mark>highlighted text</mark>.<br>
 Links use the usual purple and yellow hover styling.
 
 ---
@@ -23,18 +23,18 @@ Links use the usual purple and yellow hover styling.
 
 Unordered:
 
-- First item  
-- Second item  
-  - Nested child  
-- Third item  
+- First item<br>
+- Second item<br>
+  - Nested child<br>
+- Third item<br>
 
 Ordered:
 
-1. One  
-2. Two  
-   1. Nested  
-   2. Nested  
-3. Three  
+1. One<br>
+2. Two<br>
+   1. Nested<br>
+   2. Nested<br>
+3. Three<br>
 
 ---
 
@@ -48,7 +48,7 @@ Ordered:
 
 ## Blockquotes
 
-> This is a blockquote.  
+> This is a blockquote.<br>
 > The CSS gives it a coloured edge and background highlight.
 
 ---

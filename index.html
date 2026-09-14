@@ -1,41 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-starfield="false">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emmett Redding</title>
-	<link rel="icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" href="style.css">
-    <script type="module" src="https://cdn.jsdelivr.net/npm/zero-md@3?register"></script>
-</head>
-<body>
+    <meta name="description" content="Art and Media teacher in Melbourne. Films, animation, podcasts, writing and ScreenDiary, an app about movies.">
+    <meta property="og:title" content="Emmett Redding">
+    <meta property="og:description" content="Art and Media teacher in Melbourne. Films, animation, podcasts, writing and ScreenDiary, an app about movies.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://emmettredding.com/">
+    <meta property="og:image" content="https://emmettredding.com/images/emmettdrawingcircle.webp">
+    <link rel="canonical" href="https://emmettredding.com/">
 
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <script src="/assets/legacy-routes.js"></script>
+    <script src="/assets/appearance.js"></script>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/assets/site.js" defer></script>
+</head>
+<body class="">
+    <a class="skip-link" href="#main">Skip to content</a>
 	<header>
 		<div class="container">
-			<h1><a href="./" class="site-title">Emmett Redding</a></h1>
+			<p class="site-name"><a href="/" class="site-title">Emmett Redding</a></p>
 			<nav>
-				<a href="./">Home</a>
-				<a href="./#works">Works</a>
-				<a href="./#writing">Writing</a>
-				<!-- <a href="?post=pages/podcasts.md">Podcasts</a> -->
-				<a href="./#contact">Contact</a>
-	
+				<a href="/">Home</a>
+				<a href="/#works">Works</a>
+				<a href="/#writing">Writing</a>
+				<a href="/food/">Food reviews</a>
+
+				<a href="/#contact">Contact</a>
+
 			</nav>
 		</div>
 	</header>
 
-    <main class="container">
-        
-        <div id="home-view">
+    <main id="main" class="container">
+<div id="home-view">
             <section id="intro">
                 <div class="intro-grid">
-                    <img src="images/emmettdrawingcircle.webp" alt="Emmett" class="profile-pic">
+                    <img src="/images/emmettdrawingcircle.webp" alt="Emmett" class="profile-pic">
                     <div class="intro-text">
-                        <h2>Hi, I'm Emmett. I like to make things.</h2>
+                        <h1>Hi, I'm Emmett. I like to make things.</h1>
 						<p>I'm an <strong>Art and Media teacher</strong> based in Melbourne, Australia.</p>
 						<p>I <strong>make an app</strong> about movies called <a href="https://www.screendiary.app" target="_blank">ScreenDiary</a>.</p>
-                        <p>I've <strong>directed and animated short films</strong> and I have produced <a href="?post=pages/podcasts.md"><strong>multiple podcasts</strong></a>.</p>
-                        <p>My <strong>writing</strong> on film and animation includes a <a href="https://journal.animationstudies.org/emmett-redding-from-zeman-to-gilliam-the-evolution-of-mystimation/" target="_blank">journal article</a> and <a href="https://blog.animationstudies.org/the-fabulous-adventures-of-mystimation/" target="_blank">blog post</a> published by the <strong>Society of Animation Studies</strong>, a <strong>chapter</strong> in the book <a href="https://doi.org/10.1080/1031461X.2024.2330140" target="_blank">Writing Australian History On-screen</a>, and a collection of reviews for <strong>Bunjil Place</strong>.</p>
+                        <p>I've <strong>directed and animated short films</strong> and I have produced <a href="/pages/podcasts/"><strong>multiple podcasts</strong></a>.</p>
+                        <p>My <strong>writing</strong> on film and animation includes a <a href="https://journal.animationstudies.org/article/id/149/" target="_blank">journal article</a> and <a href="https://blog.animationstudies.org/the-fabulous-adventures-of-mystimation/" target="_blank">blog post</a> published by the <strong>Society of Animation Studies</strong>, a <strong>chapter</strong> in the book <a href="https://doi.org/10.1080/1031461X.2024.2330140" target="_blank">Writing Australian History On-screen</a>, and a collection of reviews for <strong>Bunjil Place</strong>.</p>
                         <p>I’ve produced <strong>video advertisements</strong>, edited and graded footage, created <strong>visual effects and motion graphics</strong>, and managed <strong>podcast production</strong>, both in-house and as a freelancer.</p>
                     </div>
                 </div>
@@ -44,9 +54,9 @@
             <section id="writing">
                 <h3>Writing & Updates</h3>
                 <ul class="blog-list">
-<!--                     <li><span class="date">2023-JUL-28</span> <a href="?post=blog/my-new-website.md">Drumroll Please (New Website!)</a></li> -->
-<!--                     <li><span class="date">2023-07-19</span> <a href="?post=blog/pathofthejedi.md">Rebuilding Path of the Jedi</a></li> -->
-					<li><span class="date">2019-FEB-06</span> <a href="?post=pages/pathofthejedi.md">Rebuilding Path of the Jedi</a></li>
+
+
+					<li><span class="date">2019-FEB-06</span> <a href="/pages/pathofthejedi/">Rebuilding Path of the Jedi</a></li>
                 </ul>
             </section>
 
@@ -54,12 +64,12 @@
 				<h3>Podcasts</h3>
 				<ul class="blog-list">
 					<li>
-						<img src="images/icons/grouchcushions.gif" class="pod-icon" alt="">
-						<a href="?post=pages/podcasts.md#grouch-cushions">Grouch Cushions</a>
+						<img src="/images/icons/grouchcushions.gif" class="pod-icon" alt="">
+						<a href="/pages/podcasts/#grouch-cushions">Grouch Cushions</a>
 					</li>
 					<li>
-						<img src="images/icons/hollygood.gif" class="pod-icon" alt="">
-						<a href="?post=pages/podcasts.md#hollygood">Hollygood</a>
+						<img src="/images/icons/hollygood.gif" class="pod-icon" alt="">
+						<a href="/pages/podcasts/#hollygood">Hollygood</a>
 					</li>
 				</ul>
 			</section>
@@ -68,54 +78,45 @@
                 <h3>Selected Works</h3>
                 <div class="works-grid">
 					<div class="work-item">
-						<a href="?post=works/zeman.md">
-							<img src="images/works/zeman-video-essay/zemantitleimage.webp" alt="Karel Zeman & Mystimation">
+						<a href="/works/zeman/">
+							<img src="/images/works/zeman-video-essay/zemantitleimage.webp" alt="Karel Zeman & Mystimation">
 							<span class="work-title">Karel Zeman & Mystimation</span>
+                            <p class="work-description">Research and a video essay on the films and techniques of Karel Zeman.</p>
 						</a>
 					</div>
-					
+
 					<div class="work-item">
-						<a href="?post=works/my-friend-paul.md">
-							<img src="images/works/my-friend-paul/MyFriendPaul-title.webp" alt="My Friend Paul">
+						<a href="/works/my-friend-paul/">
+							<img src="/images/works/my-friend-paul/MyFriendPaul-title.webp" alt="My Friend Paul">
 							<span class="work-title">My Friend Paul</span>
+                            <p class="work-description">An animated short about childhood friendship, memory and nostalgia.</p>
 						</a>
 					</div>
-					
+
 					<div class="work-item">
-						<a href="?post=works/humanimals.md">
-							<img src="images/works/humanimals/humanimals-title.webp" alt="Humanimals">
+						<a href="/works/humanimals/">
+							<img src="/images/works/humanimals/humanimals-title.webp" alt="Humanimals">
 							<span class="work-title">Humanimals</span>
+                            <p class="work-description">Compositing and animation assistance for Benjamin Mansur’s animated film.</p>
 						</a>
 					</div>
-                    
-                    <!-- 
-<div class="work-item">
-                        <a href="?post=works/yesno.md">
-                            <img src="images/works/yesno/yesno-title.webp" alt="YES/NO">
-                            <span class="work-title">YES/NO</span>
-                        </a>
-                    </div>
- -->
+
+
                     <div class="work-item">
-                        <a href="?post=works/on-ornithology.md">
-                            <img src="images/works/on-ornithology/onornithology-title.webp" alt="On Ornithology">
+                        <a href="/works/on-ornithology/">
+                            <img src="/images/works/on-ornithology/onornithology-title.webp" alt="On Ornithology">
                             <span class="work-title">On Ornithology</span>
+                            <p class="work-description">A short film made with Max Piantoni in under 32 hours.</p>
                         </a>
                     </div>
                      <div class="work-item">
-                        <a href="?post=works/running-late.md">
-                            <img src="images/works/running-late/runninglate-title.webp" alt="Running Late">
+                        <a href="/works/running-late/">
+                            <img src="/images/works/running-late/runninglate-title.webp" alt="Running Late">
                             <span class="work-title">Running Late</span>
+                            <p class="work-description">A stop-motion short about two monsters trying to get to the movies.</p>
                         </a>
                     </div>
-<!-- 
-                    <div class="work-item">
-						<a href="?post=pages/pathofthejedi.md">
-							<img src="images/works/pathofthejedi/thumbnail.jpg" alt="Rebuilding Path of the Jedi">
-							<span>Rebuilding Path of the Jedi</span>
-						</a>
-					</div>
- -->
+
                 </div>
             </section>
 
@@ -126,532 +127,16 @@
             </section>
         </div>
 
-        <div id="post-view" style="display:none;">
-            <zero-md id="md-viewer">
-                <template>
-                    <link rel="stylesheet" href="style.css">
-                    <style>
-                        /* Make the markdown sit closer to the header */
-                        :host {
-                            display: block;
-                            width: 100%;
-                            margin-top: 0rem; /* tweak this up/down to taste */
-                        }
-
-                        /* Remove the big default top margin on the first heading/element */
-                        article {
-                            margin-top: 0;
-                        }
-                        article > :first-child {
-                            margin-top: 0;
-                        }
-
-                        /* Styles inside Markdown */
-                        a { 
-							position: relative; top: 0;
-							border-bottom: 3px solid var(--highlight); 
-							transition: all 0.1s ease;
-						}
-						a:hover {
-							background-color: var(--highlight); 
-							color: #5A1EF0;  /* match main page hover text colour */
-							border-bottom-color: transparent; 
-							top: -3px;
-							box-shadow: 3px 3px 0px var(--visited);
-						}
-                        img { max-width: 100%; height: auto; border-radius: 8px; margin: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-                        
-                        /* Demo “visited-style” link */
-						a.visited {
-							color: var(--visited);
-							border-bottom-color: var(--visited);
-							background-color: transparent;
-							box-shadow: none;
-						}
-						
-						/* Demo “hover-style” link that always looks hovered */
-						a.hover-demo {
-							background-color: var(--highlight);
-							color: var(--text-highlight);
-							border-bottom-color: transparent;
-							top: -3px;
-							box-shadow: 3px 3px 0px var(--visited);
-						}
-
-						blockquote {
-							border-left: 4px solid var(--highlight);
-							padding: 10px 10px;
-						
-							max-width: 640px;
-							margin: 24px auto;
-						
-							color: var(--ink);
-							background: rgba(5, 3, 18, 0.85);
-							border-radius: 10px;
-							box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-						}
-						
-						blockquote > :first-child {
-							margin-top: 4;
-						}
-						
-						blockquote > :last-child {
-							margin-bottom: 4;
-						}                    
-                        
-                        /* Block code (``` fenced) */
-						pre {
-							background: rgba(5, 3, 18, 0.95);
-							border-radius: 10px;
-							padding: 14px 16px;
-							margin: 20px 0;
-							border: 1px solid rgba(245, 192, 66, 0.35);
-							box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-							overflow-x: auto;
-						
-							font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Courier New", monospace;
-							font-size: 0.9rem;
-						}
-						
-						/* Remove duplicate background/padding inside blocks */
-						pre code {
-							background: transparent;
-							padding: 0;
-							border-radius: 0;
-							color: var(--ink);
-						}
-						
-						/* Inline code: small pill */
-						code {
-							background: rgba(5, 3, 18, 0.85);
-							padding: 2px 5px;
-							border-radius: 4px;
-							color: #F5C042;
-							font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Courier New", monospace;
-							font-size: 0.9em;
-						}
-
-                        iframe { width: 100%; aspect-ratio: 16/9; border: none; border-radius: 8px; margin: 20px 0; }
-                        
-						/* --- VISIBLE FOOTNOTE BADGES --- */
-						sup a {
-							background-color: var(--highlight);
-							color: var(--text-highlight);  /* = #5A1EF0 */
-							font-weight: 800;
-							text-decoration: none;
-							border-bottom: none;
-							padding: 1px 5px;
-							border-radius: 4px;
-							margin-left: 2px;
-							box-shadow: 2px 2px 0px var(--visited);
-							display: inline-block;
-							transition: all 0.1s ease;
-						}
-						
-						mark {
-							background-color: var(--text-highlight);   /* purple highlight */
-							color: var(--text-highlight-ink);          /* white text */
-							padding: 0 3px;
-							border-radius: 2px;
-						}
-
-						sup a:hover {
-							transform: translateY(-2px);
-							box-shadow: 3px 3px 0px var(--link);
-							background-color: white;
-							color: var(--text-highlight); /* keep 5A1EF0 on hover as well */
-							top: 0;
-						}
-						
-						/* --- STAR WARS “PAGES” LAYOUT --- */
-						.sw-page-shell {
-							padding: 40px 0 80px;
-						}
-			
-						.sw-page-bg {
-							border-radius: 24px;
-							padding: 2px;
-							/* Just a subtle glow over the global starfield */
-							background-image: radial-gradient(circle at top,
-															  rgba(245, 192, 66, 0.25),
-															  transparent 55%);
-							background-color: rgba(0, 0, 0, 0.4);
-						}
-			
-						.sw-page-card {
-							background: rgba(5, 3, 18, 0.72);          /* more transparent to show starfield */
-							border-radius: 20px;
-							padding: 24px 20px 32px;
-							border: 1px solid rgba(245, 192, 66, 0.30);
-							box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
-							backdrop-filter: blur(6px);
-						}
-			
-						.sw-page-card h1,
-						.sw-page-card h2,
-						.sw-page-card h3,
-						.sw-page-card h4,
-						.sw-page-card h5 {
-							text-align: left;
-						}
-			
-						.sw-page-card iframe {
-							width: 100%;
-							max-width: 100%;
-							height: auto;
-						}
-			
-						.sw-page-card .image-grid {
-							margin-top: 24px;
-						}
-                    </style>
-                </template>
-            </zero-md>
-        </div>
-
     </main>
-
 	<footer>
 		<p>
 			<strong>&copy; 2025 Emmett Redding</strong>
-			<button id="snow-toggle" class="snow-toggle" type="button" aria-label="Toggle festive snow">
+			<button hidden id="snow-toggle" class="snow-toggle" type="button" aria-label="Toggle festive snow" aria-pressed="false" title="Toggle festive snow">
 				🎅
 			</button>
+            <button hidden id="starfield-toggle" class="appearance-toggle" type="button" aria-label="Starfield mode" aria-pressed="false" title="Starfield mode">🌌</button>
+            <button hidden id="theme-toggle" class="appearance-toggle" type="button" aria-label="Dark mode" aria-pressed="false" title="Dark mode">🌙</button>
 		</p>
 	</footer>
-
-	<script>
-		// --- 1. Load Post Logic ---
-		const params = new URLSearchParams(window.location.search);
-		const post = params.get('post');
-		const viewer = document.getElementById('md-viewer');
-	
-		function applyBodyMode() {
-			if (post === 'pages/pathofthejedi.md') {
-				document.body.classList.add('sw-page-mode');
-			} else {
-				document.body.classList.remove('sw-page-mode');
-			}
-		}
-	
-		if (post) {
-			document.getElementById('home-view').style.display = 'none';
-			document.getElementById('post-view').style.display = 'block';
-			viewer.src = post;
-			applyBodyMode();
-		} else {
-			applyBodyMode();
-			document.title = 'Emmett Redding';
-		}
-	
-		// --- 2. Dynamic Page Title ---
-		function setDynamicTitle() {
-			// Home page: fixed title
-			if (!post) {
-				document.title = 'Emmett Redding';
-				return;
-			}
-	
-			const shadow = viewer.shadowRoot;
-			if (!shadow) return;
-	
-			const mdBody = shadow.querySelector('.markdown-body') || shadow;
-			if (!mdBody) return;
-	
-			const h1 = mdBody.querySelector('h1');
-	
-			if (h1 && h1.textContent.trim()) {
-				document.title = h1.textContent.trim() + ' — Emmett Redding';
-				return;
-			}
-	
-			const heading = mdBody.querySelector('h2, h3, h4, h5, h6');
-			if (heading && heading.textContent.trim()) {
-				document.title = heading.textContent.trim() + ' — Emmett Redding';
-				return;
-			}
-	
-			const name = post
-				.split('/')
-				.pop()
-				.replace(/\.md$/,'')
-				.replace(/[-_]/g, ' ');
-			document.title = name + ' — Emmett Redding';
-		}
-	
-		// --- 3. Lightbox State & Helpers ---
-	
-		const lightboxState = {
-			overlay: null,
-			imageEl: null,
-			captionEl: null,
-			prevBtn: null,
-			nextBtn: null,
-			currentIndex: 0,
-			currentItems: []
-		};
-	
-		function createLightboxIfNeeded() {
-			if (lightboxState.overlay) return;
-	
-			const overlay = document.createElement('div');
-			overlay.className = 'lightbox-overlay';
-	
-			overlay.innerHTML = `
-				<div class="lightbox-content" role="dialog" aria-modal="true">
-					<button class="lightbox-close" aria-label="Close">&times;</button>
-					<div class="lightbox-inner">
-						<button class="lightbox-arrow lightbox-prev" aria-label="Previous">&#10094;</button>
-						<img class="lightbox-image" alt="">
-						<button class="lightbox-arrow lightbox-next" aria-label="Next">&#10095;</button>
-					</div>
-					<p class="lightbox-caption"></p>
-				</div>
-			`;
-	
-			document.body.appendChild(overlay);
-	
-			const img = overlay.querySelector('.lightbox-image');
-			const caption = overlay.querySelector('.lightbox-caption');
-			const prevBtn = overlay.querySelector('.lightbox-prev');
-			const nextBtn = overlay.querySelector('.lightbox-next');
-			const closeBtn = overlay.querySelector('.lightbox-close');
-	
-			lightboxState.overlay = overlay;
-			lightboxState.imageEl = img;
-			lightboxState.captionEl = caption;
-			lightboxState.prevBtn = prevBtn;
-			lightboxState.nextBtn = nextBtn;
-	
-			function showCurrent() {
-				const item = lightboxState.currentItems[lightboxState.currentIndex];
-				if (!item) return;
-				img.src = item.src;
-				img.alt = item.alt || '';
-				caption.textContent = item.caption || '';
-			}
-	
-			function showRelative(delta) {
-				const len = lightboxState.currentItems.length;
-				if (!len) return;
-				lightboxState.currentIndex = (lightboxState.currentIndex + delta + len) % len;
-				showCurrent();
-			}
-	
-			function hide() {
-				overlay.classList.remove('is-visible');
-				document.removeEventListener('keydown', handleKeydown);
-			}
-	
-			function handleKeydown(e) {
-				if (e.key === 'Escape') hide();
-				if (e.key === 'ArrowRight') showRelative(1);
-				if (e.key === 'ArrowLeft') showRelative(-1);
-			}
-	
-			overlay.addEventListener('click', (e) => {
-				// click on the dark backdrop closes
-				if (e.target === overlay) {
-					hide();
-				}
-			});
-	
-			closeBtn.addEventListener('click', hide);
-			prevBtn.addEventListener('click', () => showRelative(-1));
-			nextBtn.addEventListener('click', () => showRelative(1));
-	
-			lightboxState.show = function (items, startIndex) {
-				lightboxState.currentItems = items || [];
-				lightboxState.currentIndex = startIndex || 0;
-				showCurrent();
-				overlay.classList.add('is-visible');
-				document.addEventListener('keydown', handleKeydown);
-			};
-		}
-	
-		function setupImageGridLightbox() {
-			const shadow = viewer.shadowRoot;
-			if (!shadow) return;
-	
-			createLightboxIfNeeded();
-	
-			const gridImages = shadow.querySelectorAll('.image-grid img');
-	
-			gridImages.forEach((img) => {
-				// avoid stacking multiple identical listeners if zero-md re-renders
-				img.onclick = null;
-	
-				img.style.cursor = 'zoom-in';
-	
-				img.addEventListener('click', () => {
-					const figure = img.closest('figure');
-					const grid = figure ? figure.closest('.image-grid') : img.closest('.image-grid');
-					if (!grid) return;
-	
-					const imgs = grid.querySelectorAll('img');
-					const items = [];
-	
-					imgs.forEach((gridImg) => {
-						const fig = gridImg.closest('figure');
-						const captionEl = fig ? fig.querySelector('figcaption') : null;
-	
-						items.push({
-							src: gridImg.currentSrc || gridImg.src,
-							alt: gridImg.alt || '',
-							caption: captionEl ? captionEl.textContent.trim() : ''
-						});
-					});
-	
-					const index = Array.from(imgs).indexOf(img);
-					lightboxState.show(items, Math.max(index, 0));
-				});
-			});
-		}
-	
-		// --- 4. Hook into zero-md’s rendered event ---
-		viewer.addEventListener('zero-md-rendered', () => {
-			setDynamicTitle();
-			setupImageGridLightbox();
-		});
-	
-		// Safety: also try after a short delay in case the event fired early
-		if (post) {
-			setTimeout(() => {
-				setDynamicTitle();
-				setupImageGridLightbox();
-			}, 800);
-		}
-	
-		// --- 5. Footnote Jump Logic (unchanged) ---
-		viewer.addEventListener('click', (e) => {
-			const path = e.composedPath();
-			const link = path.find(
-				el => el.tagName === 'A' && el.getAttribute('href')?.startsWith('#')
-			);
-	
-			if (link) {
-				e.preventDefault();
-				const id = link.getAttribute('href').substring(1);
-				const target = viewer.shadowRoot.getElementById(id);
-	
-				if (target) {
-					target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-					target.style.backgroundColor = 'rgba(255, 189, 0, 0.3)';
-					setTimeout(() => {
-						target.style.backgroundColor = 'transparent';
-					}, 1000);
-				}
-			}
-		});
-		
-		// --- 6. Simple Santa Snow Toggle ---
-
-		let snowEnabled = false;
-		let snowInterval = null;
-
-		function ensureSnowContainer() {
-			let container = document.getElementById('snow-container');
-			if (!container) {
-				container = document.createElement('div');
-				container.id = 'snow-container';
-				document.body.appendChild(container);
-			}
-			return container;
-		}
-
-		function createSnowflake() {
-			const container = ensureSnowContainer();
-		
-			const flake = document.createElement('span');
-			flake.className = 'snowflake';
-		
-			// Very high chance of being a flat circle
-			const isCircle = Math.random() < 0.95; // 95% circles, 5% snowflakes
-		
-			// Random horizontal position
-			flake.style.left = Math.random() * 100 + 'vw';
-		
-			// Random duration for fall
-			const duration = 5 + Math.random() * 6; // 5–11s
-			flake.style.animationDuration = duration + 's';
-		
-			if (isCircle) {
-				// Simple dot
-				flake.textContent = '•';
-				const size = 0.18 + Math.random() * 0.6; // 0.18–0.78rem
-				flake.style.fontSize = size + 'rem';
-		
-				// Circles: wide opacity range for subtle depth
-				const opacity = 0.12 + Math.random() * 0.7; // 0.12–0.82
-				flake.style.opacity = opacity.toFixed(2);
-			} else {
-				// Rare snowflake glyphs
-				flake.textContent = Math.random() < 0.4 ? '✻' : '❄';
-				const size = 0.7 + Math.random() * 0.8; // 0.7–1.5rem
-				flake.style.fontSize = size + 'rem';
-		
-				// Flakes more visible
-				const opacity = 0.45 + Math.random() * 0.5; // 0.45–0.95
-				flake.style.opacity = opacity.toFixed(2);
-			}
-		
-			// Optional depth blur
-			if (Math.random() < 0.35) {
-				const blur = (Math.random() * 1.5).toFixed(1);
-				flake.style.filter = `blur(${blur}px)`;
-			}
-		
-			// Pick a wind pattern (all linear – no easing stalls)
-			const variant = Math.random();
-			if (variant < 0.33) {
-				flake.style.animationName = 'snowfall-left';
-			} else if (variant < 0.66) {
-				flake.style.animationName = 'snowfall-right';
-			} else {
-				flake.style.animationName = 'snowfall';
-			}
-		
-			container.appendChild(flake);
-		
-			// Clean up after animation
-			setTimeout(() => {
-				if (flake.parentNode === container) {
-					container.removeChild(flake);
-				}
-			}, duration * 1000 + 500);
-		}
-		
-		function startSnow() {
-			if (snowInterval) return;
-			ensureSnowContainer();
-			// Heavier snowfall
-			snowInterval = setInterval(createSnowflake, 30); // was 300 / 120
-		}
-
-		function stopSnow() {
-			if (!snowInterval) return;
-			clearInterval(snowInterval);
-			snowInterval = null;
-			const container = document.getElementById('snow-container');
-			if (container) {
-				container.innerHTML = '';
-			}
-		}
-
-		const snowToggle = document.getElementById('snow-toggle');
-		if (snowToggle) {
-			snowToggle.addEventListener('click', () => {
-				snowEnabled = !snowEnabled;
-				if (snowEnabled) {
-					startSnow();
-					snowToggle.classList.add('is-on');
-				} else {
-					stopSnow();
-					snowToggle.classList.remove('is-on');
-				}
-			});
-		}
-	</script>
-
 </body>
 </html>

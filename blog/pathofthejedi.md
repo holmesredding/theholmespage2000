@@ -2,7 +2,15 @@
 
 <!-- *July 19, 2023* -->
 
-<iframe width="640" height="360" src="https://www.youtube-nocookie.com/embed/zbCFbZmfQMI?si=CdGw9_qp2y9b_XAP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<div class="video-switcher" data-title="Path of the Jedi">
+  <div class="video-controls" role="group" aria-label="Video provider" hidden>
+    <button type="button" aria-pressed="true" data-video-src="https://player.vimeo.com/video/313947832?h=a1a40b6526">Vimeo</button>
+    <button type="button" aria-pressed="false" data-video-src="https://www.youtube-nocookie.com/embed/zbCFbZmfQMI">YouTube</button>
+  </div>
+  <iframe width="640" height="360" src="https://player.vimeo.com/video/313947832?h=a1a40b6526" title="Path of the Jedi — Vimeo" allow="autoplay; fullscreen; picture-in-picture; encrypted-media" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+Watch on [Vimeo](https://vimeo.com/313947832/a1a40b6526) or [YouTube](https://www.youtube.com/watch?v=zbCFbZmfQMI).
 
 ##### _Patience you must have, my young padawan._
 

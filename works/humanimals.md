@@ -4,20 +4,20 @@
 
 <iframe title="vimeo-player" src="https://player.vimeo.com/video/576332534?h=6f99532e5e" width="640" height="360" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" allowfullscreen></iframe>
 
-### I composited and assisted in the ideation of <a href="https://benjaminmansur.weebly.com/humanimals.html" target="_blank">HUMANIMALS</a> with Director Benjamin Mansur. 
+I composited and assisted in the ideation of <a href="https://benjaminmansur.weebly.com/humanimals.html" target="_blank">HUMANIMALS</a> with Director Benjamin Mansur.
 
 ---
 
 ### **SYNOPSIS**
 
-In a world where the roles of humans and animals have been flipped, **HUMANIMALS** explores the complex relationship between humans and animals through a series of revenge-comedy vignettes.  
+In a world where the roles of humans and animals have been flipped, **HUMANIMALS** explores the complex relationship between humans and animals through a series of revenge-comedy vignettes.<br>
 But to what end?
 
 ---
 
 ### **About HUMANIMALS, from the Director**
 
-HUMANIMALS began after considering why I felt increasingly desensitised towards discussions of animal rights activism.  
+HUMANIMALS began after considering why I felt increasingly desensitised towards discussions of animal rights activism.<br>
 The film explores multiple facets of the issues surrounding animal ethics and consumption by substituting animals with humans in a comedic, but ultimately violent, light.
 
 I was interested in asking audiences to think about how they interact with animals in their daily lives—both directly and indirectly—and how they actually feel about this relationship.
@@ -38,18 +38,18 @@ I was interested in asking audiences to think about how they interact with anima
 
 *a film by Benjamin Mansur*
 
-**Animation Assistance**  
-Priyankar Ray  
+**Animation Assistance**<br>
+Priyankar Ray<br>
 
-**Composition**  
-Benjamin Mansur, Emmett Redding  
+**Composition**<br>
+Benjamin Mansur, Emmett Redding<br>
 
-**Sound Design**  
-Kinesha Kay  
+**Sound Design**<br>
+Kinesha Kay<br>
 
-**Music**  
-“Grieg - In the Hall of the Mountain King”, Written by Edvard Grieg, Performed by Kassia.  
+**Music**<br>
+“Grieg - In the Hall of the Mountain King”, Written by Edvard Grieg, Performed by Kassia.<br>
 Permissions granted courtesy of Kassia J.
 
-**Special Thanks**  
+**Special Thanks**<br>
 Kate Cawley, Chris Barker, Jeremy Parker

@@ -1,0 +1,172 @@
+
+.food-article {
+  display: block;
+  font-family: 'Lora', Georgia, 'Times New Roman', serif;
+  color: #1A1A1A;
+  line-height: 1.8;
+}
+.food-article ::selection {
+  background: #6C3A8A;
+  color: #FFFFFF;
+}
+.food-article ::-moz-selection {
+  background: #6C3A8A;
+  color: #FFFFFF;
+}
+.food-article h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #1A1A1A;
+  line-height: 1.15;
+  text-align: center;
+  margin: 2rem 0 0.5rem;
+}
+.food-article h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin: 2.5rem 0 0.8rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid #C4B5A0;
+}
+.food-article h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin: 2rem 0 0.5rem;
+}
+.food-article p {
+  margin-bottom: 1.2rem;
+  font-size: 1rem;
+}
+.food-article a {
+  color: #722F37;
+  text-decoration: underline;
+  text-decoration-color: #C4B5A0;
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s ease;
+}
+.food-article a:hover {
+  text-decoration-color: #722F37;
+}
+.food-article blockquote {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  color: #333333;
+  border-left: 3px solid #1A1A1A;
+  padding: 0.8rem 0 0.8rem 1.5rem;
+  margin: 2rem 0;
+}
+.food-article blockquote p {
+  margin-bottom: 0;
+}
+.food-article img {
+  max-width: 25%;
+  height: auto;
+  filter: saturate(0.85);
+  float: right;
+  margin: 0 0 1rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+.food-article hr {
+  border: none;
+  border-top: 1px solid #C4B5A0;
+  margin: 2.5rem auto;
+  width: 40%;
+}
+.food-article em {
+  font-style: italic;
+}
+.food-article strong {
+  font-weight: 600;
+  color: #1A1A1A;
+}
+.food-article ul, .food-article ol {
+  margin: 1rem 0 1.2rem 1.5rem;
+}
+.food-article li {
+  margin-bottom: 0.4rem;
+}
+
+/* ---- VERDICT BOX ---- */
+.food-article .verdict {
+  border-top: 3px double #2C2C2C;
+  border-bottom: 3px double #2C2C2C;
+  padding: 1.5rem 0;
+  margin: 2.5rem 0;
+}
+.food-article .verdict-heading {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #1A1A1A;
+  margin-bottom: 1.2rem !important;
+}
+.food-article .scale {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.7rem;
+}
+.food-article .scale:last-child {
+  margin-bottom: 0;
+}
+.food-article .scale-label {
+  font-family: 'Lora', serif;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #6B6560;
+  min-width: 120px;
+  flex-shrink: 0;
+}
+.food-article .scale-track {
+  flex: 1;
+  height: 6px;
+  background: #C4B5A0;
+  position: relative;
+  overflow: hidden;
+}
+.food-article .scale-fill {
+  display: block;
+  height: 100%;
+  background: #1A1A1A;
+  transition: width 0.4s ease;
+}
+.food-article .scale-note {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: #6B6560;
+  min-width: 100px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.food-article { display: flow-root; }
+@media (max-width: 600px) {
+  .food-article .scale { flex-wrap: wrap; gap: 8px; }
+  .food-article .scale-label { min-width: 100px; }
+  .food-article .scale-note { min-width: 0; }
+  .food-article img { max-width: 40%; }
+}
+.controls[hidden] { display: none; }
+.article-item[hidden] { display: none; }
+.back-link {
+  display: inline-block;
+  font-family: 'Lora', serif;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #6B6560;
+  text-decoration: none;
+  padding: 1.5rem 0 3rem;
+}
+.back-link:hover { color: #722F37; text-decoration: underline; }

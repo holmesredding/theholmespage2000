@@ -1,292 +1,135 @@
-/* --- NEW MODERN PURPLE THEME --- */
-
+/* A quiet, light default for the personal site. */
 :root {
-    /* Palette: Deep Purples & Electric Yellow */
-    --ink: #D2D2E6;       /* General text colour */
-    --link: #F5C042;      /* Main link colour */
-    --visited: #3c096c;   /* Dark Purple (visited links) */
-    --highlight: #F5C042; /* Highlight / underline / hover bg */
-	--text-highlight: #5A1EF0;   /* Purple text-selection background */
-	--text-highlight-ink: #FFFFFF; /* Text colour when selected */
-
-    /* Background Gradient */
-    --bg-top: #48336C;    
-    --bg-bottom: #2E2046; 
-    
+    --page: #f6f4ef;
+    --ink: #292929;
+    --link: #315c87;
+    --visited: #65547a;
+    --highlight: #eee5b8;
+    --link-highlight: #d5e2ec;
+    --link-hover: #c3d8e7;
+    --link-hover-ink: #203b50;
+    --text-highlight: #dce8ef;
+    --text-highlight-ink: #202020;
+    --surface: #f1f0ec;
+    --rule: #d9d8d3;
+    --muted: #666661;
     --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    --serif: "Georgia", serif; 
+    --serif: Georgia, serif;
 }
-
-/* OVERSCROLL FIX: This paints the background behind the body */
-html {
-    background-color: var(--bg-top); /* 48336C behind the gradient for overscroll */
-    height: 100%;
+html { background: var(--page); color-scheme: light; }
+html[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #202123;
+    --ink: #e5e4df;
+    --link: #a1c5e6;
+    --visited: #c8b2dc;
+    --surface: #2b2d30;
+    --rule: #484a4c;
+    --muted: #b3b4af;
+    --highlight: #eee5b8;
+    --link-highlight: #405a70;
+    --link-hover: #a1c5e6;
+    --link-hover-ink: #182a39;
+    --text-highlight: #405c73;
+    --text-highlight-ink: #fff;
 }
-
 body {
     font-family: var(--sans);
-    background: linear-gradient(to bottom, var(--bg-top), var(--bg-bottom));
-    background-attachment: fixed; /* Keeps gradient fixed while scrolling */
+    background: var(--page);
     color: var(--ink);
     margin: 0;
-    line-height: 1.6;
+    font-size: 17px;
+    line-height: 1.7;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
-
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 20px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-zero-md {
-    display: block;
-    margin-top: 0;
-    padding-top: 0;
-}
-
-/* --- TEXT LINK STYLES (Paragraphs) --- */
-a { 
-    color: var(--link); 
-    text-decoration: none; 
-    font-weight: 600; 
-    border-bottom: 3px solid var(--highlight); 
-    padding: 0 2px;
-    position: relative; 
-    top: 0; 
-    transition: top 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
-                background-color 0.2s ease, 
-                box-shadow 0.2s ease,
-                color 0.2s ease;
-}
-
-a:hover { 
-    background-color: var(--highlight); 
-    color: #5A1EF0; /* Hover text colour */
-    border-bottom-color: transparent; 
+.container { max-width: 860px; width: 100%; margin: 0 auto; padding: 0 32px; box-sizing: border-box; }
+a { color: var(--link); }
+/* Clone the marker treatment on each line of a wrapped text link. */
+a:where(:not(.site-title, nav a, .work-item a)) {
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0 2px 2px;
     border-radius: 2px;
-    top: -3px; 
-    box-shadow: 3px 3px 0px #5A1EF0;
+    background-image: linear-gradient(var(--link-highlight), var(--link-highlight));
+    background-size: 100% 5px;
+    background-position: left bottom;
+    background-repeat: no-repeat;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    transition: background-color 120ms ease, color 120ms ease, box-shadow 120ms ease;
 }
-
-/* --- HEADER & NAV --- */
-header { padding: 40px 0; margin-bottom: 0px; }
-
-.site-title { 
-    font-size: 1.8rem; 
-    font-weight: 900; 
-    color: var(--ink); 
-    text-transform: uppercase; 
-    letter-spacing: 1px; 
-    border-bottom: none;
-    display: inline-block;
-/*     padding: 4px 8px; */
+a:where(:not(.site-title, nav a, .work-item a)):is(:hover, :focus-visible) {
+    color: var(--link-hover-ink);
+    background: var(--link-hover);
+    box-shadow: 2px 2px 0 var(--link);
 }
-
-.site-title:hover { 
-    background-color: var(--highlight);
-    color: #5A1EF0;
-    box-shadow: none;
-    top: 0; 
+@media (prefers-reduced-motion: reduce) {
+    a { transition: none !important; }
 }
-
-nav { margin-top: 15px; }
-nav a { 
-    margin-right: 20px; 
-    color: var(--ink); 
-    opacity: 0.8; 
-    font-size: 1.1rem;
-    border-bottom: none; 
-    display: inline-block; 
-}
-nav a:hover { 
-    opacity: 1; 
-    background-color: var(--highlight);
-    box-shadow: 4px 4px 0px var(--visited);
-    top: -3px; 
-}
-
-/* --- TEXT SELECTION COLOUR --- */
-::selection {
-    background: var(--text-highlight);
-    color: var(--text-highlight-ink);
-}
-
-/* Typography */
-h1, h2, h3 { font-family: var(--serif); color: var(--ink); }
-h2 { font-size: 2rem; margin-top: 0;}
-
-/* Intro Section */
-.intro-grid {
-    display: flex;
-    gap: 40px;
-    align-items: flex-start;
-    margin-bottom: 60px;
-}
-.profile-pic {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    object-fit: cover;
-	box-shadow: 8px 8px 0px #5A1EF0;
-    flex-shrink: 0;
-    background-color: #ddd; 
-    border: 4px solid white;
-}
-.intro-text p { font-size: 1.1rem; }
-
-/* --- CARD STYLES (Works) --- */
-.works-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 30px;
-    margin-bottom: 60px;
-}
-
-.work-item a {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 15px;
-    border-radius: 18px;
-    border-bottom: none; 
-    background: #E9DBFC; /* UPDATED */
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    top: 0;
-}
-
-/* Card title text – only the main title span inside the link */
-.work-item a > span:not(.tag) {
-    font-weight: bold;
-    font-family: var(--serif);
-    font-size: 1.1rem;
-    color: #6218FA;
-}
-
-/* Tag container under work titles */
-.work-tags {
-    margin-top: 6px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    justify-content: center;
-}
-
-/* Individual tag pill – tiny, code/date-like */
-.work-tags .tag {
-    position: relative;
-    font-family: "Courier New", monospace; /* same family as .date */
-    font-size: 0.7rem;                     /* noticeably smaller */
-    font-weight: bold;
-    letter-spacing: 0.03em;
-    text-transform: lowercase;
-
-    padding: 1px 6px;
-    border-radius: 999px;
-    background: rgba(98, 24, 250, 0.10);
-    color: #6218FA;
-    border: 1px solid rgba(98, 24, 250, 0.4);
-    box-shadow: none;
-}
-
-/* Individual tag pill – tiny code-like labels */
-.tag {
-    position: relative;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Courier New", monospace;
-    font-size: 0.65rem;          /* smaller text */
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    text-transform: lowercase;
-
-    padding: 1px 6px;            /* tighter pill */
-    border-radius: 999px;
-    background: rgba(98, 24, 250, 0.10);
-    color: #6218FA;
-    border: 1px solid rgba(98, 24, 250, 0.4);
-    box-shadow: none;
-}
-
-.work-item img {
-    width: 100%;
-    aspect-ratio: 16/9;
-    object-fit: cover;
-    border-radius: 9px;
-    margin-bottom: 12px;
-    background-color: #ccc;
-    transition: opacity 0.2s;
-}
-
-.work-item a:hover {
-    transform: translateY(-8px); 
-    top: 0; 
-    background-color: white;
-    box-shadow: 8px 8px 0px #5A1EF0; /* UPDATED */
-    color: var(--ink);
-}
-
-/* Card title text */
-.work-item span {
-    font-weight: bold;
-    font-family: var(--serif);
-    font-size: 1.1rem;
-    color: #6218FA; /* UPDATED */
-}
-
-/* Blog List */
-.blog-list { list-style: none; padding: 0; margin-bottom: 60px;}
-.blog-list li {
-    margin-bottom: 18px;
-    font-size: 1.1rem;
-    display: flex;
-    align-items: baseline;   /* <- this is why the icon sits low */
-}
-
-/* Override just for the podcasts section */
-#podcasts .blog-list li {
-    align-items: center;     /* vertically center icon + text */
-}
-
-.date { 
-    font-family: "Courier New", monospace; 
-    color: var(--link);
-    margin-right: 20px; 
-    font-size: 0.85em; 
-    font-weight: bold;
-    min-width: 90px;
-}
-
-/* Footer */
-footer {
-    margin-top: auto;
-    padding: 40px 0;
-    text-align: center;
-    font-size: 0.9em;
-    opacity: 0.6;
-    border-top: 1px solid rgba(36, 0, 70, 0.1);
-}
-
+a:focus-visible, button:focus-visible { outline: 2px solid var(--link); outline-offset: 5px; }
+::selection { background: var(--text-highlight); color: var(--text-highlight-ink); }
+header { padding: 48px 0 44px; }
+header h1 { margin: 0; line-height: 1.3; }
+.site-title { color: var(--ink); font-size: 1.3rem; font-weight: 600; text-decoration: none; }
+nav { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 16px; }
+nav a { color: var(--muted); font-size: 0.95rem; text-decoration: none; }
+nav a:hover, .site-title:hover { text-decoration: underline; }
+h1, h2, h3, h4, h5, h6 { color: var(--ink); font-family: var(--sans); line-height: 1.35; }
+h1 { font-size: 1.8rem; }
+h2 { font-size: 1.5rem; margin-top: 0; }
+h3 { font-size: 1.1rem; font-weight: 600; }
+p { margin: 0 0 1em; }
+.intro-grid { display: flex; gap: 32px; align-items: flex-start; margin-bottom: 48px; }
+.profile-pic { width: 112px; height: 112px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+.intro-text { min-width: 0; }
+.intro-text h1 { font-size: 1.5rem; font-weight: 500; max-width: 24ch; }
+.intro-text strong { font-weight: inherit; }
+#home-view > section:not(#intro) { margin-bottom: 40px; }
+#home-view > section:not(#intro) > h3 { padding-top: 20px; border-top: 1px solid var(--rule); margin-bottom: 20px; }
+.works-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 24px; }
+.work-item a { display: block; text-decoration: none; }
+.work-item img { display: block; width: 100%; aspect-ratio: 16/9; object-fit: cover; margin-bottom: 8px; background: var(--surface); }
+.work-item .work-title, .work-item a > span:not(.tag) { color: var(--ink); font-size: 1rem; font-weight: 500; }
+.work-item a:hover > span { text-decoration: underline; text-underline-offset: 3px; }
+.work-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.tag { font-size: 0.75rem; color: var(--muted); }
+.blog-list { list-style: none; padding: 0; margin: 0; }
+.blog-list li { display: flex; align-items: baseline; gap: 16px; margin-bottom: 10px; }
+#podcasts .blog-list li { align-items: center; gap: 0; }
+.date { color: var(--muted); font-size: 0.8rem; min-width: 100px; }
+footer { margin-top: auto; padding: 32px; text-align: center; font-size: 0.8rem; color: var(--muted); }
+footer strong { font-weight: 400; }
 @media (max-width: 600px) {
-    .intro-grid { flex-direction: column; align-items: center; text-align: center; }
-    .profile-pic { width: 150px; height: 150px; }
+    .container { padding: 0 24px; }
+    header { padding: 28px 0 32px; }
+    .intro-grid { flex-direction: column; gap: 24px; }
+    .profile-pic { width: 88px; height: 88px; }
     .works-grid { grid-template-columns: 1fr; }
-}
-
-@media (max-width: 600px) {
-    .intro-text p {
-        text-align: left;
-        max-width: 90%;
-        margin-left: auto;
-        margin-right: auto;
-    }
+    .blog-list li { flex-wrap: wrap; gap: 2px 12px; }
 }
 
 /* Star Wars page background – heavy bright-star field */
-body.sw-page-mode {
+html[data-starfield="true"] {
+    color-scheme: dark;
+    --page: #02000a;
+    --jedi-card: rgba(5, 3, 18, 0.72);
+    --jedi-backdrop: rgba(0, 0, 0, 0.4);
+    --ink: #D2D2E6;
+    --link: #F5C042;
+    --visited: #cab5ed;
+    --highlight: #F5C042;
+    --link-highlight: #685222;
+    --link-hover: #F5C042;
+    --link-hover-ink: #21182e;
+    --muted: #b0adc1;
+    --surface: #141024;
+    --rule: #454052;
+    --text-highlight: #5A1EF0;
+    --text-highlight-ink: #fff;
+}
+html[data-starfield="true"] body {
     background:
 
         /* tiny dim stars (same as before) */
@@ -662,4 +505,104 @@ footer .snow-toggle {
     border-radius: 4px;
     flex-shrink: 0;
     margin: 0; /* no extra margin inside heading */
+}
+/* Neutral gallery chrome also works over the themed article. */
+.lightbox-content { background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; box-shadow: none; }
+.lightbox-image { border-radius: 0; box-shadow: none; }
+.lightbox-close, .lightbox-arrow { background: var(--surface); color: var(--ink); border: 1px solid var(--rule); box-shadow: none; }
+.image-grid img { border-radius: 0; box-shadow: none; }
+.snow-toggle:hover, .snow-toggle.is-on { top: 0; box-shadow: none; background: var(--highlight); }
+.snowflake { color: var(--muted); }
+
+.work-item img, .image-grid img, .lightbox-image { border-radius: 8px; }
+.appearance-toggle, footer .snow-toggle {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px; padding: 0; margin-left: 4px;
+    vertical-align: middle; border: 1px solid transparent; border-radius: 8px;
+    background: transparent; color: var(--ink); font-size: 1.25rem; cursor: pointer;
+}
+.appearance-toggle:hover, .appearance-toggle[aria-pressed="true"], footer .snow-toggle.is-on {
+    background: var(--surface); border-color: var(--rule);
+}
+.video-switcher .video-controls { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.video-controls button {
+    font: inherit; font-size: 0.9rem; padding: 6px 14px; border-radius: 6px;
+    border: 1px solid var(--rule); color: var(--ink); background: transparent; cursor: pointer;
+}
+.video-controls button[aria-pressed="true"] { background: var(--surface); border-color: var(--link); }
+
+/* Static article layouts. */
+/* Article styles inherit the light or Star Wars palette. */
+.article-body { color: var(--ink); background: transparent; font-family: var(--sans); font-size: 17px; line-height: 1.7; }
+.article-body img { max-width: 100%; height: auto; margin: 20px 0; border-radius: 8px; }
+.article-body blockquote { border-left: 2px solid var(--rule); padding: 0 20px; margin: 24px 0; color: var(--muted); }
+.article-body blockquote > :first-child { margin-top: 0; }
+.article-body blockquote > :last-child { margin-bottom: 0; }
+.article-body pre { background: var(--surface); padding: 16px; overflow-x: auto; font-size: 0.9rem; }
+.article-body code { background: var(--surface); color: var(--ink); padding: 2px 4px; font-size: 0.9em; }
+.article-body pre code { padding: 0; background: transparent; }
+.article-body iframe { display: block; width: 100%; height: auto; aspect-ratio: 16/9; border: none; border-radius: 8px; margin: 20px 0; }
+.article-body sup a { padding: 0 2px; }
+.article-body mark { background: var(--highlight); color: #292929; }
+.article-body table { border-collapse: collapse; display: block; overflow-x: auto; }
+.article-body th, .article-body td { padding: 8px 12px; border-bottom: 1px solid var(--rule); text-align: left; }
+.article-body hr { border: 0; border-top: 1px solid var(--rule); margin: 32px 0; }
+
+/* --- STAR WARS “PAGES” LAYOUT --- */
+.article-body .sw-page-shell {
+	padding: 40px 0 80px;
+}
+
+.article-body .sw-page-bg {
+	border-radius: 24px;
+	padding: 2px;
+	/* Just a subtle glow over the global starfield */
+	background-image: radial-gradient(circle at top,
+									  rgba(245, 192, 66, 0.25),
+									  transparent 55%);
+	background-color: var(--jedi-backdrop, transparent);
+}
+
+.article-body .sw-page-card {
+	background: var(--jedi-card, var(--surface));          /* more transparent to show starfield */
+	border-radius: 20px;
+	padding: 24px 20px 32px;
+	border: 1px solid var(--rule);
+	box-shadow: none;
+	backdrop-filter: blur(6px);
+}
+
+.article-body .sw-page-card h1,
+.article-body .sw-page-card h2,
+.article-body .sw-page-card h3,
+.article-body .sw-page-card h4,
+.article-body .sw-page-card h5 {
+	text-align: left;
+}
+
+.article-body .sw-page-card iframe {
+	width: 100%;
+	max-width: 100%;
+	height: auto;
+}
+
+.article-body .sw-page-card .image-grid {
+	margin-top: 24px;
+}
+
+.site-name { margin: 0; line-height: 1.3; }
+.article-body > :first-child { margin-top: 0; }
+.article-body { overflow-wrap: break-word; }
+.article-body h2 { margin-top: 2rem; }
+.article-body .pod-icon { margin: 0; }
+.article-back { margin: 40px 0; }
+.work-description { color: var(--muted); font-size: 0.9rem; font-weight: 400; margin: 6px 0 0; line-height: 1.5; }
+.video-controls[hidden], button[hidden] { display: none; }
+.skip-link { position: absolute; left: 16px; top: -100px; z-index: 10000; }
+.skip-link:focus { top: 16px; background: var(--page); padding: 8px; }
+.article-body :target { scroll-margin-top: 24px; }
+.image-grid img:focus-visible { outline: 2px solid var(--link); outline-offset: 4px; }
+@media (max-width: 600px) {
+    .lightbox-inner { min-width: 0; }
+    .lightbox-image { min-width: 0; max-width: calc(100% - 80px); object-fit: contain; }
 }
